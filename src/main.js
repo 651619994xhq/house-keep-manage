@@ -4,19 +4,16 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import './common/css/base.css'  //导入重置样式
-import 'mint-ui/lib/style.css'
-import './common/css/fixMintUi.css'; //导入修复mint-ui的适配问题
-import MintUI from 'mint-ui'
 import store from '@/store'
 import './common/utils/touchEvent'; //导出自己的手势库 自定义指令
-import fastclick from 'fastclick'
-import './icons'
-Vue.config.productionTip = false
-
-Vue.use(MintUI)
-
+import fastclick from 'fastclick';
+import './icons';
+import 'vant/lib/index.css';
+import {Swipe,SwipeItem,Toast} from 'vant'
+Vue.use(Swipe).use(SwipeItem);
+Vue.prototype.$toast = Toast;
+Vue.config.productionTip = false;
 fastclick.attach(document.body)
-
 // xhq 2019/4/25 这个是兼容ios input 弹窗 不聚焦的问题
 fastclick.prototype.focus = function(targetElement) {
   let u=navigator.userAgent;
