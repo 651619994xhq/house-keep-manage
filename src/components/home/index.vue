@@ -1,14 +1,16 @@
 <template>
     <div class="container">
-        <van-swipe :autoplay="3000" indicator-color="white" class="swipe-container">
-            <van-swipe-item class="item">1</van-swipe-item>
-            <van-swipe-item class="item">2</van-swipe-item>
-            <van-swipe-item class="item">3</van-swipe-item>
-            <van-swipe-item class="item">4</van-swipe-item>
-        </van-swipe>
+<!--        <van-swipe :autoplay="3000" indicator-color="white" class="swipe-container">-->
+<!--            <van-swipe-item class="item">1</van-swipe-item>-->
+<!--            <van-swipe-item class="item">2</van-swipe-item>-->
+<!--            <van-swipe-item class="item">3</van-swipe-item>-->
+<!--            <van-swipe-item class="item">4</van-swipe-item>-->
+<!--        </van-swipe>-->
     </div>
 </template>
 <script>
+    // import 'swiper/dist/css/swiper.css'
+    // import { swiper, swiperSlide } from 'vue-awesome-swiper'
     export default {
         name: "home",
         data() {
@@ -17,7 +19,8 @@
         },
 //组件
         components: {
-
+            // swiper,
+            // swiperSlide
         },
 //初始化数据
         created() {
