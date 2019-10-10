@@ -31,11 +31,11 @@
                    身份选择
                 </div>
                 <div class="label-content row flex-grow flex-item flex-justify-start flex-item-start wrap">
-                    <div class="label-active">哈喽</div>
-                    <div class="label">哈喽</div>
-                    <div class="label">哈喽</div>
-                    <div class="label">哈喽</div>
-                    <div class="label">哈喽</div>
+                    <div class="label-active">准妈妈</div>
+                    <div class="label">备孕妈妈</div>
+                    <div class="label">宝妈</div>
+                    <div class="label">家属</div>
+                    <div class="label">神秘人</div>
                 </div>
             </div>
         </div>
