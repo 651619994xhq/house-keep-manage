@@ -8,13 +8,10 @@ import store from '@/store'
 import './common/utils/touchEvent'; //导出自己的手势库 自定义指令
 import fastclick from 'fastclick';
 import './icons';
-import VueAwesomeSwiper from 'vue-awesome-swiper'
-Vue.use(VueAwesomeSwiper)
-import 'swiper/dist/css/swiper.css'
-// import 'vant/lib/index.css';
-// import {Swipe,SwipeItem,Toast} from 'vant'
-// Vue.use(Swipe).use(SwipeItem);
-// Vue.prototype.$toast = Toast;
+import 'vant/lib/index.css';
+import {Swipe,SwipeItem,Toast} from 'vant'
+Vue.use(Swipe).use(SwipeItem);
+Vue.prototype.$toast = Toast;
 Vue.config.productionTip = false;
 fastclick.attach(document.body)
 // xhq 2019/4/25 这个是兼容ios input 弹窗 不聚焦的问题

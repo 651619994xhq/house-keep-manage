@@ -1,30 +1,48 @@
 <template>
     <div class="container">
-<!--        <van-swipe :autoplay="3000" indicator-color="white" class="swipe-container">-->
-<!--            <van-swipe-item class="item">1</van-swipe-item>-->
-<!--            <van-swipe-item class="item">2</van-swipe-item>-->
-<!--            <van-swipe-item class="item">3</van-swipe-item>-->
-<!--            <van-swipe-item class="item">4</van-swipe-item>-->
-<!--        </van-swipe>-->
+        <swiper :options="swiperOption" class="swipe-container">
+            <swiper-slide v-for="(slide, index) in swiperSlides" :key="index" class="item">I'm Slide {{ slide }}</swiper-slide>
+            <div class="swiper-pagination" slot="pagination"></div>
+        </swiper>
     </div>
 </template>
 <script>
-    // import 'swiper/dist/css/swiper.css'
-    // import { swiper, swiperSlide } from 'vue-awesome-swiper'
+    import 'swiper/dist/css/swiper.css'
+    import { swiper, swiperSlide } from 'vue-awesome-swiper'
     export default {
         name: "home",
         data() {
             return {
+              swiperOption: {
+                // autoplay:true,
+                autoplay: {
+                 delay: 5000,
+                 stopOnLastSlide: false,
+                 disableOnInteraction: true,
+                },
+                pagination: {
+                  el: '.swiper-pagination'
+                }
+              },
+              swiperSlides: [1, 2, 3, 4, 5]
             }
         },
 //组件
         components: {
-            // swiper,
-            // swiperSlide
+            swiper,
+            swiperSlide
         },
 //初始化数据
         created() {
 
+        },
+        mounted(){
+          // setInterval(() => {
+          //   console.log('simulate async data')
+          //   if (this.swiperSlides.length < 10) {
+          //     this.swiperSlides.push(this.swiperSlides.length + 1)
+          //   }
+          // }, 3000)
         },
 //一些自定义方法
         methods: {
@@ -38,17 +56,17 @@
         height: 100%;
         overflow: hidden;
         background:#F7F6FB;
-        padding-bottom: 100px;
+        padding-bottom: 50px;
     }
     .swipe-container{
         width: 100%;
-        height: 300px;
-        background: #0A81FB;
+        height: 150px;
+        background: #FFFFFF;
         .item{
             width: 100%;
             height: 100%;
-            font-size: 100px;
-            line-height: 300px;
+            font-size: 50px;
+            line-height: 150px;
             text-align: center;
         }
     }

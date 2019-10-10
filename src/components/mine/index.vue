@@ -66,23 +66,23 @@
     }
     .header{
         width:100%;
-        height:426px;
+        height:213px;
         background:rgba(255,102,0,1);
         border-radius:0px 0px 60px 60px;
         overflow: hidden;
     }
     .main{
-        margin: 28px auto;
-        width:694px;
-        height:280px;
+        margin: 14px auto;
+        width:347px;
+        height:140px;
         background:rgba(255,255,255,1);
-        border-radius:10px;
+        border-radius:5px;
         overflow: hidden;
     }
     .img-view{
-        margin-top: 200px;
-        width: 96px;
-        height: 96px;
+        margin-top: 100px;
+        width: 48px;
+        height: 48px;
         overflow: hidden;
         img{
             width: 100%;
@@ -91,14 +91,14 @@
         }
     }
     .login-btn{
-        margin-top: 38px;
-        width: 187px;
-        height: 60px;
-        line-height: 60px;
+        margin-top: 19px;
+        width: 93.5px;
+        height: 30px;
+        line-height: 30px;
         text-align: center;
         border: 1px solid #ffffff;
-        border-radius: 30px;
-        font-size: 24px;
+        border-radius: 15px;
+        font-size: 12px;
         color: #ffffff;
     }
     .item{
@@ -110,23 +110,23 @@
     }
     .item-border{
         width: 1px;
-        height: 150px;
+        height: 75px;
         background: #CBCCCC;
     }
     .img-icon1{
-       width: 50px;
-       height: 50px;
+       width: 25px;
+       height: 25px;
        background: #0A81FB;
     }
     .img-title{
-      margin-top: 36px;
-      font-size: 28px;
-      height: 28px;
-      line-height: 28px;
+      margin-top: 14px;
+      font-size: 12px;
+      height: 14px;
+      line-height: 14px;
     }
     .img-icon2{
-        width: 38px;
-        height: 52px;
+        width: 19px;
+        height: 26px;
         background: #ff6666;
     }
 

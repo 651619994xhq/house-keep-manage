@@ -70,22 +70,22 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 100px;
+    height: 50px;
     border-top: 1px solid #cecece;
     z-index: 1;
     background: #ffffff;
     .item{
-        width: 100px;
-        height: 100px;
+        width: 50px;
+        height: 50px;
     }
     .item-image{
-        width: 37px;
-        height: 38.5px;
+        width: 18.5px;
+        height: 19px;
         display: block;
     }
     .item-title{
-        margin-top: 12px;
-        font-size: 24px;
+        margin-top: 6px;
+        font-size: 12px;
         color: #3A3E51;
     }
     .active-item-title{
