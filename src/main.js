@@ -9,8 +9,10 @@ import './common/utils/touchEvent'; //导出自己的手势库 自定义指令
 import fastclick from 'fastclick';
 import './icons';
 import 'vant/lib/index.css';
-import {Swipe,SwipeItem,Toast} from 'vant'
+import {Swipe,SwipeItem,Toast,Field,Cell,CellGroup } from 'vant'
 Vue.use(Swipe).use(SwipeItem);
+Vue.use(Field);
+Vue.use(Cell).use(CellGroup);
 Vue.prototype.$toast = Toast;
 Vue.config.productionTip = false;
 fastclick.attach(document.body)
