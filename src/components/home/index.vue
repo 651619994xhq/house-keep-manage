@@ -10,6 +10,9 @@
                 </li>
             </ul>
         </div>
+        <swiper :options="switchOptions" ref="mySwiper" class="switch-container"  @slideChangeTransitionEnd="slideChangeTransitionEndCallback">
+            <swiper-slide v-for="(slide, index) in navList" :key="index" class="switch-item">I'm Slide {{ index }}</swiper-slide>
+        </swiper>
     </div>
 </template>
 <script>
@@ -20,6 +23,7 @@
         data() {
             return {
               swiperOption: {
+                initialSlide:0,
                 loop:true,
                 autoplay: {
                  delay: 5000,
@@ -34,20 +38,33 @@
               nowIndex:0, //当前选中的index
               navList:[
                 {
-                  name:'月嫂',
+                  // name:'月嫂',
+                  name:'1',
                   id:1
                 },{
-                  name:'育儿嫂',
+                  // name:'育儿嫂',
+                  name:'2',
                   id:2
                 },{
-                  name:'保姆',
+                  // name:'保姆',
+                  name:'3',
                   id:3
                 },{
-                  name:'更多',
+                  // name:'更多',
+                  name:'4',
                   id:4
                 }
-              ]
+              ],
+              //选项卡切换的参数
+              switchOptions:{
+                initialSlide:0,
+              }
             }
+        },
+        computed:{
+          swicthSwiper() {
+            return this.$refs.mySwiper.swiper
+          }
         },
 //组件
         components: {
@@ -64,8 +81,11 @@
 //一些自定义方法
         methods: {
           tabClick(index){
-            console.log('tabClick==>',index);
             this.nowIndex=index;
+            this.swiper.slideTo(index,300,false)
+          },
+          slideChangeTransitionEndCallback(){
+            this.nowIndex=this.swicthSwiper.activeIndex;
           }
         }
     }
@@ -109,6 +129,7 @@
         .navli-active{
             color: $pink;
             &::after{
+                margin-top: -2px;
                 margin-left: 40px;
                 content: '';
                 display: block;
@@ -116,6 +137,26 @@
                 height: 2px;
                 background: $pink;
             }
+        }
+    }
+    .switch-container{
+        width: 100%;
+        height: 100%;
+        .switch-item{
+            width: 100%;
+            height: 100%;
+        }
+        .switch-item:first-of-type{
+            background: #0A81FB;
+        }
+        .switch-item:nth-of-type(2){
+            background: #FFFFFF;
+        }
+        .switch-item:nth-of-type(3){
+            background: bisque;
+        }
+        .switch-item:nth-of-type(4){
+            background: black;
         }
     }
 </style>
