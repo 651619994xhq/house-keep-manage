@@ -4,6 +4,12 @@
             <swiper-slide v-for="(slide, index) in swiperSlides" :key="index" class="item">I'm Slide {{ slide }}</swiper-slide>
             <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
+        <div class="navlist">
+            <ul class="row flex-item flex-justify-around">
+                <li class="navli" :class="(nowIndex==index)?'navli-active':''" v-for="(item,index) in navList" @click="tabClick(index)"><i>{{item.name}}</i>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 <script>
@@ -14,17 +20,33 @@
         data() {
             return {
               swiperOption: {
-                // autoplay:true,
+                loop:true,
                 autoplay: {
                  delay: 5000,
                  stopOnLastSlide: false,
-                 disableOnInteraction: true,
+                 disableOnInteraction: true
                 },
                 pagination: {
                   el: '.swiper-pagination'
                 }
               },
-              swiperSlides: [1, 2, 3, 4, 5]
+              swiperSlides: [1, 2, 3, 4, 5],
+              nowIndex:0, //当前选中的index
+              navList:[
+                {
+                  name:'月嫂',
+                  id:1
+                },{
+                  name:'育儿嫂',
+                  id:2
+                },{
+                  name:'保姆',
+                  id:3
+                },{
+                  name:'更多',
+                  id:4
+                }
+              ]
             }
         },
 //组件
@@ -37,15 +59,14 @@
 
         },
         mounted(){
-          // setInterval(() => {
-          //   console.log('simulate async data')
-          //   if (this.swiperSlides.length < 10) {
-          //     this.swiperSlides.push(this.swiperSlides.length + 1)
-          //   }
-          // }, 3000)
+
         },
 //一些自定义方法
         methods: {
+          tabClick(index){
+            console.log('tabClick==>',index);
+            this.nowIndex=index;
+          }
         }
     }
 </script>
@@ -60,14 +81,41 @@
     }
     .swipe-container{
         width: 100%;
-        height: 150px;
+        height: 160px;
         background: #FFFFFF;
         .item{
             width: 100%;
             height: 100%;
             font-size: 50px;
-            line-height: 150px;
+            line-height: 160px;
             text-align: center;
+        }
+    }
+    .navlist{
+        margin-top: 10px;
+        height: 52px;
+        width: 100%;
+        background: #FFFFFF;
+        .navli{
+            width: 25%;
+            height: 100%;
+            color: $color-3;
+            font-size: 14px;
+            line-height: 52px;
+            text-align: center;
+            font-family:PingFangSC-Regular,PingFangSC;
+
+        }
+        .navli-active{
+            color: $pink;
+            &::after{
+                margin-left: 40px;
+                content: '';
+                display: block;
+                width: 16px;
+                height: 2px;
+                background: $pink;
+            }
         }
     }
 </style>

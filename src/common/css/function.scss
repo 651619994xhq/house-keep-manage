@@ -11,6 +11,7 @@ $bg-color: #F5F5F5;
 $color-F: #FFFFFF;
 $blue: #074CF7;
 $lightOrange: #FF981E;
+$pink:#FA7777;
 
 @mixin showBg($url) {
   background: url($url) no-repeat center;

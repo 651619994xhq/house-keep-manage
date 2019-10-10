@@ -1,135 +1,101 @@
 <template>
-    <div class="container">
-        <div class="header col flex-item flex-justify-start">
-              <div class="img-view">
-                  <img src="~image/header.png" alt="">
-              </div>
-               <div class="login-btn" @click="hanldeGoToLogin">登录</div>
-        </div>
-        <div class="main row flex-item flex-justify-between">
-            <div class="item flex-grow col flex-item flex-justify" @click="handleGoToOrder">
-                 <div class="img-icon1">
-
-                 </div>
-                <div class="img-title">我的订单</div>
+<div>
+    <div class="navlist">
+        <ul>
+            <li class="navli" v-for="(item,index) in navList" :class="{'activeT':nowIndex===index}" @click="tabClick(index)"><i>{{item.name}}</i>
+            </li>
+        </ul>
+    </div>
+    <div class="swiper-container swiper_con">
+        <div class="swiper-wrapper">
+            <!-- 第一个swiper -->
+            <div class="swiper-slide" ref="viewBox">1111
             </div>
-            <div class="item-border"></div>
-            <div class="item flex-grow col flex-item flex-justify" @click="handleGoToAdress">
-                <div class="img-icon2">
-
-                </div>
-                <div class="img-title">收货地址</div>
+            <!-- 第二个swiper -->
+            <div class="swiper-slide">2222
             </div>
         </div>
     </div>
+</div>
 </template>
-
 <script>
-    export default {
-        name: "mine",
-        data() {
-            return {}
-        },
-//组件
-        components: {},
-//初始化数据
-        created() {
-          console.log('mine is created')
-        },
-//一些自定义方法
-        methods: {
-            handleGoToOrder(){
-              this.$router.push({
-                  path:'/order'
-              })
-            },
-            handleGoToAdress(){
-                this.$router.push({
-                   path:'/address'
-                });
-            },
-            hanldeGoToLogin(){
-                this.$router.push({
-                    path:'/login'
-                })
-            }
-
+  import Swiper from 'vue-awesome-swiper'
+  export default {
+    name: "mine",
+    data() {
+      return {
+        navList:[
+          {name:'热门答疑'},
+          {name:'北清状元'}
+        ],
+        nowIndex:0,
+      }
+    },
+    components:{
+    },
+    mounted() {
+      var that=this
+      that.mySwiper = new Swiper('.swiper-container',{
+        initialSlide:0,
+        autoplay:false,
+        keyboardControl:true,
+        autoHeight:true,
+        observer:true,
+        observeParents:true,
+        onSlideChangeStart:function(){
+          // console.log(that.mySwiper.activeIndex)
+          that.nowIndex=that.mySwiper.activeIndex
         }
+      });
+      // this.getList();
+    },
+    methods: {
+      tabClick(index){
+        this.nowIndex = index
+        this.mySwiper.slideTo(index,1000,false)
+      },
+    },
+    created(id){
+
     }
+  }
 </script>
-
 <style scoped lang="scss">
-    .container {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-    .header{
+    .navlist{
         width:100%;
-        height:213px;
-        background:rgba(255,102,0,1);
-        border-radius:0px 0px 60px 60px;
-        overflow: hidden;
+        height:40px;
+        border-bottom:1px solid rgba(151,151,151,0.1);
+        position:relative;
     }
-    .main{
-        margin: 14px auto;
-        width:347px;
-        height:140px;
-        background:rgba(255,255,255,1);
-        border-radius:5px;
-        overflow: hidden;
+    .navli{
+        padding:10px 0px;
+        text-align:center;
+        float:left;
+        margin:0 1.2rem;
     }
-    .img-view{
-        margin-top: 100px;
-        width: 48px;
-        height: 48px;
-        overflow: hidden;
-        img{
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
+    .navli i{
+        font-style: normal;
+        font-size: 16px;
     }
-    .login-btn{
-        margin-top: 19px;
-        width: 93.5px;
-        height: 30px;
-        line-height: 30px;
-        text-align: center;
-        border: 1px solid #ffffff;
-        border-radius: 15px;
-        font-size: 12px;
-        color: #ffffff;
+    .activeT{
+        color:#00ba6b;
+        padding-bottom: .3rem;
+        border-bottom: 2px solid #00ba6b;
     }
-    .item{
-        height: 100%;
-        /*background: #ff6666;*/
+    .swiper_con{
+        width:100%;
+        margin-bottom:40px;
+        position:relative;
     }
-    .item:last-of-type{
-        /*background: #0A81FB;*/
+    .choosegrand{
+        position:absolute;
+        top:-3;
+        right:0;
     }
-    .item-border{
-        width: 1px;
-        height: 75px;
-        background: #CBCCCC;
+    .show{
+        display:block;
     }
-    .img-icon1{
-       width: 25px;
-       height: 25px;
-       background: #0A81FB;
+    .none{
+        display:none;
     }
-    .img-title{
-      margin-top: 14px;
-      font-size: 12px;
-      height: 14px;
-      line-height: 14px;
-    }
-    .img-icon2{
-        width: 19px;
-        height: 26px;
-        background: #ff6666;
-    }
-
-
-
 </style>
