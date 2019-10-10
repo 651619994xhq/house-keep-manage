@@ -82,7 +82,7 @@
         methods: {
           tabClick(index){
             this.nowIndex=index;
-            this.swiper.slideTo(index,300,false)
+            this.swicthSwiper.slideTo(index,300,false)
           },
           slideChangeTransitionEndCallback(){
             this.nowIndex=this.swicthSwiper.activeIndex;
