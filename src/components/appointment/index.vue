@@ -29,6 +29,17 @@
               <div class="item2">></div>
           </div>
         </div>
+        <div class="other-ask col flex-item-start flex-justify-start">
+             <div class="title1">
+                    其他要求
+             </div>
+             <div class="text-area">
+                 如有其他要求，请您备注，会根据需求为您匹配阿姨
+             </div>
+             <div class="submit-btn">
+                 立即预约
+             </div>
+        </div>
     </div>
 </template>
 
@@ -153,5 +164,42 @@
             }
 
         }
+    }
+    .other-ask{
+        margin-top: 10px;
+        width: 100%;
+        height: 192px;
+        background: #ffffff;
+        .title1{
+            width: 100%;
+            height: 52px;
+            line-height: 52px;
+            font-size:16px;
+            font-family:PingFangSC-Medium,PingFangSC;
+            font-weight:600;
+            color:rgba(0,2,18,1);
+            text-indent: 16px;
+        }
+        .text-area{
+            margin-left: 16px;
+            width: 343px;
+            height: 70px;
+            border: 1px solid #999999;
+            border-radius: 4px;
+        }
+        .submit-btn{
+            margin: 16px auto;
+            width:296px;
+            height:42px;
+            line-height: 42px;
+            text-align: center;
+            background:linear-gradient(328deg,rgba(201,141,253,1) 0%,rgba(250,119,119,1) 100%);
+            border-radius:21px;
+            font-size:16px;
+            font-family:PingFangSC-Regular,PingFangSC;
+            font-weight:400;
+            color:rgba(255,255,255,1);
+        }
+
     }
 </style>
