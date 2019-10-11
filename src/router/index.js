@@ -13,7 +13,6 @@ const myCollect = (resolve) => {import('@/components/myCollect/index').then((mod
 const myService = (resolve) => {import('@/components/myService/index').then((module) => {resolve(module)})};
 const order = (resolve) => {import('@/components/order/index').then((module) => {resolve(module)})};
 const orderDetail = (resolve) => {import('@/components/orderDetail/index').then((module) => {resolve(module)})};
-const address = (resolve) => {import('@/components/address/index').then((module) => {resolve(module)})};
 
 Vue.use(Router);
 
