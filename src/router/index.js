@@ -8,6 +8,9 @@ const mine = (resolve) => {import('@/components/mine/index').then((module) => {r
 const shop = (resolve) => {import('@/components/shop/index').then((module) => {resolve(module)})};
 const login = (resolve) => {import('@/components/login/index').then((module) => {resolve(module)})};
 const appointment = (resolve) => {import('@/components/appointment/index').then((module) => {resolve(module)})};
+const personInfo = (resolve) => {import('@/components/personInfo/index').then((module) => {resolve(module)})};
+const myCollect = (resolve) => {import('@/components/myCollect/index').then((module) => {resolve(module)})};
+const myService = (resolve) => {import('@/components/myService/index').then((module) => {resolve(module)})};
 const order = (resolve) => {import('@/components/order/index').then((module) => {resolve(module)})};
 const orderDetail = (resolve) => {import('@/components/orderDetail/index').then((module) => {resolve(module)})};
 const address = (resolve) => {import('@/components/address/index').then((module) => {resolve(module)})};
@@ -33,10 +36,13 @@ let router = new Router({
         ]
     },
     { path: '/login', name: 'login', component: login,meta:{title:'登录/注册',index:2}},
-    { path: '/appointment', name: 'appointment', component: login,meta:{title:'预约面试',index:3}},
+    { path: '/appointment', name: 'appointment', component: appointment,meta:{title:'预约面试',index:3}},
+    { path: '/person-info', name: 'personInfo', component: personInfo,meta:{title:'个人信息',index:4}},
+    { path: '/my-collect', name: 'myCollect', component: myCollect,meta:{title:'我的收藏',index:4}},
+    { path: '/my-service', name: 'myService', component: myService,meta:{title:'我的客服',index:4}},
     { path: '/order', name: 'order', component: order,meta:{title:'我的订单',index:3}},
-    { path: '/order-detail', name: 'orderDetail', component: orderDetail,meta:{title:'订单详情',index:4}},
-    { path: '/address', name: 'address', component: address,meta:{title:'收货地址',index:4}},
+    { path: '/order-detail', name: 'orderDetail', component: orderDetail,meta:{title:'订单详情',index:5}},
+    // { path: '/address', name: 'address', component: address,meta:{title:'收货地址',index:4}},
 
 ]
 })

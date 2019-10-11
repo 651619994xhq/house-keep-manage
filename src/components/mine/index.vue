@@ -1,101 +1,148 @@
 <template>
-<div>
-    <div class="navlist">
-        <ul>
-            <li class="navli" v-for="(item,index) in navList" :class="{'activeT':nowIndex===index}" @click="tabClick(index)"><i>{{item.name}}</i>
-            </li>
-        </ul>
+  <div class="container">
+    <div class="mine-header row flex-item flex-justify-start" :style="{backgroundImage:`url(${imgPath})`}">
+      <div class="img-container">
+        <img src="" alt="">
+      </div>
+      <div class="text-container col flex-justify flex-item-start">
+        <p class="title1">Seve</p>
+        <p class="title2">会员编号：0000239103</p>
+      </div>
     </div>
-    <div class="swiper-container swiper_con">
-        <div class="swiper-wrapper">
-            <!-- 第一个swiper -->
-            <div class="swiper-slide" ref="viewBox">1111
-            </div>
-            <!-- 第二个swiper -->
-            <div class="swiper-slide">2222
-            </div>
+    <div class="mine-bottom-module col flex-item  flex-justify-start">
+      <div class="item hairlines row flex-item flex-justify-between" @click="handleGoToPage('/person-info')">
+          <div class="left-item row flex-item flex-justify-start">
+              <div class="item-icon">
+                <img src="" alt="">
+              </div>
+              <div class="item-title">
+               个人信息
+              </div>
+          </div>
+          <div class="right-item">
+
+          </div>
+      </div>
+      <div class="item hairlines row flex-item flex-justify-between" @click="handleGoToPage('/my-collect')">
+        <div class="left-item row flex-item flex-justify-start">
+          <div class="item-icon">
+            <img src="" alt="">
+          </div>
+          <div class="item-title">
+            我的收藏
+          </div>
         </div>
+        <div class="right-item">
+
+        </div>
+      </div>
+      <div class="item hairlines row flex-item flex-justify-between" @click="handleGoToPage('/my-service')">
+        <div class="left-item row flex-item flex-justify-start">
+          <div class="item-icon">
+            <img src="" alt="">
+          </div>
+          <div class="item-title">
+            我的客服
+          </div>
+        </div>
+        <div class="right-item">
+
+        </div>
+      </div>
+
     </div>
-</div>
+  </div>
 </template>
 <script>
-  import Swiper from 'vue-awesome-swiper'
   export default {
     name: "mine",
     data() {
       return {
-        navList:[
-          {name:'热门答疑'},
-          {name:'北清状元'}
-        ],
-        nowIndex:0,
+        imgPath:require('image/bg@2x.png')
       }
     },
     components:{
     },
     mounted() {
-      var that=this
-      that.mySwiper = new Swiper('.swiper-container',{
-        initialSlide:0,
-        autoplay:false,
-        keyboardControl:true,
-        autoHeight:true,
-        observer:true,
-        observeParents:true,
-        onSlideChangeStart:function(){
-          // console.log(that.mySwiper.activeIndex)
-          that.nowIndex=that.mySwiper.activeIndex
-        }
-      });
-      // this.getList();
+
     },
     methods: {
-      tabClick(index){
-        this.nowIndex = index
-        this.mySwiper.slideTo(index,1000,false)
-      },
+        handleGoToPage(path){
+            this.$router.push({
+                path
+            })
+        }
+
     },
-    created(id){
+    created(){
 
     }
   }
 </script>
 <style scoped lang="scss">
-    .navlist{
-        width:100%;
-        height:40px;
-        border-bottom:1px solid rgba(151,151,151,0.1);
-        position:relative;
+  .container{
+    width: 100%;
+    height: 100%;
+    background: #efefef;
+  }
+  .mine-header{
+    width:375px;
+    height:120px;
+    /*background:linear-gradient(338deg,rgba(201,141,253,1) 0%,rgba(250,119,119,1) 100%);*/
+     .img-container{
+       width: 56px;
+       height: 56px;
+       border-radius:4px;
+       border:1px solid rgba(255,255,255,1);
+       margin-left: 16px;
+       img{
+         display: block;
+         width: 100%;
+         height: 100%;
+       }
+     }
+    .text-container{
+      margin-left: 11px;
     }
-    .navli{
-        padding:10px 0px;
-        text-align:center;
-        float:left;
-        margin:0 1.2rem;
+    .title1{
+      font-size:18px;
+      font-family:PingFangSC-Semibold,PingFangSC;
+      font-weight:600;
+      color:rgba(255,255,255,1);
     }
-    .navli i{
-        font-style: normal;
-        font-size: 16px;
+    .title2{
+      font-size:12px;
+      font-family:PingFangSC-Regular,PingFangSC;
+      font-weight:400;
+      color:rgba(255,255,255,1);
     }
-    .activeT{
-        color:#00ba6b;
-        padding-bottom: .3rem;
-        border-bottom: 2px solid #00ba6b;
+  }
+  .mine-bottom-module{
+    width: 100%;
+    .item{
+      width: 100%;
+      height: 52px;
+      background: $white;
     }
-    .swiper_con{
-        width:100%;
-        margin-bottom:40px;
-        position:relative;
+    .hairlines{
+      border-bottom: 1px solid #efefef;
     }
-    .choosegrand{
-        position:absolute;
-        top:-3;
-        right:0;
+    .left-item{
+      margin-left: 16px;
+
+      .item-icon{
+        width: 18px;
+        height: 18px;
+        background: #efefef;
+        margin-right: 10px;
+      }
+      .item-title{
+        font-size:14px;
+        font-family:PingFangSC-Regular,PingFangSC;
+        font-weight:400;
+        color:rgba(54,61,79,1);
+      }
     }
-    .show{
-        display:block;
-    }
-    .none{
-        display:none;
-    }
+  }
+
 </style>

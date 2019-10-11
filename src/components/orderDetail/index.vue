@@ -1,29 +1,6 @@
 <template>
     <div class="container">
-        <div class="header col flex-item flex-justify">
-              <div class="img-view">
-
-              </div>
-        </div>
-        <div class="commodity-info col flex-item flex-justify-start">
-            <div class="money">
-                Y 1899.44
-            </div>
-            <div class="content">
-                荣耀9X PRO 麒麟810 4000mAh超强续航 4800万超广角夜拍三摄 6.59英寸全网通8GB+128GB 幻影紫
-            </div>
-        </div>
-        <div class="address col flex-item flex-justify-start">
-             <div class="item">
-
-             </div>
-            <div class="item">
-
-            </div>
-            <div class="item">
-
-            </div>
-        </div>
+        this is order-detail-page
     </div>
 </template>
 
