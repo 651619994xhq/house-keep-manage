@@ -1,9 +1,15 @@
 <template>
     <div class="container">
-        <swiper :options="swiperOption" class="swipe-container">
-            <swiper-slide v-for="(slide, index) in swiperSlides" :key="index" class="item">I'm Slide {{ slide }}</swiper-slide>
+        <div class="header-box">
+          <swiper :options="swiperOption" class="swipe-container">
+            <swiper-slide v-for="(slide, index) in swiperSlides" :key="index" class="item row flex-item flex-justify">
+              <div class="item-container">
+                I'm Slide {{ slide }}
+              </div>
+            </swiper-slide>
             <div class="swiper-pagination" slot="pagination"></div>
-        </swiper>
+          </swiper>
+        </div>
         <div class="navlist">
             <ul class="row flex-item flex-justify-around nav-container" :class="navBarFixed?'nav-fixed':''">
                 <li class="navli" :class="(nowIndex==index)?'navli-active':''" v-for="(item,index) in navList" @click="tabClick(index)"><i>{{item.name}}</i>
@@ -130,17 +136,31 @@
         width: 100%;
         background:#F7F6FB;
         padding-bottom: 80px;
+
+    }
+    .header-box{
+      width: 100%;
+      height: 196px;
+      background: #ff6666;
+      overflow: hidden;
     }
     .swipe-container{
+        margin-top: 12px;
         width: 100%;
         height: 160px;
         background: #FFFFFF;
         .item{
             width: 100%;
             height: 100%;
-            font-size: 50px;
-            line-height: 160px;
-            text-align: center;
+            background: #7DB5FB;
+            .item-container{
+              font-size: 50px;
+              line-height: 160px;
+              text-align: center;
+              width: 343px;
+              height: 160px;
+              background: #ffffff;
+            }
         }
     }
     .navlist{
