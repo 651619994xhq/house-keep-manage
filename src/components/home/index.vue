@@ -110,7 +110,7 @@
           },
           watchScroll(){
               var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-              console.log('scrollTop==>',scrollTop)
+              // console.log('scrollTop==>',scrollTop)
               //  当滚动超过 50 时，实现吸顶效果
               if (scrollTop > 170*this.screenWidth/375) {
                   this.navBarFixed = true
@@ -186,7 +186,8 @@
         .switch-item{
             width: 100%;
             /*height: 100%;*/
-            height: 1000px;
+            min-height: 800px;
+            /*height: 1000px;*/
         }
         .switch-item:first-of-type{
             background: #0A81FB;
