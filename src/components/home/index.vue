@@ -30,6 +30,7 @@
     import { swiper, swiperSlide } from 'vue-awesome-swiper'
     import staffInfo from '@/common/components/staffInfo'
     import staffInfo2 from '@/common/components/staffInfo2'
+    import {debounce} from '@/common/utils/tool'
     export default {
         name: "home",
         data() {
@@ -121,12 +122,12 @@
               var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
               // console.log('scrollTop==>',scrollTop)
               //  当滚动超过 50 时，实现吸顶效果
-              if (scrollTop > 170*this.screenWidth/375) {
+              if (scrollTop > 206*this.screenWidth/375) {
                   this.navBarFixed = true
               } else {
                   this.navBarFixed = false
               }
-          }
+          },
         }
     }
 </script>
