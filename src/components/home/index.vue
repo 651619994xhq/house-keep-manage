@@ -16,15 +16,7 @@
 <!--                <staffInfo2></staffInfo2>-->
             </swiper-slide>
         </swiper>
-      <van-popup
-        v-model="popup.isShow"
-        position="bottom"
-        :style="{ width:'100%' }"
-      >
-        <div class="box" style="height: 400px;width: 100%">
-          2423424
-        </div>
-      </van-popup>>
+        <appointTime :isShow="popup.isShow"></appointTime>
     </div>
 </template>
 <script>
@@ -32,6 +24,7 @@
     import { swiper, swiperSlide } from 'vue-awesome-swiper'
     import staffInfo from '@/common/components/staffInfo'
     import staffInfo2 from '@/common/components/staffInfo2'
+    import appointTime from '@/common/components/appointTime'
     export default {
         name: "home",
         data() {
@@ -76,8 +69,9 @@
                 initialSlide:0,
               },
               popup:{
-                  isShow:false
+                isShow:false
               }
+
             }
         },
         computed:{
@@ -90,7 +84,8 @@
             swiper,
             swiperSlide,
             staffInfo,
-            staffInfo2
+            staffInfo2,
+          appointTime
         },
 //初始化数据
         created() {
@@ -114,10 +109,10 @@
 //一些自定义方法
         methods: {
           showPopup(){
-              this.popup.isShow=true;
+            this.popup.isShow=true;
           },
           hidePopup(){
-              this.popup.isShow=false;
+            this.popup.isShow=false;
           },
           tabClick(index){
             this.nowIndex=index;
