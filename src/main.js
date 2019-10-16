@@ -1,5 +1,13 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+
+// document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+//   WeixinJSBridge.call('hideToolbar');        // 隐藏底部状态栏
+//   WeixinJSBridge.call('hideOptionMenu');     // 隐藏右上角的三个点的选项
+//   WeixinJSBridge.call('showToolbar');        // 显示底部状态栏
+//   WeixinJSBridge.call('showOptionMenu');     // 显示右上角的三个点的选项
+// });
+
 import Vue from 'vue'
 import App from './App'
 import router from './router'

@@ -27,6 +27,7 @@
         name: "home",
         data() {
             return {
+              screenWidth: document.body.clientWidth, //获取屏幕宽度
               navBarFixed:false,
               swiperOption: {
                 initialSlide:0,
@@ -84,7 +85,19 @@
 
         },
         mounted(){
-          window.addEventListener('scroll',this.watchScroll)
+          window.addEventListener('scroll',this.watchScroll);
+          console.log(this.screenWidth)
+                const that = this;
+            window.onresize = () => {
+                return (() => {
+                    window.screenWidth = document.body.clientWidth
+                    that.screenWidth = window.screenWidth
+                    console.log(that.screenWidth)
+                })();
+            }
+        },
+        destroyed(){
+            window.removeEventListener('scroll',this.watchScroll);
         },
 //一些自定义方法
         methods: {
@@ -96,9 +109,10 @@
             this.nowIndex=this.swicthSwiper.activeIndex;
           },
           watchScroll(){
-              var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+              var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+              console.log('scrollTop==>',scrollTop)
               //  当滚动超过 50 时，实现吸顶效果
-              if (scrollTop > 160) {
+              if (scrollTop > 170*this.screenWidth/375) {
                   this.navBarFixed = true
               } else {
                   this.navBarFixed = false
