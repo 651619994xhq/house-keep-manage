@@ -16,6 +16,15 @@
 <!--                <staffInfo2></staffInfo2>-->
             </swiper-slide>
         </swiper>
+      <van-popup
+        v-model="popup.isShow"
+        position="bottom"
+        :style="{ width:'100%' }"
+      >
+        <div class="box" style="height: 400px;width: 100%">
+          2423424
+        </div>
+      </van-popup>>
     </div>
 </template>
 <script>
@@ -65,6 +74,9 @@
               //选项卡切换的参数
               switchOptions:{
                 initialSlide:0,
+              },
+              popup:{
+                  isShow:false
               }
             }
         },
@@ -101,9 +113,16 @@
         },
 //一些自定义方法
         methods: {
+          showPopup(){
+              this.popup.isShow=true;
+          },
+          hidePopup(){
+              this.popup.isShow=false;
+          },
           tabClick(index){
             this.nowIndex=index;
-            this.swicthSwiper.slideTo(index,300,false)
+            this.swicthSwiper.slideTo(index,300,false);
+            this.showPopup();
           },
           slideChangeTransitionEndCallback(){
             this.nowIndex=this.swicthSwiper.activeIndex;
