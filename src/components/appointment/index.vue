@@ -40,21 +40,27 @@
                  立即预约
              </div>
         </div>
+      <appointTime :isShow="popup.isShow"></appointTime>
     </div>
 </template>
 
 <script>
   import resume from '@/common/components/resume/index';
+  import appointTime from '@/common/components/appointTime'
   export default {
     name: "apponitment",
     data() {
       return {
+          popup:{
+              isShow:false
+          }
 
       }
     },
 //组件
     components: {
-      resume
+      resume,
+      appointTime
     },
 //初始化数据
     created() {
@@ -62,6 +68,12 @@
     },
 //一些自定义方法
     methods: {
+        showPopup(){
+            this.popup.isShow=true;
+        },
+        hidePopup(){
+            this.popup.isShow=false;
+        },
 
     }
   }

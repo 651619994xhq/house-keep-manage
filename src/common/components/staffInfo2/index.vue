@@ -26,9 +26,9 @@
 </template>
 
 <script>
-  //简历介绍 头部
+  //首页列表2
   export default {
-    name: 'staffInfo',
+    name: 'staffInfo2',
     data () {
       return {}
     },

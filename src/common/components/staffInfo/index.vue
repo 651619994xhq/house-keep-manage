@@ -35,7 +35,7 @@
 </template>
 
 <script>
-  //简历介绍 头部
+  //首页列表1
   export default {
     name: 'staffInfo',
     data () {

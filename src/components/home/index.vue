@@ -16,7 +16,7 @@
 <!--                <staffInfo2></staffInfo2>-->
             </swiper-slide>
         </swiper>
-        <appointTime :isShow="popup.isShow"></appointTime>
+
     </div>
 </template>
 <script>
@@ -24,7 +24,6 @@
     import { swiper, swiperSlide } from 'vue-awesome-swiper'
     import staffInfo from '@/common/components/staffInfo'
     import staffInfo2 from '@/common/components/staffInfo2'
-    import appointTime from '@/common/components/appointTime'
     export default {
         name: "home",
         data() {
@@ -68,9 +67,6 @@
               switchOptions:{
                 initialSlide:0,
               },
-              popup:{
-                isShow:false
-              }
 
             }
         },
@@ -85,7 +81,6 @@
             swiperSlide,
             staffInfo,
             staffInfo2,
-          appointTime
         },
 //初始化数据
         created() {
@@ -108,16 +103,10 @@
         },
 //一些自定义方法
         methods: {
-          showPopup(){
-            this.popup.isShow=true;
-          },
-          hidePopup(){
-            this.popup.isShow=false;
-          },
+
           tabClick(index){
             this.nowIndex=index;
             this.swicthSwiper.slideTo(index,300,false);
-            this.showPopup();
           },
           slideChangeTransitionEndCallback(){
             this.nowIndex=this.swicthSwiper.activeIndex;
