@@ -5,13 +5,13 @@
          工作经历
        </div>
         <div class="title2 row flex-item flex-justify">
-          <div class="item">日</div>
+          <div class="item" style="color: #8A8F9B">日</div>
           <div class="item">一</div>
           <div class="item">二</div>
           <div class="item">三</div>
           <div class="item">四</div>
           <div class="item">五</div>
-          <div class="item">六</div>
+          <div class="item" style="color: #8A8F9B">六</div>
         </div>
       </div>
       <div class="date-time">
