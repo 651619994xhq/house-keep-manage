@@ -1,8 +1,8 @@
 <template>
     <div>
-      <keep-alive>
+<!--      <keep-alive>-->
         <router-view v-keep-scroll-position></router-view>
-      </keep-alive>
+<!--      </keep-alive>-->
         <tabBar :currentType="type" @changeTabBarType="changeTabBarType"></tabBar>
     </div>
 </template>
