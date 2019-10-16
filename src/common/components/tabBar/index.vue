@@ -43,19 +43,19 @@
             switchTab(type){
                 this.$emit('changeTabBarType',type);
                 if(type=='home'){
-                    this.$router.replace({
+                    this.$router.push({
                        path:'/index/home'
                     });
                     return;
                 };
                 if(type=='shop'){
-                    this.$router.replace({
+                    this.$router.push({
                         path:'/index/shop'
                     });
                     return;
                 };
                 if(type=='mine'){
-                    this.$router.replace({
+                    this.$router.push({
                         path:'/index/mine'
                     });
                     return;

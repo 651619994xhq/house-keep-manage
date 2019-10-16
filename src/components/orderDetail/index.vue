@@ -87,7 +87,31 @@
 
                     </div>
                     <div class="item-text">
-                        按摩技师证
+                        健康证
+                    </div>
+                </div>
+                <div class="item col flex-item flex-justify">
+                    <div class="item-icon">
+
+                    </div>
+                    <div class="item-text">
+                        月嫂证
+                    </div>
+                </div>
+                <div class="item col flex-item flex-justify">
+                    <div class="item-icon">
+
+                    </div>
+                    <div class="item-text">
+                        护照
+                    </div>
+                </div>
+                <div class="item col flex-item flex-justify">
+                    <div class="item-icon">
+
+                    </div>
+                    <div class="item-text">
+                        港澳通行证
                     </div>
                 </div>
                 <div class="item col flex-item flex-justify">
@@ -103,7 +127,7 @@
 
                     </div>
                     <div class="item-text">
-                        按摩技师证
+                        小儿推拿师证
                     </div>
                 </div>
                 <div class="item col flex-item flex-justify">
@@ -111,31 +135,7 @@
 
                     </div>
                     <div class="item-text">
-                        按摩技师证
-                    </div>
-                </div>
-                <div class="item col flex-item flex-justify">
-                    <div class="item-icon">
-
-                    </div>
-                    <div class="item-text">
-                        按摩技师证
-                    </div>
-                </div>
-                <div class="item col flex-item flex-justify">
-                    <div class="item-icon">
-
-                    </div>
-                    <div class="item-text">
-                        按摩技师证
-                    </div>
-                </div>
-                <div class="item col flex-item flex-justify">
-                    <div class="item-icon">
-
-                    </div>
-                    <div class="item-text">
-                        按摩技师证
+                        幼儿护理证
                     </div>
                 </div>
             </div>
@@ -365,6 +365,8 @@
                     font-family:PingFangSC-Regular,PingFangSC;
                     font-weight:400;
                     color:rgba(59,68,92,1);
+                    white-space:nowrap
+
                 }
 
             }

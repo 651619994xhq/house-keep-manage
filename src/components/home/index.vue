@@ -5,7 +5,7 @@
             <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
         <div class="navlist">
-            <ul class="row flex-item flex-justify-around">
+            <ul class="row flex-item flex-justify-around nav-container" :class="navBarFixed?'nav-fixed':''">
                 <li class="navli" :class="(nowIndex==index)?'navli-active':''" v-for="(item,index) in navList" @click="tabClick(index)"><i>{{item.name}}</i>
                 </li>
             </ul>
@@ -27,6 +27,7 @@
         name: "home",
         data() {
             return {
+              navBarFixed:false,
               swiperOption: {
                 initialSlide:0,
                 loop:true,
@@ -83,7 +84,7 @@
 
         },
         mounted(){
-
+          window.addEventListener('scroll',this.watchScroll)
         },
 //一些自定义方法
         methods: {
@@ -93,6 +94,15 @@
           },
           slideChangeTransitionEndCallback(){
             this.nowIndex=this.swicthSwiper.activeIndex;
+          },
+          watchScroll(){
+              var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+              //  当滚动超过 50 时，实现吸顶效果
+              if (scrollTop > 160) {
+                  this.navBarFixed = true
+              } else {
+                  this.navBarFixed = false
+              }
           }
         }
     }
@@ -121,6 +131,18 @@
         height: 52px;
         width: 100%;
         background: #FFFFFF;
+        .nav-container{
+          width: 100%;
+          height: 52px;
+          background: $white;
+          border-bottom: 1px solid #ececec;
+        }
+        .nav-fixed{
+          position: fixed;
+          top: 0;
+          left: 0;
+          z-index: 10;
+        }
         .navli{
             width: 25%;
             height: 100%;
@@ -149,7 +171,8 @@
         height: 100%;
         .switch-item{
             width: 100%;
-            height: 100%;
+            /*height: 100%;*/
+            height: 1000px;
         }
         .switch-item:first-of-type{
             background: #0A81FB;
