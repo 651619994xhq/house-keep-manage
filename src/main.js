@@ -17,7 +17,7 @@ import './common/utils/touchEvent'; //导出自己的手势库 自定义指令
 import fastclick from 'fastclick';
 import './icons';
 import 'vant/lib/index.css';
-import {Swipe,SwipeItem,Toast,Field,Cell,CellGroup,Popup,DatetimePicker  } from 'vant';
+import {Swipe,SwipeItem,Toast,Field,Cell,CellGroup,Popup,DatetimePicker,List,  } from 'vant';
 import VueKeepScrollPosition from 'vue-keep-scroll-position';
 Vue.use(VueKeepScrollPosition);
 Vue.use(Swipe).use(SwipeItem);
@@ -25,6 +25,7 @@ Vue.use(Field);
 Vue.use(Cell).use(CellGroup);
 Vue.use(Popup);
 Vue.use(DatetimePicker);
+Vue.use(List);
 Vue.prototype.$toast = Toast;
 Vue.config.productionTip = false;
 fastclick.attach(document.body)
