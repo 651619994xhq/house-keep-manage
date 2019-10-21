@@ -19,8 +19,8 @@ export const getBlackList=(param={})=>{
 }
 //雇员列表
 export const getEmployeeList=(param={})=>{
-  let pageNum=param.pageNum?param.pageNum:1,pageSize=param.pageSize?param.pageSize:10,type=param.type:'';//类型1月嫂2.保姆3.育儿嫂
-  return awaitWrap(axios.post(api.GET_EMPLOYEE_LIST,{pageNum,pageSize}))
+  let pageNum=param.pageNum?param.pageNum:1,pageSize=param.pageSize?param.pageSize:10,type=param.type?param.type:'';//类型1月嫂2.保姆3.育儿嫂
+  return awaitWrap(axios.post(api.GET_EMPLOYEE_LIST,{pageNum,pageSize,type}))
 }
 //发送注册验证码
 export const sendRegisterCode =(param={})=>{

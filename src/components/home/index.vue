@@ -47,6 +47,7 @@
   import staffInfo from '@/common/components/staffInfo'
   import staffInfo2 from '@/common/components/staffInfo2'
   import {debounce} from '@/common/utils/tool'
+  import {getBannerList,getEmployeeList} from '@/common/utils/service'
 
   export default {
     name: 'home',

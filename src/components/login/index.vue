@@ -23,7 +23,7 @@
                     <van-field type="number" v-model="sms" placeholder="请输入验证码" class="sms-input"/>
                     <div class="border-div"></div>
                     <div class="send-sms-btn" v-if="isShowBtn" @click="handleSendSms">发送验证码</div>
-                    <div class="send-sms-text" v-else>56秒后重发</div>
+                    <div class="send-sms-text" v-else>{{count}}秒后重发</div>
                 </div>
             </div>
             <div class="item2 row flex-item flex-justify-start flex-item-start">
@@ -47,6 +47,7 @@
 </template>
 
 <script>
+  import {sendRegisterCode} from '@/common/utils/service'
     export default {
         name: "index",
         data() {
@@ -54,6 +55,8 @@
               phone:18614084016,//手机号
               sms:'', //验证码
               isShowBtn:true, //是否展示发送按钮
+              timer:null, //定时器
+              count:60
             }
         },
 //组件
@@ -62,10 +65,42 @@
         created() {
 
         },
+        destroyed(){
+          this.clearTimer();
+
+        },
 //一些自定义方法
         methods: {
-          handleSendSms(){
-            this.isShowBtn=false
+          async handleSendSms(){
+            this.isShowBtn=false;
+            await this.$sendRegisterCode(); //发送验证码
+            this.startTimer(); //开始定时器
+          },
+          startTimer(){
+            this.count=60;
+            this.timer=setInterval(()=>{
+              if(this.count==0){
+                this.clearTimer();
+                this.isShowBtn=true;
+              }
+              this.count-=1;
+            },1000);
+          },
+          clearTimer(){
+            if(this.timer){
+              clearInterval(this.timer);
+            };
+            this.count=60;
+            this.isShowBtn=true;
+          },
+          async $sendRegisterCode(){
+            let [err,data]=await sendRegisterCode({phone:this.phone});
+            if(err!==null){
+              this.$toast(err||'发送验证码失败');
+              this.clearTimer();
+              return ;
+            };
+            this.$toast('验证码已发送');
           }
         }
     }
