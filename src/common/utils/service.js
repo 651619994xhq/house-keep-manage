@@ -19,6 +19,20 @@ export const getBlackList=(param={})=>{
 }
 //雇员列表
 export const getEmployeeList=(param={})=>{
-  let pageNum=param.pageNum?param.pageNum:1,pageSize=param.pageSize?param.pageSize:10;
+  let pageNum=param.pageNum?param.pageNum:1,pageSize=param.pageSize?param.pageSize:10,type=param.type:'';//类型1月嫂2.保姆3.育儿嫂
   return awaitWrap(axios.post(api.GET_EMPLOYEE_LIST,{pageNum,pageSize}))
+}
+//发送注册验证码
+export const sendRegisterCode =(param={})=>{
+  let phone=param.phone?param.phone:'';
+  return awaitWrap(axios.post(api.SEND_SMS_CODE,{phone,type:1}))
+}
+//获取头部的轮播图
+export const getBannerList =(param={})=>{
+  return awaitWrap(axios.post(api.GET_BANNER_LIST,{}))
+}
+//给雇员添加评论
+export const addComments =(param={})=>{
+  let token=param.token?param.token:'',starClass=param.starClass?param.starClass:'',comment=param.comment?param.comment:'',employeeId=param.employeeId?param.employeeId:'';
+  return awaitWrap(axios.post(api.ADD_COMMENTS,{token,starClass,comment,employeeId}))
 }
