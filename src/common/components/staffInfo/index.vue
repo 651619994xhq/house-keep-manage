@@ -2,11 +2,19 @@
     <div class="staff-info row flex-item flex-justify-start">
       <div class="left-module">
           <img src="" alt="">
+          <div class="exclusive">
+            独家
+          </div>
       </div>
       <div class="right-module col flex-item flex-justify">
           <div class="item1 row flex-item flex-justify-between">
-              <div class="name">
-                 熊海强
+              <div class="name row flex-item flex-justify-start">
+                 <div class="name1">
+                   熊海强
+                 </div>
+                <div class="order-number">
+                  90001
+                </div>
               </div>
               <div class="title row flex-item flex-justify-between">
                 <div class="title-icon">
@@ -62,6 +70,23 @@
         width: 60px;
         height: 60px;
         background: #666666;
+        position: relative;
+        .exclusive{
+          position: absolute;
+          top: -14px;
+          right: -20px;
+          width:64px;
+          height:28px;
+          line-height: 28px;
+          background:linear-gradient(338deg,rgba(201,141,253,1) 0%,rgba(250,119,119,1) 100%);
+          border-radius:14px 14px 14px 2px;
+          font-family:PingFangSC-Regular,PingFang SC;
+          font-weight:400;
+          color:rgba(255,255,255,1);
+          text-align: center;
+          font-size:20px;
+          transform: scale(0.5);
+        }
     }
     .right-module{
         margin-left: 16px;
@@ -76,6 +101,12 @@
                 font-family:PingFangSC-Semibold,PingFangSC;
                 font-weight:600;
                 color:rgba(54,61,79,1);
+                .order-number{
+                  margin-left: 10px;
+                  font-size:12px;
+                  font-weight:400;
+                  color:#949EA4;
+                }
             }
             .title-icon{
                 width: 10px;

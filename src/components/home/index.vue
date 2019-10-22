@@ -29,13 +29,13 @@
             <swiper :options="switchOptions" ref="mySwiper" class="switch-container"
                     @slideChangeTransitionEnd="slideChangeTransitionEndCallback">
                 <swiper-slide v-for="(slide, index) in navList" :key="index" class="switch-item">
-                    <!--                <staffInfo></staffInfo>-->
+                                    <staffInfo v-for="(item ,index) in list" :key="index"></staffInfo>
                     <!--                <staffInfo2></staffInfo2>-->
-                    <van-cell
-                            v-for="item in list"
-                            :key="item"
-                            :title="item"
-                    />
+<!--                    <van-cell-->
+<!--                            v-for="item in list"-->
+<!--                            :key="item"-->
+<!--                            :title="item"-->
+<!--                    />-->
                 </swiper-slide>
             </swiper>
         </van-list>
@@ -71,20 +71,20 @@
         nowIndex: 0, //当前选中的index
         navList: [
           {
-            // name:'月嫂',
-            name: '1',
+            name:'月嫂',
+            // name: '1',
             id: 1
           }, {
-            // name:'育儿嫂',
-            name: '2',
+            name:'育儿嫂',
+            // name: '2',
             id: 2
           }, {
-            // name:'保姆',
-            name: '3',
+            name:'保姆',
+            // name: '3',
             id: 3
           }, {
-            // name:'更多',
-            name: '4',
+            name:'更多',
+            // name: '4',
             id: 4
           }
         ],
@@ -286,16 +286,16 @@
             min-height: 800px;
         }
         .switch-item:first-of-type {
-            background: #0A81FB;
+            /*background: #0A81FB;*/
         }
         .switch-item:nth-of-type(2) {
-            background: #FFFFFF;
+            /*background: #FFFFFF;*/
         }
         .switch-item:nth-of-type(3) {
-            background: bisque;
+            /*background: bisque;*/
         }
         .switch-item:nth-of-type(4) {
-            background: black;
+            /*background: black;*/
         }
     }
 </style>
