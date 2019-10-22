@@ -16,6 +16,7 @@ import store from '@/store'
 import './common/utils/touchEvent'; //导出自己的手势库 自定义指令
 import fastclick from 'fastclick';
 import './icons';
+import '@/mockData/index';  //导入mockData 模块
 import 'vant/lib/index.css';
 import {Swipe,SwipeItem,Toast,Field,Cell,CellGroup,Popup,DatetimePicker,List,  } from 'vant';
 import VueKeepScrollPosition from 'vue-keep-scroll-position';

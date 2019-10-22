@@ -49,9 +49,13 @@ class Axios {
             this.instance.post(path,{...params},{headers:{}})
               .then((res)=>{
                   console.log('res==>',res);
-                  if(res.status==1){
-                      resolve(res.returnData||{});
-                      return;
+                  // if(res.status==1){
+                  //     resolve(res.returnData||{});
+                  //     return;
+                  // };
+                  if(res.data.status==1){
+                        resolve(res.data.returnData||{});
+                        return;
                   };
                   reject(res.message||'系统错误');
 

@@ -134,6 +134,9 @@
           console.log(that.screenWidth)
         })()
       }
+
+      this.updateBannerList();
+
     },
     destroyed () {
       window.removeEventListener('scroll', this.watchScroll)
@@ -183,6 +186,15 @@
         //   console.log("到底了，开始加载数据");
         // };
       },
+      //更新头部bannerList 数据
+      async updateBannerList(){
+          let [err,data]=await getBannerList();
+          if(err!==null){
+            this.$toast(err||'系统错误')
+            return ;
+          };
+          console.log('data==>',data);
+      }
     }
   }
 </script>
