@@ -5,10 +5,10 @@
             <img src="~image/home-icon.png" alt="" class="item-image" v-else>
             <span class="item-title" :class="(currentType=='home')?'active-item-title':''">首页</span>
         </div>
-        <div class="item col flex-item flex-justify" @click="switchTab('shop')">
-            <img src="~image/active-shop-icon.png" alt="" class="item-image" v-if="currentType=='shop'">
+        <div class="item col flex-item flex-justify" @click="switchTab('order')">
+            <img src="~image/active-shop-icon.png" alt="" class="item-image" v-if="currentType=='order'">
             <img src="~image/shop-icon.png" alt="" class="item-image" v-else>
-            <span class="item-title" :class="(currentType=='shop')?'active-item-title':''">订单</span>
+            <span class="item-title" :class="(currentType=='order')?'active-item-title':''">订单</span>
         </div>
         <div class="item col flex-item flex-justify" @click="switchTab('mine')">
             <img src="~image/active-mine-icon.png" alt="" class="item-image" v-if="currentType=='mine'">
@@ -53,9 +53,9 @@
                     });
                     return;
                 };
-                if(type=='shop'){
+                if(type=='order'){
                     this.$router.push({
-                        path:'/index/shop'
+                        path:'/index/order'
                     });
                     return;
                 };

@@ -31,7 +31,7 @@
                 this.type=name;
                 return;
             }
-            if(name=='shop'){
+            if(name=='order'){
                 this.type=name;
                 return;
             }
