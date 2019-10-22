@@ -26,7 +26,7 @@ const bannerData = function() {
 };
 Mock.mock(api.GET_BANNER_LIST, 'post', bannerData);
 
-//首页 banner 头部数据
+//首页数据
 const homeEmployeeListData = function() {
   let $data={
     status:1,
@@ -47,6 +47,30 @@ const homeEmployeeListData = function() {
   return $data;
 };
 Mock.mock(api.GET_EMPLOYEE_LIST, 'post', homeEmployeeListData);
+
+//注册 发送验证码
+const sendSmsCodeData = function() {
+  let $data={
+    status:1,
+    message:'',
+    url:'',
+    returnData:''
+  }
+  return $data;
+};
+Mock.mock(api.SEND_SMS_CODE, 'post', sendSmsCodeData);
+
+//移动端——>给雇员添加评论
+const addCommentsData = function() {
+  let $data={
+    status:1,
+    message:'',
+    url:'',
+    returnData:''
+  }
+  return $data;
+};
+Mock.mock(api.ADD_COMMENTS, 'post', addCommentsData);
 
 
 
