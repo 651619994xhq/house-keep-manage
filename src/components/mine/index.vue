@@ -36,7 +36,7 @@
 
         </div>
       </div>
-      <div class="item hairlines row flex-item flex-justify-between" @click="handleGoToPage('/my-service')">
+      <div class="item hairlines row flex-item flex-justify-between" @click="showServicePopup">
         <div class="left-item row flex-item flex-justify-start">
           <div class="item-icon">
             <img src="" alt="">
@@ -51,17 +51,24 @@
       </div>
 
     </div>
+
+    <Service :is-show="service.isShow" @cancelEvent="serviceCancelEvent" @sureEvent="serviceSureEvent"></Service>
   </div>
 </template>
 <script>
+  import Service from './service'
   export default {
     name: "mine",
     data() {
       return {
-        imgPath:require('image/bg@2x.png')
+        imgPath:require('image/bg@2x.png'),
+        service:{
+            isShow:true
+        }
       }
     },
     components:{
+        Service
     },
     mounted() {
 
@@ -71,8 +78,16 @@
             this.$router.push({
                 path
             })
+        },
+        serviceCancelEvent(){
+           this.service.isShow=false;
+        },
+        serviceSureEvent(){
+            this.service.isShow=false;
+        },
+        showServicePopup(){
+            this.service.isShow=true;
         }
-
     },
     created(){
 

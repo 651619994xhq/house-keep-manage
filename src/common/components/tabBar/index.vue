@@ -94,7 +94,10 @@
         color: #3A3E51;
     }
     .active-item-title{
-        color: #ff6666;
+      color:rgba(255,255,255,1);
+      background:linear-gradient(338deg, rgba(201,141,253,1) 0%, rgba(250,119,119,1) 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
     }
 }
 </style>
