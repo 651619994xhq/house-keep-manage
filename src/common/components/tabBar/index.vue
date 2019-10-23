@@ -1,17 +1,17 @@
 <template>
     <div class="footer row flex-item  flex-justify-around">
         <div class="item col flex-item flex-justify" @click="switchTab('home')">
-            <img src="~image/active-home-icon.png" alt="" class="item-image" v-if="currentType=='home'">
-            <img src="~image/home-icon.png" alt="" class="item-image" v-else>
+            <img src="~image/home-light@2x.png" alt="" class="item-image" v-if="currentType=='home'">
+            <img src="~image/home-gary@2x.png" alt="" class="item-image" v-else>
             <span class="item-title" :class="(currentType=='home')?'active-item-title':''">首页</span>
         </div>
         <div class="item col flex-item flex-justify" @click="switchTab('order')">
-            <img src="~image/active-shop-icon.png" alt="" class="item-image" v-if="currentType=='order'">
-            <img src="~image/shop-icon.png" alt="" class="item-image" v-else>
+            <img src="~image/Order-light@2x.png" alt="" class="item-image" v-if="currentType=='order'">
+            <img src="~image/Order-gary@2x.png" alt="" class="item-image" v-else>
             <span class="item-title" :class="(currentType=='order')?'active-item-title':''">订单</span>
         </div>
         <div class="item col flex-item flex-justify" @click="switchTab('mine')">
-            <img src="~image/active-mine-icon.png" alt="" class="item-image" v-if="currentType=='mine'">
+            <img src="~image/me-light@2x.png" alt="" class="item-image" v-if="currentType=='mine'">
             <img src="~image/mine-icon.png" alt="" class="item-image" v-else>
             <span class="item-title" :class="(currentType=='mine')?'active-item-title':''">我的</span>
         </div>
