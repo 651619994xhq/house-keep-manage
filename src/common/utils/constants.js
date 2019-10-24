@@ -1,1 +1,1 @@
-export const REPAY_TYPE=[{name:'等本等息',id:1},{name:'等额本息',id:2},{name:'等额本金',id:3}]; //还款方式
+export const ORDER_STATUS=[{name:'待面试',id:1,color:'#E9AC7E'},{name:'面试结束',id:2,color:'#CECFD1'},{name:'待签约',id:3,color:'#7DB5FB'},{name:'取消合作',id:4,color:'#CECFD1'},{name:'取消预约',id:5,color:'#CECFD1'},{name:'合同期满',id:6,color:''},{name:'签约成功',id:7,color:''}]; //订单状态

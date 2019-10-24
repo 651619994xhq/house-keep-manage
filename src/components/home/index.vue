@@ -37,6 +37,7 @@
         </swiper-slide>
       </swiper>
     </van-list>
+    <backTop :backTop="backTop"></backTop>
   </div>
 </template>
 <script>
@@ -47,11 +48,13 @@
     import headerItem from "./headerItem";
     import {debounce} from '@/common/utils/tool'
     import {getBannerList, getEmployeeList} from '@/common/utils/service'
+    import backTop from '@/common/components/backTop'
 
     export default {
         name: 'home',
         data() {
             return {
+                backTop:false,
                 screenWidth: document.body.clientWidth, //获取屏幕宽度
                 navBarFixed: false,
                 swiperOption: {
@@ -117,7 +120,8 @@
             swiperSlide,
             staffInfo,
             staffInfo2,
-            headerItem
+            headerItem,
+            backTop
         },
 //初始化数据
         created() {
@@ -179,6 +183,12 @@
                     this.navBarFixed = true
                 } else {
                     this.navBarFixed = false
+                }
+               console.log('scrollTop==>',scrollTop)
+                if(scrollTop>1000){
+                    this.backTop=true;
+                }else{
+                    this.backTop=false;
                 }
 
                 //是否触底
