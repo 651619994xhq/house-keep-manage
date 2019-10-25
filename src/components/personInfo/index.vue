@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="mine-header row flex-item flex-justify-start" :style="{backgroundImage:`url(${imgPath})`}">
+    <div class="mine-header row flex-item flex-justify-start" :style="{backgroundImage:`url(${imgPath})`}" style="background-repeat:no-repeat; background-size:100% 100%;">
       <div class="img-container">
         <img src="" alt="">
       </div>
