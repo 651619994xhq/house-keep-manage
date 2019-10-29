@@ -1,9 +1,20 @@
 export default {
-  GET_ORDER_LIST:'/orderByUserId', //户对应订单列表
-  GET_USER_LIST:'/user/list', //雇主列表
-  GET_BLACK_LIST:'/user/listBlack', //黑名单列表
-  GET_EMPLOYEE_LIST:'/employee/list', //雇员列表
-  SEND_SMS_CODE:'/user/sendSmsCode', //注册发送短信验证码
-  GET_BANNER_LIST:'/banner/listValidBanner', //获取头部列表
-  ADD_COMMENTS:'/comments/add', //给雇员添加评论
+  SEND_SMS_CODE:'/api/user/sendSmsCode', //注册发送短信验证码
+  GET_BANNER_LIST:'/api/banner/listValidBanner', //获取头部列表
+  GET_EMPLOYEE_LIST:'/api/employee/listValidEmployee', //移动端-首页-阿姨列表接
+  REGISTER:'/user/register', //移动端-注册接口
+  LOGIN:'user/login', //移动端 登录接口
+  GET_EMPLOYEE_INFO:'/api/employee/getEmployeeById', //获取阿姨详情
+  GET_MY_INFO:'getMyInfo', //获取自己的信息
+  GET_MY_COLLECT_LIST:'/api/user/selectCollections', //我的收藏列表
+  DELETE_COLLECT:'/api/user/deleteCollection', //取消收藏
+  UPDATE_PHONE:'/api/user/updatePhone', //修改手机号
+  GET_ORDER_LIST:'order/list', //获取订单列表
+  CANCEL_APPOINT:'/order/cancelAppoint',//取消预约
+  1:'1',//预约面试时间
+  2:'2',//预约面试
+  ADD_COMMENTS:'/api/comments/add', //雇主添加评论
+  3:'3', //签约
+
+
 }
