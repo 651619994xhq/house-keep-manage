@@ -26,14 +26,17 @@
       </div>
       <swiper :options="switchOptions" ref="mySwiper" class="switch-container"
               @slideChangeTransitionEnd="slideChangeTransitionEndCallback">
-        <swiper-slide v-for="(slide, index) in navList" :key="index" class="switch-item">
-          <staffInfo v-for="(item ,index) in list" :key="index"></staffInfo>
-          <!--                <staffInfo2></staffInfo2>-->
-          <!--                    <van-cell-->
-          <!--                            v-for="item in list"-->
-          <!--                            :key="item"-->
-          <!--                            :title="item"-->
-          <!--                    />-->
+        <swiper-slide class="switch-item">
+          <staffInfo v-for="(item ,index) in list1" :key="index"></staffInfo>
+        </swiper-slide>
+        <swiper-slide class="switch-item">
+          <staffInfo v-for="(item ,index) in list2" :key="index"></staffInfo>
+        </swiper-slide>
+        <swiper-slide class="switch-item">
+          <staffInfo v-for="(item ,index) in list3" :key="index"></staffInfo>
+        </swiper-slide>
+        <swiper-slide class="switch-item">
+          <staffInfo2 v-for="(item ,index) in list4" :key="index"></staffInfo2>
         </swiper-slide>
       </swiper>
     </van-list>
@@ -94,7 +97,10 @@
                 switchOptions: {
                     initialSlide: 0,
                 },
-                list: [],
+                list1: [], //月嫂列表
+                list2: [], //育儿嫂列表
+                list3: [], //保姆列表
+                list4: [], //更多列表
                 load: {
                     error: false,  //错误
                     loading: false, //加载更多
@@ -137,9 +143,9 @@
                     that.screenWidth = window.screenWidth
                     console.log(that.screenWidth)
                 })()
-            }
-
+            };
             this.updateBannerList();
+            // this.updateList();
 
         },
         destroyed() {
@@ -147,31 +153,86 @@
         },
 //一些自定义方法
         methods: {
-            loadEvent() {
-                console.log('loadEvent is run')
-                // 异步更新数据
-                setTimeout(() => {
-                    for (let i = 0; i < 10; i++) {
-                        this.list.push(this.list.length + 1);
-                    }
-                    // 加载状态结束
-                    this.load.loading = false;
-                    // if(this.list.length>=20){
-                    //   this.error=true;
-                    // }
+            async loadEvent() {
+                console.log('loadEvent is run');
+                if(this.nowIndex==0){
+                    let [err,data]=await getEmployeeList({type:1,pageSize:this.page.currentMoonWomanPage});
+                    if(err!==null){this.$toast(err||'系统错误');return ;};
+                    this.list1=[...this.list1,...data];
+                    this.page.currentMoonWomanPage+=1;
+                    this.load.loading=false;
+                    return ;
+                };
+                if(this.nowIndex==1){
+                    let [err2,data2]=await getEmployeeList({type:2,pageSize:this.page.currentChildRearingPage});
+                    if(err2!==null){this.$toast(err2||'系统错误');return ;};
+                    this.list2=[...this.list2,...data2];
+                    this.page.currentChildRearingPage+=1;
+                    this.load.loading=false;
+                    return ;
+                }
+                if(this.nowIndex==2){
+                    let [err3,data3]=await getEmployeeList({type:3,pageSize:this.page.currentBabySitterPage});
+                    if(err3!==null){this.$toast(err3||'系统错误');return ;};
+                    this.list3=[...this.list3,...data3];
+                    this.page.currentBabySitterPage+=1;
+                    this.load.loading=false;
+                    return ;
+                }
+                if(this.nowIndex==3){
+                    let [err4,data4]=await getEmployeeList({type:4,pageSize:this.page.currentMorePage});
+                    if(err4!==null){this.$toast(err4||'系统错误');return ;};
+                    this.list4=[...this.list4,...data4];
+                    this.page.currentMorePage+=1;
+                    this.load.loading=false;
+                    return ;
+                }
+            },
+            async updateList(){
+                window.scrollTo(0,0)
+                if(this.nowIndex==0){
+                    if(this.list1.length>0){return;};
+                    let [err,data]=await getEmployeeList({type:1,pageSize:1});
+                    if(err!==null){this.$toast(err||'系统错误');return ;};
+                    this.list1=[...data];
+                    console.log('list1==>',data);
+                    this.page.currentMoonWomanPage=1;
+                    return ;
+                };
+                if(this.nowIndex==1){
+                    if(this.list2.length>0){return;};
+                    let [err2,data2]=await getEmployeeList({type:2,pageSize:1});
+                    if(err2!==null){this.$toast(err2||'系统错误');return ;};
+                    this.list2=[...data2];
+                    this.page.currentChildRearingPage=1;
+                    return ;
+                }
+                if(this.nowIndex==2){
+                    if(this.list3.length>0){return;};
+                    let [err3,data3]=await getEmployeeList({type:3,pageSize:1});
+                    if(err3!==null){this.$toast(err3||'系统错误');return ;};
+                    this.list3=[...data3];
+                    this.page.currentBabySitterPage=1;
+                    return ;
+                }
+                if(this.nowIndex==3){
+                    if(this.list4.length>0){return;};
+                    let [err4,data4]=await getEmployeeList({type:4,pageSize:1});
+                    if(err4!==null){this.$toast(err4||'系统错误');return ;};
+                    this.list4=[...data4];
+                    this.page.currentMorePage=1;
+                    return ;
+                }
 
-                    // 数据全部加载完成
-                    // if (this.list.length >= 40) {
-                    //   this.load.finished = true;
-                    // }
-                }, 500);
             },
             tabClick(index) {
-                this.nowIndex = index
-                this.swicthSwiper.slideTo(index, 300, false)
+                this.nowIndex = index;
+                this.updateList();
+                this.swicthSwiper.slideTo(index, 300, false);
             },
             slideChangeTransitionEndCallback() {
                 this.nowIndex = this.swicthSwiper.activeIndex
+                this.updateList();
             },
             watchScroll() {
                 // let clientHeight  = document.documentElement.clientHeight; //浏览器高度
@@ -184,7 +245,6 @@
                 } else {
                     this.navBarFixed = false
                 }
-               console.log('scrollTop==>',scrollTop)
                 if(scrollTop>1000){
                     this.backTop=true;
                 }else{
@@ -283,26 +343,11 @@
 
   .switch-container {
     width: 100%;
-
+    height: 100%;
     .switch-item {
       width: 100%;
-      min-height: 800px;
+      height: 100%;
     }
 
-    .switch-item:first-of-type {
-      /*background: #0A81FB;*/
-    }
-
-    .switch-item:nth-of-type(2) {
-      /*background: #FFFFFF;*/
-    }
-
-    .switch-item:nth-of-type(3) {
-      /*background: bisque;*/
-    }
-
-    .switch-item:nth-of-type(4) {
-      /*background: black;*/
-    }
   }
 </style>

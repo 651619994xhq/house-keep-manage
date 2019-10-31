@@ -34,14 +34,33 @@ const homeEmployeeListData = function() {
     url:'',
     returnData:[
       {
-        isSole:1,
-        age:'test',
-        nativePlace:'',
-        workYear:'',
-        oneSentenceEvaluation:'',
-        code:'',
-        label:'',
+        isSole:1,age:'test',nativePlace:'',workYear:'',oneSentenceEvaluation:'',code:'',label:'',
       },
+      {
+        isSole:1,age:'test',nativePlace:'',workYear:'',oneSentenceEvaluation:'',code:'',label:'',
+      },
+      {
+        isSole:1,age:'test',nativePlace:'',workYear:'',oneSentenceEvaluation:'',code:'',label:'',
+      },
+      {
+        isSole:1,age:'test',nativePlace:'',workYear:'',oneSentenceEvaluation:'',code:'',label:'',
+      },
+      {
+        isSole:1,age:'test',nativePlace:'',workYear:'',oneSentenceEvaluation:'',code:'',label:'',
+      },
+      {
+        isSole:1,age:'test',nativePlace:'',workYear:'',oneSentenceEvaluation:'',code:'',label:'',
+      },
+      {
+        isSole:1,age:'test',nativePlace:'',workYear:'',oneSentenceEvaluation:'',code:'',label:'',
+      },
+      {
+        isSole:1,age:'test',nativePlace:'',workYear:'',oneSentenceEvaluation:'',code:'',label:'',
+      },
+      {
+        isSole:1,age:'test',nativePlace:'',workYear:'',oneSentenceEvaluation:'',code:'',label:'',
+      },
+
     ]
   }
   return $data;
@@ -72,6 +91,71 @@ const addCommentsData = function() {
 };
 Mock.mock(api.ADD_COMMENTS, 'post', addCommentsData);
 
+const getOrderList = function() {
+  let $data={
+    status:1,
+    message:'',
+    url:'',
+    returnData:{
+      list:[
+        {
+          orderType:'',
+          employeeName:'',
+          salary:'',
+          interviewType:'',
+          interviewTime:'',
+          status:'',
+        },
+        {
+          orderType:'',
+          employeeName:'',
+          salary:'',
+          interviewType:'',
+          interviewTime:'',
+          status:'',
+        },
+        {
+          orderType:'',
+          employeeName:'',
+          salary:'',
+          interviewType:'',
+          interviewTime:'',
+          status:'',
+        },
+        {
+          orderType:'',
+          employeeName:'',
+          salary:'',
+          interviewType:'',
+          interviewTime:'',
+          status:'',
+        },
+        {
+          orderType:'',
+          employeeName:'',
+          salary:'',
+          interviewType:'',
+          interviewTime:'',
+          status:'',
+        },
+        {
+          orderType:'',
+          employeeName:'',
+          salary:'',
+          interviewType:'',
+          interviewTime:'',
+          status:'',
+        }
+      ],
+      totalPage:'',
+      pageSize:'',
+      totalCount:'',
+      currentPage:''
+    }
+  }
+  return $data;
+};
+Mock.mock(api.GET_ORDER_LIST, 'post', getOrderList);
 
 
 

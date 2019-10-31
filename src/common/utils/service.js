@@ -2,7 +2,6 @@ import awaitWrap from './awaitWrap';
 import axios from './Axios';
 import api from './api';
 
-
 //发送注册验证码
 export const sendRegisterCode =(param={})=>{
   let phone=param.phone?param.phone:'';

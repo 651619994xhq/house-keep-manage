@@ -66,11 +66,13 @@
 </template>
 
 <script>
+    import {getMyOrderList} from '@/common/utils/service'
+    import backTop from '@/common/components/backTop'
     export default {
         name: "order",
         data() {
             return {
-                list: [1, 2, 3],
+                list: [],
                 load: {
                     error: false,  //错误
                     loading: false, //加载更多
@@ -88,24 +90,14 @@
         },
 //一些自定义方法
         methods: {
-            loadEvent() {
-                console.log('loadEvent is run')
-                // 异步更新数据
-                setTimeout(() => {
-                    for (let i = 0; i < 10; i++) {
-                        this.list.push(this.list.length + 1);
-                    }
-                    // 加载状态结束
-                    this.load.loading = false;
-                    // if(this.list.length>=20){
-                    //   this.error=true;
-                    // }
-
-                    // 数据全部加载完成
-                    // if (this.list.length >= 40) {
-                    //   this.load.finished = true;
-                    // }
-                }, 500);
+            async loadEvent() {
+                let [err,data]=await getMyOrderList({pageSize:this.currentPage});
+                if(err!==null){this.$toast(err||'系统错误');return ;};
+                let list=data.list;
+                this.list=[...this.list,...list];
+                this.currentPage+=1;
+                this.load.loading=false;
+                return ;
             },
             handleGoToOrderDetailPage() {
                 this.$router.push({
