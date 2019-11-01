@@ -91,12 +91,19 @@
 //一些自定义方法
         methods: {
             async loadEvent() {
+                this.$loading();
                 let [err,data]=await getMyOrderList({pageSize:this.currentPage});
-                if(err!==null){this.$toast(err||'系统错误');return ;};
+                if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
                 let list=data.list;
+                if(list.length==0){
+                  this.$toast('没有更多了');
+                  this.$clear();
+                  return ;
+                };
                 this.list=[...this.list,...list];
                 this.currentPage+=1;
                 this.load.loading=false;
+                this.$clear();
                 return ;
             },
             handleGoToOrderDetailPage() {

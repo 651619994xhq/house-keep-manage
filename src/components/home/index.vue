@@ -96,6 +96,7 @@
                 //选项卡切换的参数
                 switchOptions: {
                     initialSlide: 0,
+                    autoHeight: true,
                 },
                 list1: [], //月嫂列表
                 list2: [], //育儿嫂列表
@@ -145,8 +146,6 @@
                 })()
             };
             this.updateBannerList();
-            // this.updateList();
-
         },
         destroyed() {
             window.removeEventListener('scroll', this.watchScroll)
@@ -155,36 +154,45 @@
         methods: {
             async loadEvent() {
                 console.log('loadEvent is run');
+                this.$loading();
                 if(this.nowIndex==0){
                     let [err,data]=await getEmployeeList({type:1,pageSize:this.page.currentMoonWomanPage});
-                    if(err!==null){this.$toast(err||'系统错误');return ;};
+                    if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
+                    if(data.length==0){this.$toast('没有更多了');this.$clear();return ;};
                     this.list1=[...this.list1,...data];
                     this.page.currentMoonWomanPage+=1;
                     this.load.loading=false;
+                    this.$clear();
                     return ;
                 };
                 if(this.nowIndex==1){
                     let [err2,data2]=await getEmployeeList({type:2,pageSize:this.page.currentChildRearingPage});
-                    if(err2!==null){this.$toast(err2||'系统错误');return ;};
+                    if(err2!==null){this.$toast(err2||'系统错误');this.$clear();return ;};
+                    if(data2.length==0){this.$toast('没有更多了');this.$clear();return ;};
                     this.list2=[...this.list2,...data2];
                     this.page.currentChildRearingPage+=1;
                     this.load.loading=false;
+                    this.$clear();
                     return ;
                 }
                 if(this.nowIndex==2){
                     let [err3,data3]=await getEmployeeList({type:3,pageSize:this.page.currentBabySitterPage});
-                    if(err3!==null){this.$toast(err3||'系统错误');return ;};
+                    if(err3!==null){this.$toast(err3||'系统错误');this.$clear();return ;};
+                    if(data3.length==0){this.$toast('没有更多了');this.$clear();return ;};
                     this.list3=[...this.list3,...data3];
                     this.page.currentBabySitterPage+=1;
                     this.load.loading=false;
+                    this.$clear();
                     return ;
                 }
                 if(this.nowIndex==3){
                     let [err4,data4]=await getEmployeeList({type:4,pageSize:this.page.currentMorePage});
-                    if(err4!==null){this.$toast(err4||'系统错误');return ;};
+                    if(err4!==null){this.$toast(err4||'系统错误');this.$clear();return ;};
+                    if(data4.length==0){this.$toast('没有更多了');this.$clear();return ;};
                     this.list4=[...this.list4,...data4];
                     this.page.currentMorePage+=1;
                     this.load.loading=false;
+                    this.$clear();
                     return ;
                 }
             },
@@ -192,35 +200,42 @@
                 window.scrollTo(0,0)
                 if(this.nowIndex==0){
                     if(this.list1.length>0){return;};
+                    this.$loading();
                     let [err,data]=await getEmployeeList({type:1,pageSize:1});
-                    if(err!==null){this.$toast(err||'系统错误');return ;};
+                    if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
                     this.list1=[...data];
-                    console.log('list1==>',data);
                     this.page.currentMoonWomanPage=1;
+                    this.$clear();
                     return ;
                 };
                 if(this.nowIndex==1){
                     if(this.list2.length>0){return;};
+                    this.$loading();
                     let [err2,data2]=await getEmployeeList({type:2,pageSize:1});
-                    if(err2!==null){this.$toast(err2||'系统错误');return ;};
+                    if(err2!==null){this.$toast(err2||'系统错误');this.$clear();return ;};
                     this.list2=[...data2];
                     this.page.currentChildRearingPage=1;
+                    this.$clear();
                     return ;
                 }
                 if(this.nowIndex==2){
                     if(this.list3.length>0){return;};
+                    this.$loading();
                     let [err3,data3]=await getEmployeeList({type:3,pageSize:1});
-                    if(err3!==null){this.$toast(err3||'系统错误');return ;};
+                    if(err3!==null){this.$toast(err3||'系统错误');this.$clear();return ;};
                     this.list3=[...data3];
                     this.page.currentBabySitterPage=1;
+                    this.$clear();
                     return ;
                 }
                 if(this.nowIndex==3){
                     if(this.list4.length>0){return;};
+                    this.$loading();
                     let [err4,data4]=await getEmployeeList({type:4,pageSize:1});
-                    if(err4!==null){this.$toast(err4||'系统错误');return ;};
+                    if(err4!==null){this.$toast(err4||'系统错误');this.$clear();return ;};
                     this.list4=[...data4];
                     this.page.currentMorePage=1;
+                    this.$clear();
                     return ;
                 }
 
@@ -264,7 +279,6 @@
                     return;
                 }
                 ;
-                console.log('data==>', data);
             }
         }
     }
@@ -343,10 +357,8 @@
 
   .switch-container {
     width: 100%;
-    height: 100%;
     .switch-item {
       width: 100%;
-      height: 100%;
     }
 
   }

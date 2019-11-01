@@ -28,6 +28,14 @@ Vue.use(Popup);
 Vue.use(DatetimePicker);
 Vue.use(List);
 Vue.prototype.$toast = Toast;
+Vue.prototype.$loading = (param)=>{
+  if(!param){
+    Toast.loading({duration: 0,forbidClick: true,message: "加载中..."});
+    return;
+  };
+  Toast.loading(param);
+};
+Vue.prototype.$clear=Toast.clear;
 Vue.config.productionTip = false;
 fastclick.attach(document.body)
 // xhq 2019/4/25 这个是兼容ios input 弹窗 不聚焦的问题
