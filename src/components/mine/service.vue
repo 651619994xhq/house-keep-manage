@@ -1,5 +1,5 @@
 <template>
-  <van-popup v-model="isShow" class="popup-box">
+  <van-popup :value="isShow" @input="handleInput" class="popup-box">
     <div class="service-box col flex-item flex-justify-between">
       <div class="content flex-grow col flex-item flex-justify">
         <div class="title">专属客服电话</div>
@@ -24,7 +24,9 @@
             }
         },
         data() {
-            return {}
+            return {
+                closeOnClickOverlay:false
+            }
         },
         created() {
 
@@ -35,6 +37,9 @@
             },
             handleSureEvent(){
                 this.$emit('sureEvent')
+            },
+            handleInput(value){
+               this.$emit('closeEvent')
             }
 
         },

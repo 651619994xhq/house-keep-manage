@@ -52,7 +52,7 @@
 
     </div>
 
-    <Service :is-show="service.isShow" @cancelEvent="serviceCancelEvent" @sureEvent="serviceSureEvent"></Service>
+    <Service :is-show="service.isShow" @cancelEvent="serviceCancelEvent" @sureEvent="serviceSureEvent" @closeEvent="serviceCloseEvent"></Service>
   </div>
 </template>
 <script>
@@ -83,6 +83,9 @@
            this.service.isShow=false;
         },
         serviceSureEvent(){
+            this.service.isShow=false;
+        },
+        serviceCloseEvent(){
             this.service.isShow=false;
         },
         showServicePopup(){
