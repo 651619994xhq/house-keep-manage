@@ -63,7 +63,7 @@
       return {
         imgPath:require('image/bg@2x.png'),
         service:{
-            isShow:true
+            isShow:false
         }
       }
     },
