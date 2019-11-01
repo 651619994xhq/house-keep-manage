@@ -152,6 +152,7 @@
 <script>
     import resume from '@/common/components/resume/index';
     import apponitPopup from "./apponitPopup";
+    import {getEmployeeInfo} from '@/common/utils/service'
 
     export default {
         name: "orderDetail",
@@ -169,10 +170,22 @@
         },
 //初始化数据
         created() {
-
+            this.$getEmployeeInfo();
         },
 //一些自定义方法
-        methods: {}
+        methods: {
+            async $getEmployeeInfo(){
+                this.$loading();
+                let [err,data]=await getEmployeeInfo({id:1});
+                if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
+                this.initWithData(data);
+                this.$clear();
+            },
+            initWithData(data){
+
+            }
+
+        }
     }
 </script>
 

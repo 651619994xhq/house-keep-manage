@@ -20,7 +20,7 @@
           验证码
         </div>
         <div class="row flex-grow flex-item flex-justify-between">
-          <van-field type="number" v-model="sms" placeholder="请输入验证码" class="sms-input"/>
+          <van-field type="number" v-model="sms" :border="border" placeholder="请输入验证码" class="sms-input"/>
           <div class="border-div"></div>
           <div class="send-sms-btn" v-if="isShowBtn" @click="handleSendSms">发送验证码</div>
           <div class="send-sms-text" v-else>{{count}}秒后重发</div>
@@ -51,6 +51,7 @@
         name: "index",
         data() {
             return {
+                border:false,
                 phone: 18614084016,//手机号
                 sms: '', //验证码
                 isShowBtn: true, //是否展示发送按钮
@@ -240,6 +241,7 @@
 
   .sms-input {
     width: 200px;
+    border-bottom: none;
   }
 
   .border-div {

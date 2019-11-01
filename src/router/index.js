@@ -57,6 +57,11 @@ const orderDetail = (resolve) => {
     resolve(module)
   })
 };
+const updatePhone = (resolve) => {
+  import('@/components/updatePhone/index').then((module) => {
+    resolve(module)
+  })
+};
 
 Vue.use(Router);
 
@@ -83,9 +88,8 @@ let router = new Router({
     {path: '/person-info', name: 'personInfo', component: personInfo, meta: {title: '个人信息', index: 4}},
     {path: '/my-collect', name: 'myCollect', component: myCollect, meta: {title: '我的收藏', index: 4}},
     {path: '/my-service', name: 'myService', component: myService, meta: {title: '我的客服', index: 4}},
-
     {path: '/order-detail', name: 'orderDetail', component: orderDetail, meta: {title: '订单详情', index: 5}},
-    // { path: '/address', name: 'address', component: address,meta:{title:'收货地址',index:4}},
+    { path: '/update-phone', name: 'updatePhone', component: updatePhone,meta:{title:'修改手机',index:6}},
 
   ]
 })
