@@ -5,7 +5,7 @@
       <div class="item1 row flex-item flex-justify-between">
         <div class="row flex-item flex-justify-start">
           <div class="item-icon">
-
+            <img src="~image/work@2x.png" alt="">
           </div>
           <div class="occupation">
             面试信息
@@ -49,7 +49,7 @@
     <div class="work-info">
       <div class="item1 row flex-item flex-justify-start">
         <div class="item1-icon">
-
+          <img src="~image/work@2x.png" alt="">
         </div>
         <div class="item1-title">
           工作履历
@@ -62,7 +62,7 @@
     <div class="home-info">
       <div class="item1 row flex-item flex-justify-start">
         <div class="item1-icon">
-
+          <img src="~image/home@2x.png" alt="">
         </div>
         <div class="item1-title">
           家庭情况
@@ -75,7 +75,7 @@
     <div class="certificate-info">
       <div class="item1 row flex-item flex-justify-start">
         <div class="item1-icon">
-
+          <img src="~image/certificate@2x.png" alt="">
         </div>
         <div class="item1-title">
           证书信息
@@ -206,11 +206,15 @@
       margin-bottom: 8px;
 
       .item-icon {
-        margin-left: 16px;
+        margin-left: 14px;
         margin-right: 10px;
-        background: #666666;
-        width: 14px;
-        height: 16px;
+        width: 20px;
+        height: 20px;
+        img{
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
       }
 
       .occupation {
@@ -295,11 +299,15 @@
       width: 100%;
 
       .item1-icon {
-        margin-left: 16px;
+        margin-left: 14px;
         margin-right: 10px;
-        width: 14px;
-        height: 16px;
-        background: #999999;
+        width: 20px;
+        height: 20px;
+        img{
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
       }
 
       .item1-title {
@@ -337,11 +345,15 @@
       width: 100%;
 
       .item1-icon {
-        margin-left: 16px;
+        margin-left: 14px;
         margin-right: 10px;
-        width: 18px;
-        height: 18px;
-        background: #999999;
+        width: 20px;
+        height: 20px;
+        img{
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
       }
 
       .item1-title {
@@ -365,7 +377,6 @@
     }
   }
 
-
   .certificate-info {
     margin-top: 10px;
     min-height: 310px;
@@ -379,11 +390,15 @@
       width: 100%;
 
       .item1-icon {
-        margin-left: 16px;
+        margin-left: 14px;
         margin-right: 10px;
-        width: 18px;
-        height: 18px;
-        background: #999999;
+        width: 20px;
+        height: 20px;
+        img{
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
       }
 
       .item1-title {

@@ -40,7 +40,7 @@
         立即预约
       </div>
     </div>
-    <appointTime :isShow="popup.isShow"></appointTime>
+    <appointTime :isShow="popup.isShow" @closeEvent="handleCloseEvent('appointTime')"></appointTime>
     <appointmentSuc :is-show="appointmentSucData.isShow" @sureEvent="handleAppointSureEvent"></appointmentSuc>
     <appointmentError :is-show="appointmentErrorData.isShow" @sureEvent="handleAppointErrorSureEvent"></appointmentError>
   </div>
@@ -77,7 +77,7 @@
         },
 //初始化数据
         created() {
-
+           console.log(123);
         },
 //一些自定义方法
         methods: {
@@ -92,6 +92,11 @@
             },
             handleAppointErrorSureEvent(){
                 this.appointmentErrorData.isShow=false;
+            },
+            handleCloseEvent(type){
+                if(type=='appointTime'){
+                    this.popup.isShow=false;
+                };
             }
 
         }

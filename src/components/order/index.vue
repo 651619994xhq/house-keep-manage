@@ -12,7 +12,7 @@
         <div class="item1 row flex-item flex-justify-between">
           <div class="row flex-item flex-justify-start">
             <div class="item-icon">
-
+              <img src="~image/work@2x.png" alt="">
             </div>
             <div class="occupation">
               月嫂
@@ -136,10 +136,14 @@
 
       .item-icon {
         margin-left: 16px;
-        margin-right: 10px;
-        background: #666666;
-        width: 14px;
-        height: 16px;
+        margin-right: 8px;
+        width: 18px;
+        height: 18px;
+        img{
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
       }
 
       .occupation {

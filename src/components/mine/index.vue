@@ -13,7 +13,7 @@
       <div class="item hairlines row flex-item flex-justify-between" @click="handleGoToPage('/person-info')">
           <div class="left-item row flex-item flex-justify-start">
               <div class="item-icon">
-                <img src="" alt="">
+                <img src="~image/message@2x.png" alt="">
               </div>
               <div class="item-title">
                个人信息
@@ -26,7 +26,7 @@
       <div class="item hairlines row flex-item flex-justify-between" @click="handleGoToPage('/my-collect')">
         <div class="left-item row flex-item flex-justify-start">
           <div class="item-icon">
-            <img src="" alt="">
+            <img src="~image/certificate@2x.png" alt="">
           </div>
           <div class="item-title">
             我的收藏
@@ -39,7 +39,7 @@
       <div class="item hairlines row flex-item flex-justify-between" @click="showServicePopup">
         <div class="left-item row flex-item flex-justify-start">
           <div class="item-icon">
-            <img src="" alt="">
+            <img src="~image/Service@2x.png" alt="">
           </div>
           <div class="item-title">
             我的客服
@@ -151,8 +151,12 @@
       .item-icon{
         width: 18px;
         height: 18px;
-        background: #efefef;
         margin-right: 10px;
+        img{
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
       }
       .item-title{
         font-size:14px;

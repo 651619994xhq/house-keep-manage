@@ -2,7 +2,7 @@
     <van-popup
             :value="isShow"
             position="bottom"
-            :style="{ width:'100%' }",
+            :style="{ width:'100%' }"
             @input="handleInput"
     >
         <div class="pop-container">
