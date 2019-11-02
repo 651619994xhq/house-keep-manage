@@ -1,8 +1,9 @@
 <template>
     <van-popup
-            v-model="isShow"
+            :value="isShow"
             position="bottom"
-            :style="{ width:'100%' }"
+            :style="{ width:'100%' }",
+            @input="handleInput"
     >
         <div class="pop-container">
               <div class="top-pop">
@@ -101,6 +102,9 @@
         },
         handleSureEvent(){
             this.$emit('handleSureEvent') ;
+        },
+        handleInput(){
+            this.$emit('closeEvent');
         },
         handleSwitchDay(type){
            this.currentDay=type;

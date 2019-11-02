@@ -1,5 +1,5 @@
 <template>
-  <van-popup v-model="isShow" class="popup-box">
+  <van-popup :value="isShow" @input="handleInput" class="popup-box">
     <div class="service-box col flex-item flex-justify-between">
       <div class="content flex-grow col flex-item flex-justify">
         <div class="title">预约成功</div>
@@ -30,7 +30,10 @@
         methods: {
             handleSureEvent(){
                 this.$emit('sureEvent')
-            }
+            },
+            handleInput(){
+                this.$emit('closeEvent')
+            },
 
         },
     }
