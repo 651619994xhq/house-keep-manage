@@ -18,7 +18,7 @@
               </div>
               <div class="title row flex-item flex-justify-between">
                 <div class="title-icon">
-                    <img src="" alt="">
+                    <img src="~image/icon_red@2x.png" alt="">
                 </div>
                 <div class="text">
                     2018十佳月嫂
@@ -111,8 +111,12 @@
             .title-icon{
                 width: 10px;
                 height: 10px;
-                background: #ff6666;
                 margin-right: 4px;
+                img{
+                  display: block;
+                  width: 100%;
+                  height: 100%;
+                }
             }
             .text{
                 font-size:10px;

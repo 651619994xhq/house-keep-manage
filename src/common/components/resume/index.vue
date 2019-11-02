@@ -16,7 +16,7 @@
                </div>
                <div class="item2 row flex-item flex-justify-start">
                   <div class="item2-icon">
-                      <img src="" alt="">
+                      <img src="~image/icon_red@2x.png" alt="">
                   </div>
                    <div class="title">
                        2018十佳育婴师
@@ -147,8 +147,8 @@
                 .item2-icon{
                     width: 12px;
                     height: 12px;
-                    background: #999999;
                     img{
+                        display: block;
                         width: 100%;
                         height: 100%;
                     }
