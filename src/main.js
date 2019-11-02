@@ -18,7 +18,7 @@ import fastclick from 'fastclick';
 import './icons';
 import '@/mockData/index';  //导入mockData 模块
 import 'vant/lib/index.css';
-import {Swipe,SwipeItem,Toast,Field,Cell,CellGroup,Popup,DatetimePicker,List,SwipeCell,Button  } from 'vant';
+import {Swipe,SwipeItem,Toast,Field,Cell,CellGroup,Popup,DatetimePicker,List,SwipeCell,Button,Rate} from 'vant';
 import VueKeepScrollPosition from 'vue-keep-scroll-position';
 Vue.use(VueKeepScrollPosition);
 Vue.use(Swipe).use(SwipeItem);
@@ -29,6 +29,7 @@ Vue.use(DatetimePicker);
 Vue.use(List);
 Vue.use(SwipeCell); //滑动单元格
 Vue.use(Button);
+Vue.use(Rate);
 Vue.prototype.$toast = Toast;
 Vue.prototype.$loading = (param)=>{
   if(!param){

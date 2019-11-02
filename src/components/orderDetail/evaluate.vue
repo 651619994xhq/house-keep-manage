@@ -1,9 +1,12 @@
 <template>
   <van-popup :value="isShow" @input="handleInput" class="popup-box">
     <div class="service-box col flex-item flex-justify-between">
-      <div class="content flex-grow col flex-item flex-justify">
+      <div class="content flex-grow col flex-item-start flex-justify">
         <div class="title">您好，您对我们很重要。</div>
-        <div class="title2">是否取消预约？</div>
+        <div class="title2 row flex-item flex-justify-start">面试评分：<van-rate v-model="rateValue" :size="size" @change="handleChangeRate" class="rate"/></div>
+        <div class="evaluate-container">
+          <input type="text" placeholder="请填写您的评价，谢谢" class="evaluate-input">
+        </div>
       </div>
       <div class="control-btn row flex-item flex-justify-between">
         <div class="item-btn cancel-btn flex-grow" @click="handleCancelEvent">取消</div>
@@ -16,7 +19,7 @@
 
 <script>
     export default {
-        name: "apponitPopup",
+        name: "evaluate",
         props: {
             isShow: {
                 type: Boolean,
@@ -24,7 +27,10 @@
             }
         },
         data() {
-            return {}
+            return {
+                rateValue:0,
+                size:16
+            }
         },
         created() {
 
@@ -38,6 +44,9 @@
             },
             handleInput(){
                 this.$emit('closeEvent')
+            },
+            handleChangeRate(value){
+                console.log('handleChangeRate==>',value);
             }
 
         },
@@ -56,18 +65,42 @@
 
     .content {
       .title {
-        font-size:13px;
+        height: 18px;
+        line-height: 18px;
+        font-size:12px;
         font-family:PingFangSC-Regular,PingFang SC;
         font-weight:400;
         color:rgba(0,0,0,1);
       }
 
       .title2 {
-        margin-top: 4px;
-        font-size:13px;
+        margin-top: 6px;
+        height: 18px;
+        font-size: 12px;
         font-family:PingFangSC-Regular,PingFang SC;
         font-weight:400;
         color:rgba(0,0,0,1);
+        .rate{
+          margin-top: 2px;
+        }
+      }
+
+      .evaluate-container{
+        margin-top: 18px;
+        width: 215px;
+        height: 24px;
+        border: 1px solid #868687;
+        .evaluate-input{
+          padding-left: 4px;
+          display: block;
+          width: 100%;
+          height: 100%;
+          border: none;
+          font-size: 12px;
+          &::placeholder{
+            color: #C8C9CB;
+          }
+        }
       }
 
 

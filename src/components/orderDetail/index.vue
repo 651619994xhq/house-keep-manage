@@ -146,12 +146,14 @@
     </div>
 
     <apponitPopup :is-show="apponitPopupData.isShow"></apponitPopup>
+    <evaluate :is-show="evaluateData.isShow"></evaluate>
   </div>
 </template>
 
 <script>
     import resume from '@/common/components/resume/index';
     import apponitPopup from "./apponitPopup";
+    import evaluate from "./evaluate";
     import {getEmployeeInfo} from '@/common/utils/service'
 
     export default {
@@ -160,13 +162,17 @@
             return {
                 apponitPopupData:{
                     isShow:false
+                },
+                evaluateData:{
+                    isShow:false
                 }
             }
         },
 //组件
         components: {
             resume,
-            apponitPopup
+            apponitPopup,
+            evaluate
         },
 //初始化数据
         created() {
