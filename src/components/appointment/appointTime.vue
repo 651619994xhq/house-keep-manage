@@ -98,10 +98,10 @@
 //一些自定义方法
     methods: {
         handleCancelEvent(){
-            this.$emit('handleCancelEvent');
+            this.$emit('cancelEvent');
         },
         handleSureEvent(){
-            this.$emit('handleSureEvent') ;
+            this.$emit('sureEvent') ;
         },
         handleInput(){
             this.$emit('closeEvent');

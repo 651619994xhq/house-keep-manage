@@ -22,7 +22,7 @@
       </div>
 
     </div>
-    <div class="appointment-btn row flex-item flex-justify-between">
+    <div class="appointment-btn row flex-item flex-justify-between" @click="handleShowTime">
       <div class="title1">预约面试时间</div>
       <div class="title2 row flex-item flex-justify-between">
         <div class="item1">请选择</div>
@@ -40,7 +40,7 @@
         立即预约
       </div>
     </div>
-    <appointTime :isShow="popup.isShow" @closeEvent="handleCloseEvent('appointTime')"></appointTime>
+    <appointTime :isShow="popup.isShow" @closeEvent="handleCloseEvent('appointTime')" @cancelEvent="handleTimeCancel" @sureEvent="handleTimeSure"></appointTime>
     <appointmentSuc :is-show="appointmentSucData.isShow" @sureEvent="handleAppointSureEvent"></appointmentSuc>
     <appointmentError :is-show="appointmentErrorData.isShow" @sureEvent="handleAppointErrorSureEvent"></appointmentError>
   </div>
@@ -57,7 +57,7 @@
         data() {
             return {
                 popup: {
-                    isShow: true
+                    isShow: false
                 },
                 appointmentSucData:{
                     isShow:false
@@ -97,6 +97,15 @@
                 if(type=='appointTime'){
                     this.popup.isShow=false;
                 };
+            },
+            handleTimeCancel(){
+               this.hidePopup();
+            },
+            handleTimeSure(){
+               this.hidePopup();
+            },
+            handleShowTime(){
+                this.showPopup();
             }
 
         }
