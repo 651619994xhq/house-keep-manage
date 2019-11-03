@@ -6,19 +6,40 @@
       </div>
       <div class="title">用户评价</div>
     </div>
-
+    <div class="content" v-for="(item,index) in content" :key="index">
+      <div class="header row flex-item flex-justify-between">
+        <div class="name">张***妈妈</div>
+        <van-rate v-model="rateValue" :size="size" :readonly="readonly" :gutter="gutter" class="rate"/>
+      </div>
+      <div class="item-content">
+        把宝宝照顾的很好。全家人都很喜欢她
+      </div>
+      <div class="time">
+        2019-05-05
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
     export default {
-        name: "userEvaluate"
+        name: "userEvaluate",
+        data() {
+            return {
+                size:12,
+                rateValue:3,
+                readonly:true,
+                gutter:1,
+                content:[1]
+            }
+        },
     }
 </script>
 
 <style scoped lang="scss">
   .user-evaluate{
-    min-height: 300px;
+    min-height: 200px;
+    padding-bottom: 100px;
     width: 100%;
     background: $white;
     margin-top: 10px;
@@ -44,6 +65,42 @@
         font-family: PingFangSC-Regular, PingFangSC;
         font-weight: 400;
         color: rgba(0, 2, 18, 1);
+      }
+    }
+    .content{
+      width: 100%;
+      min-height: 90px;
+      padding: 20px 16px 0 16px;
+      box-sizing: border-box;
+      overflow: hidden;
+      .header{
+         height: 20px;
+         width: 100%;
+         .name{
+           line-height: 20px;
+           font-size:12px;
+           font-family:PingFangSC-Regular,PingFang SC;
+           font-weight:400;
+           color:rgba(0,2,18,1);
+         }
+      }
+      .item-content{
+        margin-top: 8px;
+        min-height: 20px;
+        line-height: 20px;
+        font-size:14px;
+        font-family:PingFangSC-Regular,PingFang SC;
+        font-weight:400;
+        color:rgba(0,2,18,1);
+      }
+      .time{
+        margin-top: 10px;
+        height: 20px;
+        line-height: 20px;
+        font-size:12px;
+        font-family:PingFangSC-Regular,PingFang SC;
+        font-weight:400;
+        color:rgba(148,158,164,1);
       }
     }
   }
