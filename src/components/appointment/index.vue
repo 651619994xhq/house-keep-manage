@@ -116,7 +116,6 @@
   .container {
     width: 100%;
     height: 100%;
-    overflow: hidden;
     background: #f7f7f7;
   }
 
@@ -251,7 +250,9 @@
     }
 
     .submit-btn {
-      margin: 16px auto;
+      position: fixed;
+      bottom: 10px;
+      left: 40px;
       width: 296px;
       height: 42px;
       line-height: 42px;

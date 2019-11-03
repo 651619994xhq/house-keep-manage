@@ -1,5 +1,5 @@
 <template>
-    <div class="staff-info row flex-item flex-justify-start">
+    <div class="staff-info row flex-item flex-justify-start" @click="handleClickItem">
       <div class="left-module">
           <img src="" alt="">
           <div class="exclusive">
@@ -56,7 +56,13 @@
 
     },
 //一些自定义方法
-    methods: {}
+    methods: {
+        handleClickItem(){
+            this.$router.push({
+                path:'/person-resume'
+            })
+        }
+    }
   }
 </script>
 

@@ -142,8 +142,25 @@
     </div>
     <userEvaluate></userEvaluate>
 
-    <div class="submit-btn">
-      立即预约
+    <div class="submit-container row flex-item flex-justify-between">
+      <div class="left col flex-item-start flex-justify">
+        <div class="item-icon">
+          <img src="~image/Collection@2x.png" alt="">
+        </div>
+        <div class="text">
+          收藏
+        </div>
+
+      </div>
+      <div class="right row flex-item flex-justify-between">
+        <div class="left-btn flex-grow">
+          查看档期
+        </div>
+        <div class="right-btn flex-grow">
+          立即预约
+        </div>
+
+      </div>
     </div>
 
   </div>
@@ -350,19 +367,61 @@
     }
   }
 
-  .submit-btn {
+  .submit-container {
     position: fixed;
-    bottom: 15px;
-    left: 40px;
-    width: 296px;
-    height: 42px;
-    line-height: 42px;
-    text-align: center;
-    background: linear-gradient(328deg, rgba(201, 141, 253, 1) 0%, rgba(250, 119, 119, 1) 100%);
-    border-radius: 21px;
-    font-size: 16px;
-    font-family: PingFangSC-Regular, PingFangSC;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 1);
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+    height: 70px;
+    background: $white;
+    .left{
+      width: 40px;
+      height: 70px;
+      .item-icon{
+        margin-left: 4px;
+        width: 18px;
+        height: 18px;
+        img{
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .text{
+        margin-top: 6px;
+        height:17px;
+        font-size:12px;
+        font-family:PingFangSC-Regular,PingFang SC;
+        font-weight:400;
+        color:rgba(59,68,92,1);
+        line-height:17px;
+      }
+    }
+    .right{
+      width: 296px;
+      height: 42px;
+      border-radius: 42px;
+      overflow: hidden;
+      .left-btn{
+        background:linear-gradient(327deg,rgba(201,141,253,1) 0%,rgba(250,119,166,1) 100%);
+        line-height: 42px;
+        font-size:16px;
+        font-family:PingFangSC-Regular,PingFang SC;
+        font-weight:400;
+        color:rgba(255,255,255,1);
+        text-align: center;
+      }
+      .right-btn{
+        background:linear-gradient(323deg,rgba(237,119,250,1) 0%,rgba(150,141,253,1) 100%);
+        line-height: 42px;
+        font-size:16px;
+        font-family:PingFangSC-Regular,PingFang SC;
+        font-weight:400;
+        color:rgba(255,255,255,1);
+        text-align: center;
+      }
+    }
   }
 </style>

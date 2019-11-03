@@ -15,10 +15,10 @@
             </div>
         </div>
         <div class="bottom-module row flex-item-start flex-justify-start">
-          <div class="item">
+          <div class="item" @click="handleClickAppoint">
               立即预约
           </div>
-          <div class="item2">
+          <div class="item2" @click="handleClickLookDetail">
               查看详情
           </div>
         </div>
@@ -39,7 +39,18 @@
 
     },
 //一些自定义方法
-    methods: {}
+    methods: {
+        handleClickAppoint(){
+            this.$router.push({
+                path:'/appointment'
+            });
+        },
+        handleClickLookDetail(){
+            this.$router.push({
+                path:'/person-resume'
+            });
+        }
+    }
   }
 </script>
 
