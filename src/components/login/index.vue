@@ -132,6 +132,9 @@
             },
             handleRegisterEvent(){
                 console.log('handleRegisterEvent is run');
+                this.$router.replace({
+                    path:'/index'
+                })
             }
         }
     }
