@@ -43,6 +43,7 @@
     <appointTime :isShow="popup.isShow" @closeEvent="handleCloseEvent('appointTime')" @cancelEvent="handleTimeCancel" @sureEvent="handleTimeSure"></appointTime>
     <appointmentSuc :is-show="appointmentSucData.isShow" @sureEvent="handleAppointSureEvent"></appointmentSuc>
     <appointmentError :is-show="appointmentErrorData.isShow" @sureEvent="handleAppointErrorSureEvent"></appointmentError>
+    <fillAddress :is-show="fillAddressData.isShow" @sureEvent="handleFillAddressSureEvent"></fillAddress>
   </div>
 </template>
 
@@ -51,6 +52,7 @@
     import appointTime from './appointTime'
     import appointmentSuc from "./appointmentSuc";
     import appointmentError from "./appointmentError";
+    import fillAddress from "./fillAddress";
 
     export default {
         name: "apponitment",
@@ -64,6 +66,9 @@
                 },
                 appointmentErrorData:{
                     isShow:false
+                },
+                fillAddressData:{
+                    isShow:true
                 }
 
             }
@@ -73,7 +78,8 @@
             resume,
             appointTime,
             appointmentSuc,
-            appointmentError
+            appointmentError,
+            fillAddress
         },
 //初始化数据
         created() {
@@ -106,6 +112,9 @@
             },
             handleShowTime(){
                 this.showPopup();
+            },
+            handleFillAddressSureEvent(){
+                this.fillAddressData.isShow=false;
             }
 
         }
