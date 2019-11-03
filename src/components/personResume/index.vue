@@ -153,10 +153,10 @@
 
       </div>
       <div class="right row flex-item flex-justify-between">
-        <div class="left-btn flex-grow">
+        <div class="left-btn flex-grow" @click="handleClickSchedule">
           查看档期
         </div>
-        <div class="right-btn flex-grow">
+        <div class="right-btn flex-grow" @click="handleClickAppoint">
           立即预约
         </div>
 
@@ -203,6 +203,16 @@
             },
             initWithData(data){
 
+            },
+            handleClickAppoint(){
+                this.$router.push({
+                    path:'/appointment'
+                })
+            },
+            handleClickSchedule(){
+                this.$router.push({
+                   path:'/schedule'
+                });
             }
 
         }

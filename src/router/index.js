@@ -69,6 +69,12 @@ const personResume = (resolve) => {
     resolve(module)
   })
 };
+//档期
+const schedule = (resolve) => {
+  import('@/components/schedule/index').then((module) => {
+    resolve(module)
+  })
+};
 
 Vue.use(Router);
 
@@ -91,13 +97,14 @@ let router = new Router({
       ]
     },
     {path: '/login', name: 'login', component: login, meta: {title: '登录/注册', index: 2}},
-    {path: '/appointment', name: 'appointment', component: appointment, meta: {title: '预约面试', index: 3}},
+    {path: '/appointment', name: 'appointment', component: appointment, meta: {title: '预约面试', index: 5}},
     {path: '/person-info', name: 'personInfo', component: personInfo, meta: {title: '个人信息', index: 4}},
     {path: '/my-collect', name: 'myCollect', component: myCollect, meta: {title: '我的收藏', index: 4}},
     {path: '/my-service', name: 'myService', component: myService, meta: {title: '我的客服', index: 4}},
     {path: '/order-detail', name: 'orderDetail', component: orderDetail, meta: {title: '订单详情', index: 5}},
     {path: '/update-phone', name: 'updatePhone', component: updatePhone,meta:{title:'修改手机',index:6}},
     {path: '/person-resume', name: 'personResume', component: personResume,meta:{title:'简历',index:4}},
+    {path: '/schedule', name: 'schedule', component: schedule,meta:{title:'档期',index:5}},
 
   ]
 })

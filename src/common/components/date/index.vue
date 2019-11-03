@@ -2,7 +2,7 @@
   <div class="date-container">
       <div class="work-experience col flex-item-start flex-justify-start">
        <div class="title1">
-         工作经历
+         工作日历
        </div>
         <div class="title2 row flex-item flex-justify">
           <div class="item" style="color: #8A8F9B">日</div>
