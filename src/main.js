@@ -18,7 +18,7 @@ import fastclick from 'fastclick';
 import './icons';
 import '@/mockData/index';  //导入mockData 模块
 import 'vant/lib/index.css';
-import {Swipe,SwipeItem,Toast,Field,Cell,CellGroup,Popup,DatetimePicker,List,SwipeCell,Button,Rate} from 'vant';
+import {Swipe,SwipeItem,Toast,Field,Cell,CellGroup,Popup,DatetimePicker,List,SwipeCell,Button,Rate,Dialog} from 'vant';
 import VueKeepScrollPosition from 'vue-keep-scroll-position';
 Vue.use(VueKeepScrollPosition);
 Vue.use(Swipe).use(SwipeItem);
@@ -30,6 +30,7 @@ Vue.use(List);
 Vue.use(SwipeCell); //滑动单元格
 Vue.use(Button);
 Vue.use(Rate);
+Vue.use(Dialog);
 Vue.prototype.$toast = Toast;
 Vue.prototype.$loading = (param)=>{
   if(!param){
@@ -39,6 +40,7 @@ Vue.prototype.$loading = (param)=>{
   Toast.loading(param);
 };
 Vue.prototype.$clear=Toast.clear;
+Vue.prototype.$dialog=Dialog;
 Vue.config.productionTip = false;
 fastclick.attach(document.body)
 // xhq 2019/4/25 这个是兼容ios input 弹窗 不聚焦的问题

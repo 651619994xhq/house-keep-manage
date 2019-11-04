@@ -1,11 +1,11 @@
 <template>
     <div class="container">
         <li v-for="(item,index) of list" :key="index">
-            <van-swipe-cell :right-width="70" :left-width="0">
+            <van-swipe-cell :right-width="70" :left-width="0" :on-close='onClose'>
                 <van-cell-group>
                     <staffInfo></staffInfo>
                 </van-cell-group>
-                <div class="delete" slot="right">删除</div>
+                <div class="delete" slot="right" @click="handleShowDeleteDialog">删除</div>
             </van-swipe-cell>
         </li>
     </div>
@@ -17,7 +17,8 @@
     name: 'myCollect',
     data () {
       return {
-        list: [1, 2, 3]
+        list: [1, 2, 3],
+        deleteId:''
       }
     },
     components: {
@@ -26,7 +27,25 @@
     mounted () {
 
     },
-    methods: {},
+    methods: {
+      onClose(clickPosition, instance){
+        let e = window.event;
+        e.preventDefault();
+        e.stopPropagation()
+        instance.close();//这个函数就是让滑动的模块返回的操作  e.preventDefault()阻止默认行为;e.stopPropagation()阻止冒泡
+        console.log('正在左滑')
+      },
+      handleShowDeleteDialog(id){
+        this.deleteId=id;
+        this.$dialog.confirm({
+          message:'确认删除吗',
+        }).then(()=>{
+          console.log('确认删除')
+        }).catch(()=>{
+          console.log('取消删除')
+        });
+      }
+    },
     created () {
 
     }
