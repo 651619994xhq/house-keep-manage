@@ -16,7 +16,7 @@
       </div>
       <div class="title2 row flex-item flex-justify-between">
         <div class="item-title1">242423432</div>
-        <div class="item-title2">></div>
+        <div class="item-title2"><img src="~image/icon_next_gary@2x.png" alt=""></div>
       </div>
     </div>
 
@@ -26,7 +26,7 @@
       </div>
       <div class="title2 row flex-item flex-justify-between">
         <div class="item-title1">宝妈</div>
-        <div class="item-title2">></div>
+        <div class="item-title2"><img src="~image/icon_next_gary@2x.png" alt=""></div>
       </div>
     </div>
 
@@ -36,7 +36,7 @@
       </div>
       <div class="title2 row flex-item flex-justify-between">
         <div class="item-title1">242342354254</div>
-        <div class="item-title2">></div>
+        <div class="item-title2"><img src="~image/icon_next_gary@2x.png" alt=""></div>
       </div>
     </div>
 
@@ -47,7 +47,7 @@
       </div>
       <div class="title2 row flex-item flex-justify-between">
         <div class="item-title1">1901-11-10</div>
-        <div class="item-title2">></div>
+        <div class="item-title2"><img src="~image/icon_next_gary@2x.png" alt=""></div>
       </div>
     </div>
 
@@ -57,7 +57,7 @@
       </div>
       <div class="title2 row flex-item flex-justify-between">
         <div class="item-title1">2001-11-10</div>
-        <div class="item-title2">></div>
+        <div class="item-title2"><img src="~image/icon_next_gary@2x.png" alt=""></div>
       </div>
     </div>
     <identityInfo :is-show="identityInfoData.isShow" @sureEvent="handleIdentitySure"></identityInfo>
@@ -180,7 +180,7 @@
       margin-right: 16px;
 
       .item-title1 {
-        margin-right: 8px;
+        margin-right: 4px;
         font-size: 12px;
         font-family: PingFangSC-Regular, PingFangSC;
         font-weight: 400;
@@ -188,10 +188,13 @@
       }
 
       .item-title2 {
-        font-size: 18px;
-        font-family: PingFangSC-Regular, PingFangSC;
-        font-weight: 400;
-        color: rgba(138, 143, 155, 1);
+        width: 12px;
+        height: 14px;
+        img{
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
       }
     }
   }
