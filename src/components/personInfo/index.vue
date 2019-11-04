@@ -10,7 +10,7 @@
         <p class="title2">会员编号：0000239103</p>
       </div>
     </div>
-    <div class="item row flex-item flex-justify-between">
+    <div class="item row flex-item flex-justify-between" @click="handleGoUpdatePhone">
       <div class="title1">
         联系电话
       </div>
@@ -89,6 +89,11 @@
 
         },
         methods: {
+            handleGoUpdatePhone(){
+              this.$router.push({
+                 path:'/update-phone'
+              });
+            },
             handleIdentitySure() {
                 this.identityInfoData.isShow = false;
             },

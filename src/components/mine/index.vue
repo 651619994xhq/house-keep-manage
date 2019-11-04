@@ -19,8 +19,9 @@
                个人信息
               </div>
           </div>
-          <div class="right-item">
-
+          <div class="right-item row flex-item flex-justify-between">
+            <div class="item-title1">去完善</div>
+            <div class="item-title2"><img src="~image/icon_next_gary@2x.png" alt=""></div>
           </div>
       </div>
       <div class="item hairlines row flex-item flex-justify-between" @click="handleGoToPage('/my-collect')">
@@ -32,8 +33,8 @@
             我的收藏
           </div>
         </div>
-        <div class="right-item">
-
+        <div class="right-item row flex-item flex-justify-between">
+          <div class="item-title2"><img src="~image/icon_next_gary@2x.png" alt=""></div>
         </div>
       </div>
       <div class="item hairlines row flex-item flex-justify-between" @click="showServicePopup">
@@ -45,8 +46,8 @@
             我的客服
           </div>
         </div>
-        <div class="right-item">
-
+        <div class="right-item row flex-item flex-justify-between">
+          <div class="item-title2"><img src="~image/icon_next_gary@2x.png" alt=""></div>
         </div>
       </div>
 
@@ -163,6 +164,25 @@
         font-family:PingFangSC-Regular,PingFangSC;
         font-weight:400;
         color:rgba(54,61,79,1);
+      }
+    }
+    .right-item{
+      margin-right: 18px;
+      .item-title1{
+        font-size:12px;
+        font-family:PingFangSC-Regular,PingFang SC;
+        font-weight:400;
+        color:rgba(223,83,83,1);
+        margin-right: 6px;
+      }
+      .item-title2{
+        width: 12px;
+        height: 14px;
+        img{
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
       }
     }
   }
