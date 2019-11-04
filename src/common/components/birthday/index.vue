@@ -72,10 +72,11 @@
             handleSureEvent() {
                 let $time = this.currentDate.getTime();
                 console.log('$time==>', $time);
+                this.$emit('sureEvent',$time);
             },
             //取消事件
             handleCancelEvent() {
-
+                this.$emit('cancelEvent')
             },
             handleInput(){
                 this.$emit('closeEvent')

@@ -61,7 +61,7 @@
       </div>
     </div>
     <identityInfo :is-show="identityInfoData.isShow" @sureEvent="handleIdentitySure"></identityInfo>
-    <birthday :is-show="birthdayData.isShow"></birthday>
+    <birthday :is-show="birthdayData.isShow" @sureEvent="handleBirthdaySure" @cancelEvent="handleBirthdayCancel" @closeEvent="handleBirthdayClose"></birthday>
   </div>
 </template>
 <script>
@@ -97,6 +97,19 @@
             },
             handleShowBirthday(){
                 this.birthdayData.isShow=true;
+            },
+            hideBithday(){
+                this.birthdayData.isShow=false;
+            },
+            handleBirthdaySure(time){
+                console.log('handleBirthdaySure==>',time);
+                this.hideBithday();
+            },
+            handleBirthdayCancel(){
+                this.hideBithday();
+            },
+            handleBirthdayClose(){
+                this.hideBithday();
             }
 
         },
