@@ -25,8 +25,8 @@
     <div class="appointment-btn row flex-item flex-justify-between" @click="handleShowTime">
       <div class="title1">预约面试时间</div>
       <div class="title2 row flex-item flex-justify-between">
-        <div class="item1">请选择</div>
-        <div class="item2">></div>
+        <div class="item1" :class="selectTime?'item1-active':''">{{selectTime?selectTime:'请选择'}}</div>
+        <div class="item2"><img src="~image/icon_next_gary@2x.png" alt=""></div>
       </div>
     </div>
     <div class="other-ask col flex-item-start flex-justify-start">
@@ -40,7 +40,7 @@
         立即预约
       </div>
     </div>
-    <appointTime :isShow="popup.isShow" @closeEvent="handleCloseEvent('appointTime')" @cancelEvent="handleTimeCancel" @sureEvent="handleTimeSure"></appointTime>
+    <appointTime :nowTime="popup.nowTime" :isShow="popup.isShow" @closeEvent="handleCloseEvent('appointTime')" @cancelEvent="handleTimeCancel" @sureEvent="handleTimeSure"></appointTime>
     <appointmentSuc :is-show="appointmentSucData.isShow" @sureEvent="handleAppointSureEvent"></appointmentSuc>
     <appointmentError :is-show="appointmentErrorData.isShow" @sureEvent="handleAppointErrorSureEvent"></appointmentError>
     <fillAddress :is-show="fillAddressData.isShow" @sureEvent="handleFillAddressSureEvent"></fillAddress>
@@ -59,7 +59,8 @@
         data() {
             return {
                 popup: {
-                    isShow: false
+                    isShow: false,
+                    nowTime:''
                 },
                 appointmentSucData:{
                     isShow:false
@@ -69,7 +70,8 @@
                 },
                 fillAddressData:{
                     isShow:false
-                }
+                },
+                selectTime:'',
 
             }
         },
@@ -107,10 +109,12 @@
             handleTimeCancel(){
                this.hidePopup();
             },
-            handleTimeSure(){
+            handleTimeSure(time){
+               this.selectTime=time;
                this.hidePopup();
             },
             handleShowTime(){
+                this.popup.nowTime=new Date().getTime();
                 this.showPopup();
             },
             handleFillAddressSureEvent(){
@@ -223,11 +227,19 @@
         font-family: PingFangSC-Regular, PingFangSC;
         font-weight: 400;
         color: rgba(200, 201, 203, 1);
-        margin-right: 10px;
+      }
+      .item1-active{
+        color: rgba(0, 2, 18, 1);
       }
 
       .item2 {
-        color: #949EA4;
+        width: 12px;
+        height: 14px;
+        img{
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
       }
 
     }
