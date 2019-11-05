@@ -8,14 +8,14 @@
       error-text="请求失败，点击重新加载"
       @load="loadEvent"
     >
-      <div class="order-item" v-for="(item,index) in list" @click="handleGoToOrderDetailPage">
+      <div class="order-item" v-for="(item,index) in list" @click="handleGoToOrderDetailPage(item.id)">
         <div class="item1 row flex-item flex-justify-between">
           <div class="row flex-item flex-justify-start">
             <div class="item-icon">
               <img src="~image/work@2x.png" alt="">
             </div>
             <div class="occupation">
-              月嫂
+              {{item.orderType | WORK_TYPE_FILTER}}
             </div>
           </div>
           <!--          <div class="common-status item-status">-->
@@ -25,15 +25,15 @@
           <!--            面试结束-->
           <!--          </div>-->
           <div class="common-status item-status2">
-            待签约
+            {{item.status | ORDER_STATUS_FILTER}}
           </div>
         </div>
         <div class="item2 row flex-item flex-justify-between">
           <div class="name">
-            吴阿姨
+            {{item.employeeName||'未知'}}
           </div>
           <div class="money">
-            ¥ 7000/月
+            ¥ {{item.salary||'0'}}/月
           </div>
         </div>
         <div class="item3 row flex-item flex-justify-start">
@@ -41,7 +41,8 @@
             面试方式：
           </div>
           <div class="content">
-            上门面试
+            {{
+            item.interviewType | INTERVIEW_TYPE_FILTER}}
           </div>
         </div>
         <div class="item3 row flex-item flex-justify-start">
@@ -49,7 +50,7 @@
             面试时间：
           </div>
           <div class="content">
-            2019-09-09
+            {{item.interviewTime||'未知'}}
           </div>
         </div>
         <div class="item4 row flex-item flex-justify-start">
@@ -57,7 +58,7 @@
             面试地点：
           </div>
           <div class="content">
-            广东省广州市天河区XXXXXX
+            {{item.interviewAddress||'未知'}}
           </div>
         </div>
       </div>
@@ -68,6 +69,7 @@
 <script>
     import {getMyOrderList} from '@/common/utils/service'
     import backTop from '@/common/components/backTop'
+
     export default {
         name: "order",
         data() {
@@ -78,7 +80,7 @@
                     loading: false, //加载更多
                     finished: false //完成
                 },
-                currentPage:1
+                currentPage: 1
 
             }
         },
@@ -92,23 +94,37 @@
         methods: {
             async loadEvent() {
                 this.$loading();
-                let [err,data]=await getMyOrderList({pageNum:this.currentPage});
-                if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
-                let list=data.list;
-                if(list.length==0){
-                  this.$toast('没有更多了');
-                  this.$clear();
-                  return ;
-                };
-                this.list=[...this.list,...list];
-                this.currentPage+=1;
-                this.load.loading=false;
+                let [err, data] = await getMyOrderList({pageNum: this.currentPage});
+                if (err !== null) {
+                    this.$toast(err || '系统错误');
+                    this.$clear();
+                    return;
+                }
+                ;
+                let list = data.list;
+                if (list.length == 0) {
+                    this.$toast('没有更多了');
+                    this.$clear();
+                    return;
+                }
+                ;
+                this.list = [...this.list, ...list];
+                this.currentPage += 1;
+                this.load.loading = false;
                 this.$clear();
-                return ;
+                return;
             },
-            handleGoToOrderDetailPage() {
+            handleGoToOrderDetailPage(id) {
+                if (!id) {
+                    this.$toast('暂时无法查看订单详情');
+                    return;
+                }
+                ;
                 this.$router.push({
-                    path: '/order-detail'
+                    path: '/order-detail',
+                    query: {
+                        id
+                    }
                 })
             }
 
@@ -139,7 +155,8 @@
         margin-right: 8px;
         width: 18px;
         height: 18px;
-        img{
+
+        img {
           display: block;
           width: 100%;
           height: 100%;

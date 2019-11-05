@@ -57,10 +57,15 @@ export const updatePhone=(param={})=>{
   let checkCode=param.checkCode?param.checkCode:'',phone=param.phone?param.phone:'';
   return awaitWrap(axios.post(api.UPDATE_PHONE,{checkCode,phone}))
 };
-//我的订单
+//我的订单列表
 export const getMyOrderList=(param={})=>{
   let pageNum=param.pageNum?param.pageNum:1,pageSize=param.pageSize?param.pageSize:10;
   return awaitWrap(axios.post(api.GET_ORDER_LIST,{pageNum,pageSize}))
+};
+//获取订单详情
+export const getOrderDetail=(param={})=>{
+  let id=param.id?param.id:'';
+  return awaitWrap(axios.post(api.GET_ORDER_DETAIL,{id}))
 };
 //取消预约
 export const cancelAppoint=(param={})=>{

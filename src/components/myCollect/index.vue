@@ -2,7 +2,7 @@
   <van-list
     v-model="load.loading"
     :finished="load.finished"
-    finished-text="没有更多了"
+    finished-text="没有数据了"
     :error.sync="load.error"
     error-text="请求失败，点击重新加载"
     @load="loadEvent"
@@ -49,7 +49,7 @@
                 let [err,data]=await getMyCollectList({pageSize:this.currentPage});
                 if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
                 let list=data.list||[];
-                if(list.length==0){this.$toast('没有更多了');this.$clear();return ;};
+                if(list.length==0){;this.load.finished=true;this.load.loading=false;this.$clear();return ;};
                 this.list=[...this.list,...list];
                 this.currentPage+=1;
                 this.load.loading=false;

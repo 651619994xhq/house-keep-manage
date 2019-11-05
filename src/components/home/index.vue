@@ -265,7 +265,7 @@
             async watchScroll() {
                 let clientHeight  = document.documentElement.clientHeight; //浏览器高度
                 let scrollHeight = document.body.scrollHeight; //滚动高度
-                let distance = -50;  //距离视窗还用50的时候，开始触发；
+                let distance = 0;  //距离视窗还用50的时候，开始触发；
                 let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop; //滚动视窗的高度距离window顶部的距离，它会随着往上滚动而不断增加，初始值是0，它是一个变化的值；
                 //  当滚动超过 50 时，实现吸顶效果
                 if (scrollTop > 206 * this.screenWidth / 375) {

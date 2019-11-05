@@ -1,8 +1,8 @@
 <template>
-  <div class="staff-info row flex-item flex-justify-start" @click="handleClickItem">
+  <div class="staff-info row flex-item flex-justify-start" @click="handleClickItem(itemInfo.id)">
     <div class="left-module">
       <img src="" alt="">
-      <div class="exclusive">
+      <div class="exclusive" v-if="itemInfo.isSole==1">
         独家
       </div>
     </div>
@@ -16,12 +16,12 @@
             {{itemInfo.code}}
           </div>
         </div>
-        <div class="title row flex-item flex-justify-between">
+        <div class="title row flex-item flex-justify-between" v-if="itemInfo.oneSentenceEvaluation">
           <div class="title-icon">
             <img src="~image/icon_red@2x.png" alt="">
           </div>
           <div class="text">
-            2018十佳月嫂
+            {{itemInfo.oneSentenceEvaluation||'未知'}}
           </div>
         </div>
 
@@ -63,9 +63,16 @@
         },
 //一些自定义方法
         methods: {
-            handleClickItem() {
+            handleClickItem(id) {
+                if(!id){
+                    this.$toast('暂时无法查看详情')
+                  return;
+                };
                 this.$router.push({
-                    path: '/person-resume'
+                    path: '/person-resume',
+                    query:{
+                        id
+                    }
                 })
             }
         }

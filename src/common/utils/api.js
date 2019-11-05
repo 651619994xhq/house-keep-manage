@@ -10,6 +10,7 @@ export default {
   DELETE_COLLECT:'/api/user/deleteCollection', //取消收藏
   UPDATE_PHONE:'/api/user/updatePhone', //修改手机号
   GET_ORDER_LIST:'order/list', //获取订单列表
+  GET_ORDER_DETAIL:'order/getOrderById', //获取订单详情
   CANCEL_APPOINT:'/order/cancelAppoint',//取消预约
   1:'1',//预约面试时间
   2:'2',//预约面试

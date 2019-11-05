@@ -154,7 +154,7 @@
     import resume from '@/common/components/resume/index';
     import apponitPopup from "./apponitPopup";
     import evaluate from "./evaluate";
-    import {getEmployeeInfo} from '@/common/utils/service'
+    import {getOrderDetail} from '@/common/utils/service'
 
     export default {
         name: "orderDetail",
@@ -176,13 +176,14 @@
         },
 //初始化数据
         created() {
-            this.$getEmployeeInfo();
+            this.$getOrderDetail();
         },
 //一些自定义方法
         methods: {
-            async $getEmployeeInfo(){
+            async $getOrderDetail(){
+                let id=this.$route.query.id;
                 this.$loading();
-                let [err,data]=await getEmployeeInfo({id:1});
+                let [err,data]=await getOrderDetail({id});
                 if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
                 this.initWithData(data);
                 this.$clear();
