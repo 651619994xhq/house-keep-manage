@@ -27,13 +27,13 @@
       <swiper :options="switchOptions" ref="mySwiper" class="switch-container"
               @slideChangeTransitionEnd="slideChangeTransitionEndCallback">
         <swiper-slide class="switch-item">
-          <staffInfo v-for="(item ,index) in list1" :key="index"></staffInfo>
+          <staffInfo v-for="(item ,index) in list1" :key="index" :itemInfo="item"></staffInfo>
         </swiper-slide>
         <swiper-slide class="switch-item">
-          <staffInfo v-for="(item ,index) in list2" :key="index"></staffInfo>
+          <staffInfo v-for="(item ,index) in list2" :key="index" :itemInfo="item"></staffInfo>
         </swiper-slide>
         <swiper-slide class="switch-item">
-          <staffInfo v-for="(item ,index) in list3" :key="index"></staffInfo>
+          <staffInfo v-for="(item ,index) in list3" :key="index" :itemInfo="item"></staffInfo>
         </swiper-slide>
         <swiper-slide class="switch-item">
           <staffInfo2 v-for="(item ,index) in list4" :key="index"></staffInfo2>
@@ -72,7 +72,7 @@
                         el: '.swiper-pagination'
                     }
                 },
-                swiperSlides: [1, 2, 3, 4, 5],
+                swiperSlides: [1],
                 nowIndex: 0, //当前选中的index
                 navList: [
                     {
@@ -287,6 +287,8 @@
                     return;
                 }
                 ;
+                let list=data||[];
+                this.swiperSlides=[...list];
             }
         }
     }
