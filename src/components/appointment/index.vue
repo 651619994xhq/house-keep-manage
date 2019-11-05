@@ -6,13 +6,13 @@
         请选择面试方式
       </div>
       <div class="title2 row flex-item flex-justify-start">
-        <div class="item item-active">
+        <div class="item" :class="selectInterviewType==1?'item-active':'item-normal'" @click="handleClickInterview(1)">
           到店面试
         </div>
-        <div class="item item-normal">
+        <div class="item" :class="selectInterviewType==2?'item-active':'item-normal'" @click="handleClickInterview(2)">
           上门面试
         </div>
-        <div class="item item-normal">
+        <div class="item" :class="selectInterviewType==3?'item-active':'item-normal'" @click="handleClickInterview(3)">
           视频面试
         </div>
       </div>
@@ -36,7 +36,7 @@
       <div class="text-area">
         如有其他要求，请您备注，会根据需求为您匹配阿姨
       </div>
-      <div class="submit-btn">
+      <div class="submit-btn" @click="handleSubmit">
         立即预约
       </div>
     </div>
@@ -72,6 +72,7 @@
                     isShow:false
                 },
                 selectTime:'',
+                selectInterviewType:1 //面试方式1到点 2上门 3视频
 
             }
         },
@@ -119,6 +120,17 @@
             },
             handleFillAddressSureEvent(){
                 this.fillAddressData.isShow=false;
+            },
+            handleClickInterview(type){
+                this.selectInterviewType=type;
+            },
+            handleSubmit(){
+                if(!this.selectTime){
+                    this.$toast('请选择预约时间');
+                    return
+                };
+                this.$loading({duration: 0,forbidClick: true,message: "提交中..."});
+
             }
 
         }

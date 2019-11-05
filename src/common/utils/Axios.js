@@ -1,20 +1,8 @@
 import axios from 'axios';
 import store from '@/store';
 import Router from '@/router'; //引入router模块
-import * as Auth from '@/common/utils/auth'; //导入cookie工具类
 const baseURL = process.env.BASE_URL;
 import Vue from 'vue';
-//TODO 过期的话 清理cookie 信息
-let cookieObj={
-    //当用户过期的时候清理cookie信息
-     removeAccessTokenAndApiGateway:()=>{
-         Auth.removeApiGateway();
-         Auth.removeAccessToken();
-     }
-};
-
-
-
 
 class Axios {
     constructor (props) {
@@ -41,19 +29,13 @@ class Axios {
     }
     post (path, params) {
         var self=this;
-       //跟新header
-       //  this.updateProps({
-       //      'Scope-Authorization':Auth.getAccessToken()
-       //  });
         return new Promise((resolve, reject)=>{
-            this.instance.post(path,{...params},{headers:{}})
+           console.log('store==>',store);
+           let token=store.state.token?store.state.token:'';
+            this.instance.post(path,{...params,token},{headers:{}})
               .then((res)=>{
                   console.log('res==>',res);
-                  // if(res.status==1){
-                  //     resolve(res.returnData||{});
-                  //     return;
-                  // };
-                  if(res.data.status==1){
+                  if(res.data.status=='SUCCESS'){
                         resolve(res.data.returnData||{});
                         return;
                   };

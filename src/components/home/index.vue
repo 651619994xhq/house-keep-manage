@@ -156,40 +156,44 @@
                 console.log('loadEvent is run');
                 this.$loading();
                 if(this.nowIndex==0){
-                    let [err,data]=await getEmployeeList({type:1,pageSize:this.page.currentMoonWomanPage});
+                    let [err,data]=await getEmployeeList({type:1,pageNum:this.page.currentMoonWomanPage});
                     if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
-                    if(data.length==0){this.$toast('没有更多了');this.$clear();return ;};
-                    this.list1=[...this.list1,...data];
+                    let list=data.list||[];
+                    if(list.length==0){this.$toast('没有更多了');this.$clear();return ;};
+                    this.list1=[...this.list1,...list];
                     this.page.currentMoonWomanPage+=1;
                     this.load.loading=false;
                     this.$clear();
                     return ;
                 };
                 if(this.nowIndex==1){
-                    let [err2,data2]=await getEmployeeList({type:2,pageSize:this.page.currentChildRearingPage});
+                    let [err2,data2]=await getEmployeeList({type:2,pageNum:this.page.currentChildRearingPage});
                     if(err2!==null){this.$toast(err2||'系统错误');this.$clear();return ;};
-                    if(data2.length==0){this.$toast('没有更多了');this.$clear();return ;};
-                    this.list2=[...this.list2,...data2];
+                    let list=data2.list||[];
+                    if(list.length==0){this.$toast('没有更多了');this.$clear();return ;};
+                    this.list2=[...this.list2,...list];
                     this.page.currentChildRearingPage+=1;
                     this.load.loading=false;
                     this.$clear();
                     return ;
                 }
                 if(this.nowIndex==2){
-                    let [err3,data3]=await getEmployeeList({type:3,pageSize:this.page.currentBabySitterPage});
+                    let [err3,data3]=await getEmployeeList({type:3,pageNum:this.page.currentBabySitterPage});
                     if(err3!==null){this.$toast(err3||'系统错误');this.$clear();return ;};
-                    if(data3.length==0){this.$toast('没有更多了');this.$clear();return ;};
-                    this.list3=[...this.list3,...data3];
+                    let list=data3.list||[];
+                    if(list.length==0){this.$toast('没有更多了');this.$clear();return ;};
+                    this.list3=[...this.list3,...list];
                     this.page.currentBabySitterPage+=1;
                     this.load.loading=false;
                     this.$clear();
                     return ;
                 }
                 if(this.nowIndex==3){
-                    let [err4,data4]=await getEmployeeList({type:4,pageSize:this.page.currentMorePage});
+                    let [err4,data4]=await getEmployeeList({type:4,pageNum:this.page.currentMorePage});
                     if(err4!==null){this.$toast(err4||'系统错误');this.$clear();return ;};
-                    if(data4.length==0){this.$toast('没有更多了');this.$clear();return ;};
-                    this.list4=[...this.list4,...data4];
+                    let list=data4.list||[];
+                    if(list.length==0){this.$toast('没有更多了');this.$clear();return ;};
+                    this.list4=[...this.list4,...list];
                     this.page.currentMorePage+=1;
                     this.load.loading=false;
                     this.$clear();
@@ -201,9 +205,10 @@
                 if(this.nowIndex==0){
                     if(this.list1.length>0){return;};
                     this.$loading();
-                    let [err,data]=await getEmployeeList({type:1,pageSize:1});
+                    let [err,data]=await getEmployeeList({type:1,pageNum:1});
                     if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
-                    this.list1=[...data];
+                    let list=data.list||[];
+                    this.list1=[...list];
                     this.page.currentMoonWomanPage=1;
                     this.$clear();
                     return ;
@@ -211,9 +216,10 @@
                 if(this.nowIndex==1){
                     if(this.list2.length>0){return;};
                     this.$loading();
-                    let [err2,data2]=await getEmployeeList({type:2,pageSize:1});
+                    let [err2,data2]=await getEmployeeList({type:2,pageNum:1});
                     if(err2!==null){this.$toast(err2||'系统错误');this.$clear();return ;};
-                    this.list2=[...data2];
+                    let list=data2.list||[];
+                    this.list2=[...list];
                     this.page.currentChildRearingPage=1;
                     this.$clear();
                     return ;
@@ -221,9 +227,10 @@
                 if(this.nowIndex==2){
                     if(this.list3.length>0){return;};
                     this.$loading();
-                    let [err3,data3]=await getEmployeeList({type:3,pageSize:1});
+                    let [err3,data3]=await getEmployeeList({type:3,pageNum:1});
                     if(err3!==null){this.$toast(err3||'系统错误');this.$clear();return ;};
-                    this.list3=[...data3];
+                    let list=data3.list||[];
+                    this.list3=[...list];
                     this.page.currentBabySitterPage=1;
                     this.$clear();
                     return ;
@@ -231,9 +238,10 @@
                 if(this.nowIndex==3){
                     if(this.list4.length>0){return;};
                     this.$loading();
-                    let [err4,data4]=await getEmployeeList({type:4,pageSize:1});
+                    let [err4,data4]=await getEmployeeList({type:4,pageNum:1});
                     if(err4!==null){this.$toast(err4||'系统错误');this.$clear();return ;};
-                    this.list4=[...data4];
+                    let list=data4.list||[];
+                    this.list4=[...list];
                     this.page.currentMorePage=1;
                     this.$clear();
                     return ;

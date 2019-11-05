@@ -45,7 +45,9 @@
 </template>
 
 <script>
-    import {sendRegisterCode} from '@/common/utils/service'
+    import {mapMutations} from 'vuex';
+    import {sendRegisterCode} from '@/common/utils/service';
+    let userToken='8b5d3b67-5f52-41d8-93d8-648e04545ef0';
 
     export default {
         name: "index",
@@ -90,10 +92,10 @@
         },
         destroyed() {
             this.clearTimer();
-
         },
 //一些自定义方法
         methods: {
+            ...mapMutations(['UPDATE_TOKEN']),
             async handleSendSms() {
                 this.isShowBtn = false;
                 this.startTimer(); //开始定时器
@@ -132,6 +134,7 @@
             },
             handleRegisterEvent(){
                 console.log('handleRegisterEvent is run');
+                this.UPDATE_TOKEN(userToken);
                 this.$router.replace({
                     path:'/index'
                 })
