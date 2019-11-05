@@ -9,7 +9,6 @@
 <!--      @load="loadEvent"-->
 <!--    >-->
 
-
       <div class="header-box">
         <swiper :options="swiperOption" class="swipe-container">
           <swiper-slide v-for="(slide, index) in swiperSlides" :key="index"
@@ -79,7 +78,7 @@
                         el: '.swiper-pagination'
                     }
                 },
-                swiperSlides: [1],
+                swiperSlides: [],
                 nowIndex: 0, //当前选中的index
                 navList: [
                     {
