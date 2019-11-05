@@ -8,24 +8,24 @@
             <div class="info col flex-item flex-justify">
                <div class="item1 row flex-item flex-justify-between">
                    <div class="name">
-                       张阿姨
+                       {{itemInfo.name||'未知'}}
                    </div>
                    <div class="money">
-                       ￥ 7000/月
+                       ￥ {{itemInfo.salary||'0'}}/月
                    </div>
                </div>
-               <div class="item2 row flex-item flex-justify-start">
+               <div class="item2 row flex-item flex-justify-start" v-show="itemInfo.oneSentenceEvaluation">
                   <div class="item2-icon">
                       <img src="~image/icon_red@2x.png" alt="">
                   </div>
                    <div class="title">
-                       2018十佳育婴师
+                       {{itemInfo.oneSentenceEvaluation}}
                    </div>
                </div>
                <div class="item3 row flex-item flex-justify-start">
                    <div class="item-3 col flex-item-start flex-justify">
                        <div class="item-3-title">
-                           54岁
+                           {{itemInfo.age||'0'}}岁
                        </div>
                        <div class="item-3-title2">
                            年龄
@@ -34,7 +34,7 @@
                    </div>
                    <div class="item-3 col flex-item-start flex-justify">
                        <div class="item-3-title">
-                           2年
+                           {{itemInfo.workYear||'0'}}年
                        </div>
                        <div class="item-3-title2">
                            经验
@@ -42,7 +42,7 @@
                    </div>
                    <div class="item-3 col flex-item-start flex-justify">
                        <div class="item-3-title">
-                           湖南
+                          {{itemInfo.nativePlace||'未知'}}
                        </div>
                        <div class="item-3-title2">
                            籍贯
@@ -50,7 +50,7 @@
                    </div>
                    <div class="item-3 col flex-item-start flex-justify">
                        <div class="item-3-title">
-                           高中
+                           {{itemInfo.education||'未知'}}
                        </div>
                        <div class="item-3-title2">
                            学历
@@ -67,6 +67,12 @@
     //简历介绍 头部
   export default {
     name: 'resume',
+    props:{
+      itemInfo:{
+          type:Object,
+          default:{}
+      }
+    },
     data () {
       return {}
     },
