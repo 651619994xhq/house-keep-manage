@@ -92,7 +92,7 @@
         methods: {
             async loadEvent() {
                 this.$loading();
-                let [err,data]=await getMyOrderList({pageSize:this.currentPage});
+                let [err,data]=await getMyOrderList({pageNum:this.currentPage});
                 if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
                 let list=data.list;
                 if(list.length==0){
