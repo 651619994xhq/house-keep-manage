@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import 'vant/lib/index.css';
-import {Swipe,SwipeItem,Toast,Field,Cell,CellGroup,Popup,DatetimePicker,List,SwipeCell,Button,Rate,Dialog} from 'vant';
+import {Swipe,SwipeItem,Toast,Field,Cell,CellGroup,Popup,DatetimePicker,List,SwipeCell,Button,Rate,Dialog,Loading} from 'vant';
 import VueKeepScrollPosition from 'vue-keep-scroll-position';
 Vue.use(VueKeepScrollPosition);
 Vue.use(Swipe).use(SwipeItem);
@@ -13,6 +13,7 @@ Vue.use(SwipeCell); //滑动单元格
 Vue.use(Button);
 Vue.use(Rate);
 Vue.use(Dialog);
+Vue.use(Loading);
 Vue.prototype.$toast = Toast;
 Vue.prototype.$loading = (param)=>{
   if(!param){
