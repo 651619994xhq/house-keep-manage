@@ -27,6 +27,12 @@ const appointment = (resolve) => {
     resolve(module)
   })
 };
+//签约
+const signContract = (resolve) => {
+  import('@/components/signContract/index').then((module) => {
+    resolve(module)
+  })
+};
 const personInfo = (resolve) => {
   import('@/components/personInfo/index').then((module) => {
     resolve(module)
@@ -100,6 +106,7 @@ let router = new Router({
     {path: '/update-phone', name: 'updatePhone', component: updatePhone,meta:{title:'修改手机',index:6}},
     {path: '/person-resume', name: 'personResume', component: personResume,meta:{title:'简历',index:5}},
     {path: '/schedule', name: 'schedule', component: schedule,meta:{title:'档期',index:6}},
+    {path: '/sign-contract', name: 'signContract', component: signContract,meta:{title:'签约',index:6}},
 
   ]
 })
