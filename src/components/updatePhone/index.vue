@@ -51,9 +51,20 @@
         },
 //一些自定义方法
         methods: {
+            isPoneAvailable($poneInput) {
+                var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+                if (!myreg.test($poneInput)) {
+                    return false;
+                } else {
+                    return true;
+                }
+            },
             async $updatePhone(){
+                if(!this.phone){this.$toast('请输入手机号');return ;};
+                if(!this.isPoneAvailable(this.phone)){this.$toast('请输入正确的手机号');return ;};
+                if(!this.sms){this.$toast('请输入验证码');return ;};
                 this.$loading();
-                let [err,data]=await updatePhone({checkCode:'',phone:''});
+                let [err,data]=await updatePhone({checkCode:this.sms,phone:this.phone});
                 if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
                 this.$clear();
             },
