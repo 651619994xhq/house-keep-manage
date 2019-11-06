@@ -5,7 +5,7 @@ export default {
   REGISTER:'/user/register', //移动端-注册接口
   LOGIN:'user/login', //移动端 登录接口
   GET_EMPLOYEE_INFO:'/api/employee/getEmployeeById', //获取阿姨详情
-  GET_MY_INFO:'getMyInfo', //获取自己的信息
+  GET_MY_INFO:'api/user/userInfo', //获取自己的信息
   GET_MY_COLLECT_LIST:'/api/user/selectCollections', //我的收藏列表
   DELETE_COLLECT:'/api/user/deleteCollection', //取消收藏
   UPDATE_PHONE:'/api/user/updatePhone', //修改手机号

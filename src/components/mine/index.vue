@@ -2,11 +2,11 @@
   <div class="container">
     <div class="mine-header row flex-item flex-justify-start" :style="{backgroundImage:`url(${imgPath})`}" style="background-repeat:no-repeat; background-size:100% 100%;">
       <div class="img-container">
-        <img src="" alt="">
+        <img :src="userInfo.headUrl||''" alt="">
       </div>
       <div class="text-container col flex-justify flex-item-start">
-        <p class="title1">Seve</p>
-        <p class="title2">会员编号：0000239103</p>
+        <p class="title1">{{userInfo.nickName}}</p>
+        <p class="title2">会员编号：{{userInfo.code}}</p>
       </div>
     </div>
     <div class="mine-bottom-module col flex-item  flex-justify-start">
@@ -58,6 +58,7 @@
 </template>
 <script>
   import Service from './service'
+  import {getMyInfo} from '@/common/utils/service'
   export default {
     name: "mine",
     data() {
@@ -65,16 +66,26 @@
         imgPath:require('image/bg@2x.png'),
         service:{
             isShow:false
-        }
+        },
+        userInfo:{},
       }
     },
     components:{
         Service
     },
     mounted() {
-
+        this.$getMyInfo();
     },
     methods: {
+        async $getMyInfo(){
+          let [err,data]=await getMyInfo();
+          if(err!==null){
+              this.$toast(err||'系统错误');
+              return ;
+          };
+          this.userInfo=data||{};
+
+        },
         handleGoToPage(path){
             this.$router.push({
                 path

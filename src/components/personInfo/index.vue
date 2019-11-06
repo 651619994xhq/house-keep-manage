@@ -6,8 +6,8 @@
         <img src="" alt="">
       </div>
       <div class="text-container col flex-justify flex-item-start">
-        <p class="title1">Seve</p>
-        <p class="title2">会员编号：0000239103</p>
+        <p class="title1">{{userInfo.nickName}}</p>
+        <p class="title2">会员编号：{{userInfo.code}}</p>
       </div>
     </div>
     <div class="item row flex-item flex-justify-between" @click="handleGoUpdatePhone">
@@ -15,7 +15,7 @@
         联系电话
       </div>
       <div class="title2 row flex-item flex-justify-between">
-        <div class="item-title1">242423432</div>
+        <div class="item-title1">{{userInfo.phone}}</div>
         <div class="item-title2"><img src="~image/icon_next_gary@2x.png" alt=""></div>
       </div>
     </div>
@@ -25,7 +25,7 @@
         身份信息
       </div>
       <div class="title2 row flex-item flex-justify-between">
-        <div class="item-title1">宝妈</div>
+        <div class="item-title1">{{userInfo.identityType | IDENTITY_TYPE_FILTER}}</div>
         <div class="item-title2"><img src="~image/icon_next_gary@2x.png" alt=""></div>
       </div>
     </div>
@@ -35,7 +35,7 @@
         家庭住址
       </div>
       <div class="title2 row flex-item flex-justify-between">
-        <div class="item-title1">242342354254</div>
+        <div class="item-title1">{{userInfo.address}}</div>
         <div class="item-title2"><img src="~image/icon_next_gary@2x.png" alt=""></div>
       </div>
     </div>
@@ -46,7 +46,7 @@
         您的生日
       </div>
       <div class="title2 row flex-item flex-justify-between">
-        <div class="item-title1">1901-11-10</div>
+        <div class="item-title1">{{userInfo.birthday}}</div>
         <div class="item-title2"><img src="~image/icon_next_gary@2x.png" alt=""></div>
       </div>
     </div>
@@ -56,7 +56,7 @@
         您宝贝的生日
       </div>
       <div class="title2 row flex-item flex-justify-between">
-        <div class="item-title1">2001-11-10</div>
+        <div class="item-title1">{{userInfo.babyBirthday}}</div>
         <div class="item-title2"><img src="~image/icon_next_gary@2x.png" alt=""></div>
       </div>
     </div>
@@ -66,7 +66,8 @@
 </template>
 <script>
     import identityInfo from "./identityInfo";
-    import birthday from '@/common/components/birthday'
+    import birthday from '@/common/components/birthday';
+    import {getMyInfo} from '@/common/utils/service'
 
     export default {
         name: "personInfo",
@@ -78,7 +79,9 @@
                 },
                 birthdayData: {
                     isShow: false
-                }
+                },
+                userInfo:{},
+
             }
         },
         components: {
@@ -86,9 +89,18 @@
             birthday
         },
         mounted() {
-
+            this.$getMyInfo();
         },
         methods: {
+            //获取自己的信息
+            async $getMyInfo(){
+                let [err,data]=await getMyInfo();
+                if(err!==null){
+                    this.$toast(err||'系统错误');
+                    return ;
+                };
+                this.userInfo=data||{};
+            },
             handleGoUpdatePhone(){
               this.$router.push({
                  path:'/update-phone'
@@ -103,18 +115,18 @@
             handleShowBirthday(){
                 this.birthdayData.isShow=true;
             },
-            hideBithday(){
+            hideBirthday(){
                 this.birthdayData.isShow=false;
             },
             handleBirthdaySure(time){
                 console.log('handleBirthdaySure==>',time);
-                this.hideBithday();
+                this.hideBirthday();
             },
             handleBirthdayCancel(){
-                this.hideBithday();
+                this.hideBirthday();
             },
             handleBirthdayClose(){
-                this.hideBithday();
+                this.hideBirthday();
             }
 
         },
