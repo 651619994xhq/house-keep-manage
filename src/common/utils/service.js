@@ -68,9 +68,9 @@ export const getOrderDetail=(param={})=>{
   return awaitWrap(axios.post(api.GET_ORDER_DETAIL,{id}))
 };
 //取消预约
-export const cancelAppoint=(param={})=>{
+export const cancelInterview=(param={})=>{
   let orderId=param.orderId?param.orderId:'';
-  return awaitWrap(axios.post(api.CANCEL_APPOINT,{orderId}))
+  return awaitWrap(axios.post(api.CANCEL_INTERVIEW,{orderId}))
 };
 //雇主添加评论
 export const addComments=(param={})=>{

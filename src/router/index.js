@@ -17,11 +17,6 @@ const mine = (resolve) => {
     resolve(module)
   })
 };
-const shop = (resolve) => {
-  import('@/components/shop/index').then((module) => {
-    resolve(module)
-  })
-};
 const login = (resolve) => {
   import('@/components/login/index').then((module) => {
     resolve(module)

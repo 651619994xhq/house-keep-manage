@@ -154,7 +154,7 @@
     import resume from '@/common/components/resume/index';
     import apponitPopup from "./apponitPopup";
     import evaluate from "./evaluate";
-    import {getOrderDetail} from '@/common/utils/service'
+    import {getOrderDetail,cancelInterview} from '@/common/utils/service'
 
     export default {
         name: "orderDetail",
