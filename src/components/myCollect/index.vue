@@ -21,7 +21,7 @@
 </template>
 <script>
     import staffInfo from '@/common/components/staffInfo'
-    import {getMyCollectList} from '@/common/utils/service'
+    import {getMyCollectList,deleteCollect} from '@/common/utils/service'
 
     export default {
         name: 'myCollect',
@@ -67,8 +67,13 @@
                 this.deleteId = id;
                 this.$dialog.confirm({
                     message: '确认删除吗',
-                }).then(() => {
-                    console.log('确认删除')
+                }).then(async () => {
+                    console.log('确认删除');
+                    this.$loading({duration: 0,forbidClick: true,message: "删除中..."})
+                    let [err,data]=await deleteCollect({employeeIds:[id]});
+                    if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
+                    this.$clear();
+                    this.$toast('已删除');
                 }).catch(() => {
                     console.log('取消删除')
                 });
