@@ -6,20 +6,23 @@
         请选择服务周期
       </div>
       <div class="title2 row flex-item flex-justify-start">
-        <div class="item" :class="selectServicePeriod==1?'item-active':'item-normal'" @click="handleClickServicePeriod(1)">
+        <div class="item" :class="selectServicePeriod==1?'item-active':'item-normal'"
+             @click="handleClickServicePeriod(1)">
           标准周期12个月
         </div>
-        <div class="item" :class="selectServicePeriod==2?'item-active':'item-normal'" @click="handleClickServicePeriod(2)">
+        <div class="item" :class="selectServicePeriod==2?'item-active':'item-normal'"
+             @click="handleClickServicePeriod(2)">
           灵活周期6个月
         </div>
-        <div class="item" :class="selectServicePeriod==3?'item-active':'item-normal'" @click="handleClickServicePeriod(3)">
+        <div class="item" :class="selectServicePeriod==3?'item-active':'item-normal'"
+             @click="handleClickServicePeriod(3)">
           随心周期3个月
         </div>
       </div>
-<!--      <div class="title3 row flex-item flex-justify-start">-->
-<!--        <div class="text1">到店面试地址：</div>-->
-<!--        <div class="text2">北京市朝阳区金茂府2期东区6号楼</div>-->
-<!--      </div>-->
+      <!--      <div class="title3 row flex-item flex-justify-start">-->
+      <!--        <div class="text1">到店面试地址：</div>-->
+      <!--        <div class="text2">北京市朝阳区金茂府2期东区6号楼</div>-->
+      <!--      </div>-->
     </div>
     <div class="appointment-btn row flex-item flex-justify-between" @click="handleShowTime">
       <div class="title1">选择服务开始时间</div>
@@ -29,27 +32,34 @@
       </div>
     </div>
     <div class="time-container">
-       <div class="row flex-item flex-justify-start time">
-          <div style="color: #8A8F9B">服务周期：</div>
-          <div style="color: #3B445C">{{servicePeriod}}</div>
-       </div>
+      <div class="row flex-item flex-justify-start time">
+        <div style="color: #8A8F9B">服务周期：</div>
+        <div style="color: #3B445C">{{servicePeriod}}</div>
+      </div>
     </div>
-    <servicePeriod :is-show="servicePeriodData.isShow" @sureEvent="handleServicePeriodSure" @cancelEvent="handleServicePeriodCancel" @closeEvent="handleServicePeriodClose"></servicePeriod>
+    <div class="submit-container col flex-item flex-justify">
+         <div class="submit">
+              签约
+         </div>
+    </div>
+    <servicePeriod :is-show="servicePeriodData.isShow" @sureEvent="handleServicePeriodSure"
+                   @cancelEvent="handleServicePeriodCancel" @closeEvent="handleServicePeriodClose"></servicePeriod>
   </div>
 </template>
 
 <script>
     import resume from '@/common/components/resume/index';
     import servicePeriod from "./servicePeriod";
+
     export default {
         name: "signContract",
         data() {
             return {
-                selectServicePeriod:1,
-                selectStartTime:'',
-                itemInfo:{},
-                servicePeriodData:{
-                    isShow:false
+                selectServicePeriod: 1,
+                selectStartTime: '',
+                itemInfo: {},
+                servicePeriodData: {
+                    isShow: false
                 }
 
             }
@@ -59,41 +69,47 @@
             resume,
             servicePeriod
         },
-        computed:{
-            $selectStartTime:function(){
-                if(!this.selectStartTime){
-                  return '' ;
-                };
-                let fullYear,month,day,time;
-                time=new Date(this.selectStartTime);
-                fullYear=time.getFullYear();
-                month=time.getMonth()+1;
-                day=time.getDate();
+        computed: {
+            $selectStartTime: function () {
+                if (!this.selectStartTime) {
+                    return '';
+                }
+                ;
+                let fullYear, month, day, time;
+                time = new Date(this.selectStartTime);
+                fullYear = time.getFullYear();
+                month = time.getMonth() + 1;
+                day = time.getDate();
                 return `${fullYear}年${month}月${day}日`
             },
-            servicePeriod:function(){
-                if(!this.selectStartTime){
-                    return '' ;
-                };
-                let fullYear,month,day,time;
-                time=new Date(this.selectStartTime);
-                fullYear=time.getFullYear();
-                month=time.getMonth()+1;
-                day=time.getDate();
-                if(this.selectServicePeriod==1){
-                   return `${fullYear}年${month}月${day}日 - ${fullYear+1}年${month}月${day}日`  ;
-                };
-                if(this.selectServicePeriod==2){
-                    if(month+6>12){
-                        return `${fullYear}年${month}月${day}日 - ${fullYear+1}年${month+6-12}月${day}日`  ;
-                    };
-                    return `${fullYear}年${month}月${day}日 - ${fullYear}年${month+6}月${day}日`  ;
-                };
-                if(this.selectServicePeriod==3){
-                    if(month+3>12){
-                        return `${fullYear}年${month}月${day}日 - ${fullYear+1}年${month+3-12}月${day}日`  ;
-                    };
-                    return `${fullYear}年${month}月${day}日 - ${fullYear}年${month+3}月${day}日`  ;
+            servicePeriod: function () {
+                if (!this.selectStartTime) {
+                    return '';
+                }
+                ;
+                let fullYear, month, day, time;
+                time = new Date(this.selectStartTime);
+                fullYear = time.getFullYear();
+                month = time.getMonth() + 1;
+                day = time.getDate();
+                if (this.selectServicePeriod == 1) {
+                    return `${fullYear}年${month}月${day}日 - ${fullYear + 1}年${month}月${day}日`;
+                }
+                ;
+                if (this.selectServicePeriod == 2) {
+                    if (month + 6 > 12) {
+                        return `${fullYear}年${month}月${day}日 - ${fullYear + 1}年${month + 6 - 12}月${day}日`;
+                    }
+                    ;
+                    return `${fullYear}年${month}月${day}日 - ${fullYear}年${month + 6}月${day}日`;
+                }
+                ;
+                if (this.selectServicePeriod == 3) {
+                    if (month + 3 > 12) {
+                        return `${fullYear}年${month}月${day}日 - ${fullYear + 1}年${month + 3 - 12}月${day}日`;
+                    }
+                    ;
+                    return `${fullYear}年${month}月${day}日 - ${fullYear}年${month + 3}月${day}日`;
                 }
                 return '';
             }
@@ -104,30 +120,30 @@
         },
 //一些自定义方法
         methods: {
-            handleClickServicePeriod(period){
-                this.selectServicePeriod=period;
+            handleClickServicePeriod(period) {
+                this.selectServicePeriod = period;
             },
-            handleSubmit(){
-                if(!this.selectTime){
+            handleSubmit() {
+                if (!this.selectTime) {
                     this.$toast('请选择预约时间');
                     return
-                };
-                this.$loading({duration: 0,forbidClick: true,message: "提交中..."});
+                }
+                ;
+                this.$loading({duration: 0, forbidClick: true, message: "提交中..."});
 
             },
-            handleShowTime(){
-                this.servicePeriodData.isShow=true;
+            handleShowTime() {
+                this.servicePeriodData.isShow = true;
             },
-            handleServicePeriodSure($time){
-                console.log('$time==>',$time);
-                this.selectStartTime=$time;
-                this.servicePeriodData.isShow=false;
+            handleServicePeriodSure($time) {
+                this.selectStartTime = $time;
+                this.servicePeriodData.isShow = false;
             },
-            handleServicePeriodCancel(){
-                this.servicePeriodData.isShow=false;
+            handleServicePeriodCancel() {
+                this.servicePeriodData.isShow = false;
             },
-            handleServicePeriodClose(){
-                this.servicePeriodData.isShow=false;
+            handleServicePeriodClose() {
+                this.servicePeriodData.isShow = false;
             }
 
         }
@@ -237,14 +253,16 @@
         font-weight: 400;
         color: rgba(200, 201, 203, 1);
       }
-      .item1-active{
+
+      .item1-active {
         color: rgba(0, 2, 18, 1);
       }
 
       .item2 {
         width: 12px;
         height: 14px;
-        img{
+
+        img {
           display: block;
           width: 100%;
           height: 100%;
@@ -253,22 +271,46 @@
 
     }
   }
-  .time-container{
+
+  .time-container {
     margin-top: 10px;
     padding-left: 16px;
     width: 100%;
-    min-height: 140px;
+    min-height: 240px;
     box-sizing: border-box;
     background: #FFFFFF;
     overflow: hidden;
-    .time{
+
+    .time {
       margin-top: 16px;
-      font-size:13px;
+      font-size: 13px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: rgba(138, 143, 155, 1);
+      line-height: 20px;
+    }
+  }
+  .submit-container{
+    height: 70px;
+    width: 100%;
+    background: #FFFFFF;
+    border-top: 1px solid #F7F7F7;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    .submit{
+      width:296px;
+      height:42px;
+      background:linear-gradient(328deg,rgba(201,141,253,1) 0%,rgba(250,119,119,1) 100%);
+      border-radius:21px;
+      font-size:16px;
       font-family:PingFangSC-Regular,PingFang SC;
       font-weight:400;
-      color:rgba(138,143,155,1);
-      line-height:20px;
+      color:rgba(255,255,255,1);
+      line-height: 42px;
+      text-align: center;
     }
+
   }
 
 </style>

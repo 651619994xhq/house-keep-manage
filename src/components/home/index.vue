@@ -13,7 +13,7 @@
         <swiper :options="swiperOption" class="swipe-container">
           <swiper-slide v-for="(slide, index) in swiperSlides" :key="index"
                         class="item row flex-item flex-justify">
-            <headerItem></headerItem>
+            <headerItem :pictureUrl="slide.pictureUrl" :bannerUrl="slide.bannerUrl"></headerItem>
           </swiper-slide>
           <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
@@ -314,6 +314,7 @@
     width: 100%;
     background: #F7F6FB;
     padding-bottom: 80px;
+    overflow: hidden;
   }
 
   .header-box {
