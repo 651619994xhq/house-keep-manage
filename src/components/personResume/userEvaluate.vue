@@ -8,14 +8,14 @@
     </div>
     <div class="content" v-for="(item,index) in content" :key="index">
       <div class="header row flex-item flex-justify-between">
-        <div class="name">张***妈妈</div>
+        <div class="name">{{comments.createUser||'w未知'}}</div>
         <van-rate v-model="rateValue" :size="size" :readonly="readonly" :gutter="gutter" class="rate"/>
       </div>
       <div class="item-content">
-        把宝宝照顾的很好。全家人都很喜欢她
+       {{comments.comment||'无'}}
       </div>
       <div class="time">
-        2019-05-05
+        {{comments.commentTime||'未知'}}
       </div>
     </div>
   </div>
@@ -24,6 +24,12 @@
 <script>
     export default {
         name: "userEvaluate",
+        props:{
+          comments:{
+              type:Object,
+              default:{}
+          }
+        },
         data() {
             return {
                 size:12,
