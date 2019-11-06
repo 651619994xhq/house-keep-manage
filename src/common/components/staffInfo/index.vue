@@ -64,10 +64,10 @@
 //一些自定义方法
         methods: {
             handleClickItem(id) {
-                if(!id){
-                    this.$toast('暂时无法查看详情')
-                  return;
-                };
+                // if(!id){
+                //     this.$toast('暂时无法查看详情')
+                //   return;
+                // };
                 this.$router.push({
                     path: '/person-resume',
                     query:{

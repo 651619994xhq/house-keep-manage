@@ -140,9 +140,9 @@
         </div>
       </div>
     </div>
-    <userEvaluate></userEvaluate>
+    <userEvaluate :comments="comments"></userEvaluate>
 
-    <div class="submit-container row flex-item flex-justify-between">
+    <div class="submit-container row flex-item flex-justify-between" v-if="isMoonWoman">
       <div class="left col flex-item-start flex-justify" @click="handleCollectEvent">
         <div class="item-icon">
           <img src="~image/Collection@2x.png" alt="">
@@ -159,7 +159,24 @@
         <div class="right-btn flex-grow" @click="handleClickAppoint">
           立即预约
         </div>
+      </div>
+    </div>
 
+
+    <div class="submit-container row flex-item flex-justify-between" v-else>
+      <div class="left col flex-item-start flex-justify" @click="handleCollectEvent">
+        <div class="item-icon">
+          <img src="~image/Collection@2x.png" alt="">
+        </div>
+        <div class="text">
+          收藏
+        </div>
+
+      </div>
+      <div class="right row flex-item flex-justify-between">
+        <div class="mid-btn flex-grow" @click="handleClickAppoint">
+          立即预约
+        </div>
       </div>
     </div>
 
@@ -180,7 +197,9 @@
                 },
                 evaluateData:{
                     isShow:false
-                }
+                },
+                comments:[], //评论
+                isMoonWoman:true
             }
         },
 //组件
@@ -202,7 +221,7 @@
                 this.$clear();
             },
             initWithData(data){
-
+                this.comments=data.comments||[];
             },
             handleClickAppoint(){
                 this.$router.push({
@@ -215,7 +234,7 @@
                 });
             },
             handleCollectEvent(){
-
+               this.$toast('缺少收藏接口')
             }
 
         }
@@ -428,6 +447,15 @@
       }
       .right-btn{
         background:linear-gradient(323deg,rgba(237,119,250,1) 0%,rgba(150,141,253,1) 100%);
+        line-height: 42px;
+        font-size:16px;
+        font-family:PingFangSC-Regular,PingFang SC;
+        font-weight:400;
+        color:rgba(255,255,255,1);
+        text-align: center;
+      }
+      .mid-btn{
+        background:linear-gradient(328deg,rgba(201,141,253,1) 0%,rgba(250,119,119,1) 100%);
         line-height: 42px;
         font-size:16px;
         font-family:PingFangSC-Regular,PingFang SC;
