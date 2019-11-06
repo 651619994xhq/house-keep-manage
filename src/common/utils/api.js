@@ -8,6 +8,7 @@ export default {
   GET_MY_INFO:'api/user/userInfo', //获取自己的信息
   GET_MY_COLLECT_LIST:'/api/user/selectCollections', //我的收藏列表
   DELETE_COLLECT:'/api/user/deleteCollection', //取消收藏
+  COLLECT:'/api/user/collectionEmployee', //收藏雇员
   UPDATE_PHONE:'/api/user/updatePhone', //修改手机号
   GET_ORDER_LIST:'order/list', //获取订单列表
   GET_ORDER_DETAIL:'order/getOrderById', //获取订单详情

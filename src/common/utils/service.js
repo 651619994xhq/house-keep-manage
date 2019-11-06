@@ -51,6 +51,11 @@ export const deleteCollect=(param={})=>{
   let employeeIds=param.employeeIds?param.employeeIds:[];
   return awaitWrap(axios.post(api.DELETE_COLLECT,{employeeIds}))
 };
+//收藏
+export const collect=(param={})=>{
+  let employeeId=param.employeeId?param.employeeId:'';
+  return awaitWrap(axios.post(api.COLLECT,{employeeId}))
+};
 
 //修改手机号
 export const updatePhone=(param={})=>{
