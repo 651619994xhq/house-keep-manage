@@ -1,21 +1,21 @@
 <template>
-  <div class="user-evaluate">
+  <div class="user-evaluate" v-if="comments.length>0">
     <div class="item-header row flex-item flex-justify-start">
       <div class="item-icon">
         <img src="~image/comment@2x.png" alt="">
       </div>
       <div class="title">用户评价</div>
     </div>
-    <div class="content" v-for="(item,index) in content" :key="index">
+    <div class="content" v-for="(item,index) in comments" :key="index">
       <div class="header row flex-item flex-justify-between">
-        <div class="name">{{comments.createUser||'w未知'}}</div>
+        <div class="name">{{item.createUser||'w未知'}}</div>
         <van-rate v-model="rateValue" :size="size" :readonly="readonly" :gutter="gutter" class="rate"/>
       </div>
       <div class="item-content">
-       {{comments.comment||'无'}}
+       {{item.comment||'无'}}
       </div>
       <div class="time">
-        {{comments.commentTime||'未知'}}
+        {{item.commentTime||'未知'}}
       </div>
     </div>
   </div>
@@ -26,8 +26,8 @@
         name: "userEvaluate",
         props:{
           comments:{
-              type:Object,
-              default:{}
+              type:Array,
+              default:[]
           }
         },
         data() {

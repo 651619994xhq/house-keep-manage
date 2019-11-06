@@ -143,7 +143,7 @@
     <userEvaluate></userEvaluate>
 
     <div class="submit-container row flex-item flex-justify-between">
-      <div class="left col flex-item-start flex-justify">
+      <div class="left col flex-item-start flex-justify" @click="handleCollectEvent">
         <div class="item-icon">
           <img src="~image/Collection@2x.png" alt="">
         </div>
@@ -213,6 +213,9 @@
                 this.$router.push({
                    path:'/schedule'
                 });
+            },
+            handleCollectEvent(){
+
             }
 
         }
