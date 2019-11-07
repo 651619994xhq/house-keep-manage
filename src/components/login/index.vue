@@ -31,8 +31,8 @@
           身份选择
         </div>
         <div class="label-content row flex-grow flex-item flex-justify-start flex-item-start wrap">
-          <div :class="index==selectIndex?'label-active':'label'" v-for="(item,index) in labelList"
-               @click="handleSelectEvent(index)">{{item.text}}
+          <div :class="item.id==selectId?'label-active':'label'" v-for="(item,index) in IDENTITY_TYPE"
+               @click="handleSelectEvent(item.id)">{{item.name}}
           </div>
         </div>
       </div>
@@ -46,42 +46,22 @@
 
 <script>
     import {mapMutations} from 'vuex';
-    import {sendRegisterCode} from '@/common/utils/service';
+    import {sendRegisterCode,register} from '@/common/utils/service';
+    import {IDENTITY_TYPE} from '@/common/utils/constants'
     let userToken='8b5d3b67-5f52-41d8-93d8-648e04545ef0';
 
     export default {
         name: "index",
         data() {
             return {
+                IDENTITY_TYPE,
                 border:false,
                 phone: 18614084016,//手机号
                 sms: '', //验证码
                 isShowBtn: true, //是否展示发送按钮
                 timer: null, //定时器
                 count: 60,
-                selectIndex: 0, //选中的下标
-                labelList: [
-                    {
-                        text: '准妈妈',
-                        id: 1
-                    },
-                    {
-                        text: '备孕妈妈',
-                        id: 2
-                    },
-                    {
-                        text: '宝妈',
-                        id: 3
-                    },
-                    {
-                        text: '家属',
-                        id: 4
-                    },
-                    {
-                        text: '神秘人',
-                        id: 5
-                    }
-                ]
+                selectId: 1, //默认选中的ID
             }
         },
 //组件
@@ -96,10 +76,22 @@
 //一些自定义方法
         methods: {
             ...mapMutations(['UPDATE_TOKEN']),
+            isPoneAvailable($poneInput) {
+                var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+                if (!myreg.test($poneInput)) {
+                    return false;
+                } else {
+                    return true;
+                }
+            },
             async handleSendSms() {
+                if(!this.phone){this.$toast('请输入手机号');return ;};
+                if(!this.isPoneAvailable(this.phone)){this.$toast('请输入正确的手机号');return ;};
                 this.isShowBtn = false;
+                let [err, data] = await sendRegisterCode({phone: this.phone});
+                if(err!==null){this.$toast(err||'系统错误');return ;};
+                this.$toast('验证码发送成功');
                 this.startTimer(); //开始定时器
-                await this.$sendRegisterCode(); //发送验证码
             },
             startTimer() {
                 this.count = 60;
@@ -119,25 +111,25 @@
                 this.count = 60;
                 this.isShowBtn = true;
             },
-            async $sendRegisterCode() {
-                let [err, data] = await sendRegisterCode({phone: this.phone});
-                if (err !== null) {
-                    this.$toast(err || '发送验证码失败');
-                    this.clearTimer();
-                    return;
-                }
-                ;
-                this.$toast('验证码已发送');
+            handleSelectEvent(id) {
+                console.log('id==>',id);
+                this.selectId = id;
             },
-            handleSelectEvent(index) {
-                this.selectIndex = index;
-            },
-            handleRegisterEvent(){
+            async handleRegisterEvent(){
                 console.log('handleRegisterEvent is run');
                 this.UPDATE_TOKEN(userToken);
                 this.$router.replace({
                     path:'/index'
-                })
+                });
+
+                // if(!this.phone){this.$toast('请输入手机号');return ;};
+                // if(!this.isPoneAvailable(this.phone)){this.$toast('请输入正确的手机号');return ;};
+                // if(!this.sms){this.$toast('请输入验证码');return ;};
+                // this.$loading();
+                // let [err,data]=await register({phone:this.phone,smsCode:this.sms,identityType:this.selectId});
+                // if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
+                // this.$clear();
+                // this.$toast('注册成功');
             }
         }
     }
