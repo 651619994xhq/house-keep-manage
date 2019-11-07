@@ -141,10 +141,18 @@
       </div>
     </div>
 
-    <div class="submit-btn">
-      立即预约
+    <div class="submit-container col flex-item flex-justify" @click="handleSubmit">
+      <div class="submit-btn">
+        立即预约
+      </div>
     </div>
-
+<!--    <div class="submit-container col flex-item flex-justify" @click="handleSubmit2">-->
+<!--      <div class="submit-btn2">-->
+<!--        <div class="box">-->
+<!--          <span class="purple-color">去评价</span>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
     <apponitPopup :is-show="apponitPopupData.isShow"></apponitPopup>
     <evaluate :is-show="evaluateData.isShow" @cancelEvent="handleEvaluateCancel" @closeEvent="handleEvaluateClose" @sureEvent="handleEvaluateSure"></evaluate>
   </div>
@@ -205,6 +213,14 @@
                 this.$toast('提价评论成功');
                 this.$clear();
                 this.evaluateData.isShow=false;
+            },
+            handleSubmit(){
+                 this.$router.push({
+                    path:'/appointment'
+                 });
+            },
+            handleSubmit2(){
+                 this.evaluateData.isShow=true;
             },
 
         }
@@ -462,10 +478,16 @@
     }
   }
 
-  .submit-btn {
+  .submit-container{
     position: fixed;
-    bottom: 15px;
-    left: 40px;
+    bottom: 0;
+    left:0;
+    width: 100%;
+    height: 70px;
+    border-top: 1px solid #F7F7F7;
+    background: #FFFFFF;
+  }
+  .submit-btn {
     width: 296px;
     height: 42px;
     line-height: 42px;
@@ -476,5 +498,25 @@
     font-family: PingFangSC-Regular, PingFangSC;
     font-weight: 400;
     color: rgba(255, 255, 255, 1);
+  }
+  .submit-btn2{
+    width:296px;
+    height:42px;
+    box-sizing: border-box;
+    border-radius:21px;
+    padding: 1px;
+    background:linear-gradient(338deg, rgba(201,141,253,1) 0%, rgba(250,119,119,1) 100%);
+    .box{
+      width: 100%;
+      height: 100%;
+      border-radius: 21px;
+      text-align: center;
+      background: #FFFFFF;
+      font-size:16px;
+      font-family:PingFangSC-Regular,PingFang SC;
+      font-weight:400;
+      color:rgba(255,255,255,1);
+      line-height:42px;
+    }
   }
 </style>
