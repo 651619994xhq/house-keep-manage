@@ -60,7 +60,12 @@ export const collect=(param={})=>{
 //修改手机号
 export const updatePhone=(param={})=>{
   let checkCode=param.checkCode?param.checkCode:'',phone=param.phone?param.phone:'';
-  return awaitWrap(axios.post(api.UPDATE_PHONE,{checkCode,phone}))
+  return awaitWrap(axios.post(api.UPDATE_PHONE,{checkCode,phone}));
+};
+//跟新用户信息
+export const updateUserInfo=(param={})=>{
+  let babyBirthday=param.babyBirthday?param.babyBirthday:'',birthday=param.birthday?param.birthday:'',identityType=param.identityType?param.identityType:'',address=param.address?param.address:'';
+  return awaitWrap(axios.post(api.UPDATE_USER_INFO,{babyBirthday,birthday,identityType,address}))
 };
 //我的订单列表
 export const getMyOrderList=(param={})=>{

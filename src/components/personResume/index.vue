@@ -186,7 +186,7 @@
 <script>
     import resume from '@/common/components/resume/index';
     import userEvaluate from "./userEvaluate";
-    import {getEmployeeInfo} from '@/common/utils/service';
+    import {getEmployeeInfo,collect,deleteCollect} from '@/common/utils/service';
 
     export default {
         name: "personResume",
@@ -233,8 +233,11 @@
                    path:'/schedule'
                 });
             },
-            handleCollectEvent(){
-               this.$toast('缺少收藏接口')
+            async handleCollectEvent(){
+                this.$loading({duration: 0,forbidClick: true,message: ""})
+                let [err,data]=await collect();
+                if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
+                this.$clear();
             }
 
         }

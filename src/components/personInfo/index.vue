@@ -67,7 +67,7 @@
 <script>
     import identityInfo from "./identityInfo";
     import birthday from '@/common/components/birthday';
-    import {getMyInfo} from '@/common/utils/service'
+    import {getMyInfo,updateUserInfo} from '@/common/utils/service'
 
     export default {
         name: "personInfo",
