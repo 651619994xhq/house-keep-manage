@@ -41,7 +41,7 @@
     </div>
 
 
-    <div class="item row flex-item flex-justify-between" @click="handleShowBirthday">
+    <div class="item row flex-item flex-justify-between" @click="handleShowBirthday('birthday')">
       <div class="title1">
         您的生日
       </div>
@@ -51,7 +51,7 @@
       </div>
     </div>
 
-    <div class="item row flex-item flex-justify-between" @click="handleShowBirthday">
+    <div class="item row flex-item flex-justify-between" @click="handleShowBirthday('babyBirthday')">
       <div class="title1">
         您宝贝的生日
       </div>
@@ -81,6 +81,7 @@
                     isShow: false
                 },
                 userInfo:{},
+                identityPeopleAction:'',  //birthday babyBirthday
 
             }
         },
@@ -112,15 +113,30 @@
             handleShowIdentity() {
                 this.identityInfoData.isShow = true;
             },
-            handleShowBirthday(){
+            handleShowBirthday(action){
+                this.identityPeopleAction=action;
                 this.birthdayData.isShow=true;
             },
             hideBirthday(){
                 this.birthdayData.isShow=false;
             },
-            handleBirthdaySure(time){
+            async handleBirthdaySure(time){
                 console.log('handleBirthdaySure==>',time);
-                this.hideBirthday();
+                this.$loading();
+                if(this.identityPeopleAction=='birthday'){
+                    let [err,data]=await updateUserInfo({birthday:time});
+                    if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
+                    this.$toast('修改生日成功');
+                    this.hideBirthday();
+                    return ;
+                };
+                if(this.identityPeopleAction=='babyBirthday'){
+                    let [err,data]=await updateUserInfo({babyBirthday:time});
+                    if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
+                    this.$toast('修改生日成功');
+                    this.hideBirthday();
+                    return ;
+                };
             },
             handleBirthdayCancel(){
                 this.hideBirthday();
