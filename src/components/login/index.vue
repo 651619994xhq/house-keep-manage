@@ -209,6 +209,7 @@
         margin-bottom: 8px;
         width: 68px;
         height: 22px;
+        box-sizing: border-box;
         line-height: 22px;
         background: linear-gradient(328deg, rgba(201, 141, 253, 1) 0%, rgba(250, 119, 119, 1) 100%);
         border-radius: 11px;
@@ -224,6 +225,7 @@
         margin-bottom: 8px;
         width: 68px;
         height: 22px;
+        box-sizing: border-box;
         line-height: 22px;
         border: 1px solid rgba(200, 201, 203, 1);
         border-radius: 11px;
