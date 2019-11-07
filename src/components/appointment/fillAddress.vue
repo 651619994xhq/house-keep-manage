@@ -3,9 +3,15 @@
     <div class="service-box col flex-item flex-justify-between">
       <div class="content flex-grow col flex-item flex-justify-start">
         <div class="title">您好，上门面试需提供上门地址，稍后工作人员，会及时与您取得联系～</div>
-        <div class="title2">
-          请输入上门地址，精确到门牌号
-        </div>
+        <van-field
+          class="title2"
+          v-model="message"
+          autosize
+          type="textarea"
+          maxlength="100"
+          placeholder="请输入上门地址，精确到门牌号"
+          show-word-limit
+        />
       </div>
       <div class="control-btn" @click="handleSureEvent">
         确定
@@ -24,7 +30,9 @@
             }
         },
         data() {
-            return {}
+            return {
+                message:''
+            }
         },
         created() {
 

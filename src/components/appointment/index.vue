@@ -33,13 +33,22 @@
       <div class="title1">
         其他要求
       </div>
-      <div class="text-area">
-        如有其他要求，请您备注，会根据需求为您匹配阿姨
-      </div>
+      <van-field
+        class="text-area"
+        v-model="message"
+        autosize
+        type="textarea"
+        maxlength="100"
+        placeholder="如有其他要求，请您备注，会根据需求为您匹配阿姨"
+        show-word-limit
+      />
+    </div>
+    <div class="submit-container col flex-item flex-justify">
       <div class="submit-btn" @click="handleSubmit">
         立即预约
       </div>
     </div>
+
     <appointTime :nowTime="popup.nowTime" :isShow="popup.isShow" @closeEvent="handleCloseEvent('appointTime')" @cancelEvent="handleTimeCancel" @sureEvent="handleTimeSure"></appointTime>
     <appointmentSuc :is-show="appointmentSucData.isShow" @sureEvent="handleAppointSureEvent"></appointmentSuc>
     <appointmentError :is-show="appointmentErrorData.isShow" @sureEvent="handleAppointErrorSureEvent"></appointmentError>
@@ -72,7 +81,8 @@
                     isShow:false
                 },
                 selectTime:'',
-                selectInterviewType:1 //面试方式1到点 2上门 3视频
+                selectInterviewType:1, //面试方式1到点 2上门 3视频
+                message:'',
 
             }
         },
@@ -129,6 +139,9 @@
                     this.$toast('请选择预约时间');
                     return
                 };
+                if(this.selectInterviewType==2){
+                    this.fillAddressData.isShow=true;
+                }
                 this.$loading({duration: 0,forbidClick: true,message: "提交中..."});
 
             }
@@ -140,8 +153,8 @@
 <style scoped lang="scss">
   .container {
     width: 100%;
-    height: 100%;
     background: #f7f7f7;
+    overflow: hidden;
   }
 
   .interview-container {
@@ -277,14 +290,26 @@
     .text-area {
       margin-left: 16px;
       width: 343px;
-      height: 70px;
+      min-height: 70px;
       border: 1px solid #999999;
       border-radius: 4px;
+      padding: 4px;
+      box-sizing: border-box;
     }
 
+
+
+  }
+
+  .submit-container{
+    position: fixed;
+    bottom: 0;
+    left:0;
+    width: 100%;
+    height: 70px;
+    border-top: 1px solid #F7F7F7;
+    background: #FFFFFF;
     .submit-btn {
-      position: fixed;
-      bottom: 10px;
       left: 40px;
       width: 296px;
       height: 42px;
@@ -297,6 +322,6 @@
       font-weight: 400;
       color: rgba(255, 255, 255, 1);
     }
-
   }
+
 </style>
