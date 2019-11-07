@@ -27,7 +27,7 @@
 </template>
 
 <script>
-    import {updatePhone} from '@/common/utils/service'
+    import {updatePhone,sendUpdatePhoneCode} from '@/common/utils/service'
     export default {
         name: "updatePhone",
         data() {
@@ -69,9 +69,14 @@
                 this.$clear();
             },
             async handleSendSms() {
+                let $phone=this.phone;
+                if(!$phone){this.$toast('请输入手机号');return ;};
+                if(!this.isPoneAvailable($phone)){this.$toast('请输入正确的手机号');return ;};
                 this.isShowBtn = false;
+                let [err,data]=await sendUpdatePhoneCode({phone:$phone});
+                if(err!==null){this.$toast(err||'系统错误');this.isShowBtn=true;return ;};
+                this.$toast('验证码已发送');
                 this.startTimer(); //开始定时器
-                // await this.$sendRegisterCode(); //发送验证码
             },
             startTimer() {
                 this.count = 60;

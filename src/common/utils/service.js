@@ -7,6 +7,11 @@ export const sendRegisterCode =(param={})=>{
   let phone=param.phone?param.phone:'';
   return awaitWrap(axios.post(api.SEND_SMS_CODE,{phone,type:1}))
 };
+//发送修改手机号代码
+export const sendUpdatePhoneCode =(param={})=>{
+  let phone=param.phone?param.phone:'';
+  return awaitWrap(axios.post(api.SEND_SMS_CODE,{phone,type:2}))
+};
 //移动端注册接口
 export const register =(param={})=>{
   let phone=param.phone?param.phone:'',smsCode=param.smsCode?param.smsCode:'',identityType=param.identityType?param.identityType:'';
