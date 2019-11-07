@@ -90,5 +90,5 @@ export const cancelInterview=(param={})=>{
 //雇主添加评论
 export const addComments=(param={})=>{
   let employeeId=param.employeeId?param.employeeId:'',comment=param.comment?param.comment:'',starClass=param.starClass?param.starClass:'';
-  return awaitWrap(axios.post(api.CANCEL_APPOINT,{employeeId,comment,starClass,source:1}))
+  return awaitWrap(axios.post(api.ADD_COMMENTS,{employeeId,comment,starClass,source:1}))
 };

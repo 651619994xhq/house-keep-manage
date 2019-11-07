@@ -5,7 +5,7 @@
         <div class="title">您好，您对我们很重要。</div>
         <div class="title2 row flex-item flex-justify-start">面试评分：<van-rate v-model="rateValue" :size="size" @change="handleChangeRate" class="rate"/></div>
         <div class="evaluate-container">
-          <input type="text" placeholder="请填写您的评价，谢谢" class="evaluate-input">
+          <input type="text" placeholder="请填写您的评价，谢谢" v-model="evaluateText" class="evaluate-input">
         </div>
       </div>
       <div class="control-btn row flex-item flex-justify-between">
@@ -28,8 +28,9 @@
         },
         data() {
             return {
-                rateValue:0,
-                size:16
+                rateValue:5,
+                size:16,
+                evaluateText:'',
             }
         },
         created() {
@@ -37,16 +38,21 @@
         },
         methods: {
             handleCancelEvent(){
-                this.$emit('cancelEvent')
+                this.$emit('cancelEvent');
             },
             handleSureEvent(){
-                this.$emit('sureEvent')
+                if(!this.evaluateText){
+                    this.$toast('评论不能为空');
+                    return;
+                };
+                this.$emit('sureEvent',{star:this.rateValue,text:this.evaluateText});
             },
             handleInput(){
-                this.$emit('closeEvent')
+                this.$emit('closeEvent');
             },
             handleChangeRate(value){
                 console.log('handleChangeRate==>',value);
+                this.rateValue=value;
             }
 
         },

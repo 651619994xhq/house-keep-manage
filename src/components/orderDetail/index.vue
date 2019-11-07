@@ -146,7 +146,7 @@
     </div>
 
     <apponitPopup :is-show="apponitPopupData.isShow"></apponitPopup>
-    <evaluate :is-show="evaluateData.isShow"></evaluate>
+    <evaluate :is-show="evaluateData.isShow" @cancelEvent="handleEvaluateCancel" @closeEvent="handleEvaluateClose" @sureEvent="handleEvaluateSure"></evaluate>
   </div>
 </template>
 
@@ -154,7 +154,7 @@
     import resume from '@/common/components/resume/index';
     import apponitPopup from "./apponitPopup";
     import evaluate from "./evaluate";
-    import {getOrderDetail,cancelInterview} from '@/common/utils/service'
+    import {getOrderDetail,cancelInterview,addComments} from '@/common/utils/service'
 
     export default {
         name: "orderDetail",
@@ -164,7 +164,7 @@
                     isShow:false
                 },
                 evaluateData:{
-                    isShow:false
+                    isShow:true
                 }
             }
         },
@@ -190,7 +190,22 @@
             },
             initWithData(data){
 
-            }
+            },
+            handleEvaluateCancel(){
+                this.evaluateData.isShow=false;
+            },
+            handleEvaluateClose(){
+                this.evaluateData.isShow=false;
+            },
+            async handleEvaluateSure(content){
+                console.log('content==>',content);
+                this.$loading();
+                let [err,data]=await addComments({employeeId:'',comment:content.text,starClass:content.star});
+                if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
+                this.$toast('提价评论成功');
+                this.$clear();
+                this.evaluateData.isShow=false;
+            },
 
         }
     }
