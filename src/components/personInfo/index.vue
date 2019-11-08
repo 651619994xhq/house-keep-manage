@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <div class="item row flex-item flex-justify-between">
+    <div class="item row flex-item flex-justify-between" @click="handleShowHomeAddress">
       <div class="title1">
         家庭住址
       </div>
@@ -60,12 +60,14 @@
         <div class="item-title2"><img src="~image/icon_next_gary@2x.png" alt=""></div>
       </div>
     </div>
+    <homeAddress :is-show="homeAddressData.isShow" @sureEvent="handleHomeAddressSure" @cancelEvent="handleHomeAddressClose" @closeEvent="handleHomeAddressClose"></homeAddress>
     <identityInfo :is-show="identityInfoData.isShow" @sureEvent="handleIdentitySure"></identityInfo>
     <birthday :is-show="birthdayData.isShow" @sureEvent="handleBirthdaySure" @cancelEvent="handleBirthdayCancel" @closeEvent="handleBirthdayClose"></birthday>
   </div>
 </template>
 <script>
     import identityInfo from "./identityInfo";
+    import homeAddress from "./homeAddress";
     import birthday from '@/common/components/birthday';
     import {getMyInfo,updateUserInfo} from '@/common/utils/service'
 
@@ -80,6 +82,9 @@
                 birthdayData: {
                     isShow: false
                 },
+                homeAddressData:{
+                    isShow: false
+                },
                 userInfo:{},
                 identityPeopleAction:'',  //birthday babyBirthday
 
@@ -87,7 +92,8 @@
         },
         components: {
             identityInfo,
-            birthday
+            birthday,
+            homeAddress
         },
         mounted() {
             this.$getMyInfo();
@@ -116,6 +122,16 @@
             handleShowBirthday(action){
                 this.identityPeopleAction=action;
                 this.birthdayData.isShow=true;
+            },
+            handleShowHomeAddress(){
+                this.homeAddressData.isShow=true;
+            },
+            handleHomeAddressSure(value){
+
+                this.homeAddressData.isShow=false;
+            },
+            handleHomeAddressClose(){
+                this.homeAddressData.isShow=false;
             },
             hideBirthday(){
                 this.birthdayData.isShow=false;
