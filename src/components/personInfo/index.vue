@@ -126,8 +126,12 @@
             handleShowHomeAddress(){
                 this.homeAddressData.isShow=true;
             },
-            handleHomeAddressSure(value){
-
+            async handleHomeAddressSure(value){
+                this.$loading();
+                let [err,data]=await updateUserInfo({address:value});
+                if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
+                this.$clear();
+                this.$toast.success('修改地址成功');
                 this.homeAddressData.isShow=false;
             },
             handleHomeAddressClose(){
@@ -142,14 +146,14 @@
                 if(this.identityPeopleAction=='birthday'){
                     let [err,data]=await updateUserInfo({birthday:time});
                     if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
-                    this.$toast('修改生日成功');
+                    this.$toast.success('修改生日成功');
                     this.hideBirthday();
                     return ;
                 };
                 if(this.identityPeopleAction=='babyBirthday'){
                     let [err,data]=await updateUserInfo({babyBirthday:time});
                     if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
-                    this.$toast('修改生日成功');
+                    this.$toast.success('修改生日成功');
                     this.hideBirthday();
                     return ;
                 };
