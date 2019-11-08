@@ -1,13 +1,13 @@
 <template>
-  <van-list
-    v-model="load.loading"
-    :finished="load.finished"
-    finished-text="没有数据了"
-    :error.sync="load.error"
-    error-text="请求失败，点击重新加载"
-    @load="loadEvent"
-  >
     <div class="container">
+      <van-list
+        v-model="load.loading"
+        :finished="load.finished"
+        finished-text="没有数据了"
+        :error.sync="load.error"
+        error-text="请求失败，点击重新加载"
+        @load="loadEvent"
+      >
       <li v-for="(item,index) of list" :key="index">
         <van-swipe-cell :right-width="70" :left-width="0" :on-close='onClose'>
           <van-cell-group>
@@ -16,8 +16,8 @@
           <div class="delete" slot="right" @click="handleShowDeleteDialog">删除</div>
         </van-swipe-cell>
       </li>
+      </van-list>
     </div>
-  </van-list>
 </template>
 <script>
     import staffInfo from '@/common/components/staffInfo'
@@ -46,7 +46,7 @@
         methods: {
             async loadEvent() {
                 this.$loading();
-                let [err,data]=await getMyCollectList({pageSize:this.currentPage});
+                let [err,data]=await getMyCollectList({pageNum:this.currentPage});
                 if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
                 let list=data.list||[];
                 if(list.length==0){;this.load.finished=true;this.load.loading=false;this.$clear();return ;};
@@ -87,6 +87,7 @@
 <style scoped lang="scss">
   .container {
     width: 100%;
+    overflow: hidden;
   }
 
   .delete {
