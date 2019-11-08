@@ -97,13 +97,16 @@
                 let [err, data] = await getMyOrderList({pageNum: this.currentPage});
                 if (err !== null) {
                     this.$toast(err || '系统错误');
+                    this.load.loading=false;
+                    this.load.error=true;
                     this.$clear();
                     return;
                 }
                 ;
                 let list = data.list;
                 if (list.length == 0) {
-                    this.$toast('没有更多了');
+                    this.load.loading=false;
+                    this.load.finished=true;
                     this.$clear();
                     return;
                 }

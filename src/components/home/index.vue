@@ -47,7 +47,8 @@
 <!--    </van-list>-->
     <backTop :backTop="backTop"></backTop>
     <Service :is-show="serviceData.isShow" @cancelEvent="serviceCancelEvent" @sureEvent="serviceSureEvent" @closeEvent="serviceCloseEvent"></Service>
-    <div class="load row flex-item flex-justify" v-if="loading"><van-loading size="24px"></van-loading><div class="text">加载中...</div></div>
+    <div class="load row flex-item flex-justify" v-if="loading&&((nowIndex==0&&(list1.length>0))||(nowIndex==1&&(list2.length>0))||(nowIndex==2&&(list3.length>0))||(nowIndex==3&&(list4.length>0)))"><van-loading size="24px"></van-loading><div class="text">加载中...</div></div>
+    <div class="load row flex-item flex-justify" v-if="finish&&!loading&&((nowIndex==0&&(list1.length>0))||(nowIndex==1&&(list2.length>0))||(nowIndex==2&&(list3.length>0))||(nowIndex==3&&(list4.length>0)))"><div class="text">没有更多数据了</div></div>
   </div>
 </template>
 <script>
@@ -56,7 +57,7 @@
     import staffInfo from '@/common/components/staffInfo'
     import staffInfo2 from '@/common/components/staffInfo2'
     import headerItem from "./headerItem";
-    import {debounce} from '@/common/utils/tool'
+    import {debounce,Throttle} from '@/common/utils/tool'
     import {getBannerList, getEmployeeList} from '@/common/utils/service'
     import backTop from '@/common/components/backTop'
     import Service from '@/common/components/service/index'
@@ -120,7 +121,8 @@
                     currentMorePage: 1        //更多
                 },
                 isLocked:false, //滑动加锁
-                loading:true
+                loading:true,
+                finish:false
 
             }
         },
@@ -145,6 +147,7 @@
         },
         mounted() {
             window.addEventListener('scroll', this.watchScroll);
+            window.addEventListener('scroll', this.watchScroll2);
 
             console.log(this.screenWidth)
             const that = this
@@ -159,7 +162,8 @@
             this.updateList();
         },
         destroyed() {
-            window.removeEventListener('scroll', this.watchScroll)
+            window.removeEventListener('scroll', this.watchScroll);
+            window.removeEventListener('scroll', this.watchScroll2);
         },
 //一些自定义方法
         methods: {
@@ -170,7 +174,7 @@
                     let [err,data]=await getEmployeeList({type:1,pageNum:this.page.currentMoonWomanPage});
                     if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
                     let list=data.list||[];
-                    if(list.length==0){this.$clear();return ;};
+                    if(list.length==0){this.$clear();this.finish=true;return ;};
                     this.list1=[...this.list1,...list];
                     this.page.currentMoonWomanPage+=1;
                     // this.load.loading=false;
@@ -181,7 +185,7 @@
                     let [err2,data2]=await getEmployeeList({type:2,pageNum:this.page.currentChildRearingPage});
                     if(err2!==null){this.$toast(err2||'系统错误');this.$clear();return ;};
                     let list=data2.list||[];
-                    if(list.length==0){this.$clear();return ;};
+                    if(list.length==0){this.$clear();this.finish=true;return ;};
                     this.list2=[...this.list2,...list];
                     this.page.currentChildRearingPage+=1;
                     // this.load.loading=false;
@@ -192,7 +196,7 @@
                     let [err3,data3]=await getEmployeeList({type:3,pageNum:this.page.currentBabySitterPage});
                     if(err3!==null){this.$toast(err3||'系统错误');this.$clear();return ;};
                     let list=data3.list||[];
-                    if(list.length==0){this.$clear();return ;};
+                    if(list.length==0){this.$clear();this.finish=true;return ;};
                     this.list3=[...this.list3,...list];
                     this.page.currentBabySitterPage+=1;
                     // this.load.loading=false;
@@ -203,7 +207,7 @@
                     let [err4,data4]=await getEmployeeList({type:4,pageNum:this.page.currentMorePage});
                     if(err4!==null){this.$toast(err4||'系统错误');this.$clear();return ;};
                     let list=data4.list||[];
-                    if(list.length==0){this.$clear();return ;};
+                    if(list.length==0){this.$clear();this.finish=true;return ;};
                     this.list4=[...this.list4,...list];
                     this.page.currentMorePage+=1;
                     // this.load.loading=false;
@@ -269,9 +273,9 @@
                 this.updateList();
             },
             async watchScroll() {
-                let clientHeight  = document.documentElement.clientHeight; //浏览器高度
-                let scrollHeight = document.body.scrollHeight; //滚动高度
-                let distance = 0;  //距离视窗还用50的时候，开始触发；
+                // let clientHeight  = document.documentElement.clientHeight; //浏览器高度
+                // let scrollHeight = document.body.scrollHeight; //滚动高度
+                // let distance = -30;  //距离视窗还用50的时候，开始触发；
                 let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop; //滚动视窗的高度距离window顶部的距离，它会随着往上滚动而不断增加，初始值是0，它是一个变化的值；
                 //  当滚动超过 50 时，实现吸顶效果
                 if (scrollTop > 206 * this.screenWidth / 375) {
@@ -287,6 +291,25 @@
 
 
                 //是否触底
+                // if ((scrollTop + clientHeight) >= (scrollHeight - distance)) {
+                //     if(this.isLocked){
+                //         console.log('加锁了');
+                //         return ;
+                //     }
+                //     this.loading=true;
+                //     console.log("到底了，开始加载数据");
+                //     this.isLocked=true;
+                //     await  this.loadEvent();
+                //     this.isLocked=false;
+                //     this.loading=false;
+                // };
+            },
+            watchScroll2:Throttle(async function(){
+                let clientHeight  = document.documentElement.clientHeight; //浏览器高度
+                let scrollHeight = document.body.scrollHeight; //滚动高度
+                let distance = -30;  //距离视窗还用50的时候，开始触发；
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop; //滚动视窗的高度距离window顶部的距离，它会随着往上滚动而不断增加，初始值是0，它是一个变化的值；
+                //是否触底
                 if ((scrollTop + clientHeight) >= (scrollHeight - distance)) {
                     if(this.isLocked){
                         console.log('加锁了');
@@ -299,7 +322,7 @@
                     this.isLocked=false;
                     this.loading=false;
                 };
-            },
+            },300) ,
             //更新头部bannerList 数据
             async updateBannerList() {
                 let [err, data] = await getBannerList();
@@ -407,6 +430,7 @@
 
   }
   .load{
+    margin-top: 10px;
     .text{
       margin-left: 10px;
       color: #c9c9c9;
