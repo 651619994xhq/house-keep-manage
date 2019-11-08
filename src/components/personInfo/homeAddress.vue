@@ -4,7 +4,7 @@
       <div class="content flex-grow col flex-item-start flex-justify-start">
         <div class="title">家庭住址</div>
         <van-field
-          class="title2"
+          class="title2 hairlines"
           v-model="message"
           autosize
           type="textarea"
@@ -91,14 +91,15 @@
         margin-top: 6px;
         width: 216px;
         height: 65px;
-        border: 1px solid #868687;
         font-size:12px;
         font-family:PingFangSC-Regular,PingFang SC;
         font-weight:400;
         color:rgba(200,201,203,1);
         line-height:17px;
       }
-
+      .hairlines{
+        border: 0.5px solid #868687;
+      }
 
     }
 
