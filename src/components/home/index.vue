@@ -46,6 +46,7 @@
       </swiper>
 <!--    </van-list>-->
     <backTop :backTop="backTop"></backTop>
+    <Service :is-show="serviceData.isShow" @cancelEvent="serviceCancelEvent" @sureEvent="serviceSureEvent" @closeEvent="serviceCloseEvent"></Service>
     <div class="load row flex-item flex-justify" v-if="loading"><van-loading size="24px"></van-loading><div class="text">加载中...</div></div>
   </div>
 </template>
@@ -58,6 +59,7 @@
     import {debounce} from '@/common/utils/tool'
     import {getBannerList, getEmployeeList} from '@/common/utils/service'
     import backTop from '@/common/components/backTop'
+    import Service from '@/common/components/service/index'
 
     export default {
         name: 'home',
@@ -77,6 +79,9 @@
                     pagination: {
                         el: '.swiper-pagination'
                     }
+                },
+                serviceData:{
+                    isShow:false
                 },
                 swiperSlides: [],
                 nowIndex: 0, //当前选中的index
@@ -131,7 +136,8 @@
             staffInfo,
             staffInfo2,
             headerItem,
-            backTop
+            backTop,
+            Service
         },
 //初始化数据
         created() {
@@ -304,7 +310,18 @@
                 ;
                 let list=data||[];
                 this.swiperSlides=[...list];
+            },
+            serviceCancelEvent(){
+                this.serviceData.isShow=false;
+            },
+            serviceSureEvent(){
+                this.serviceData.isShow=false;
+            },
+            serviceCloseEvent(){
+                this.serviceData.isShow=false;
             }
+
+
         }
     }
 </script>

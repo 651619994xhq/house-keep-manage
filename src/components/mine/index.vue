@@ -57,7 +57,7 @@
   </div>
 </template>
 <script>
-  import Service from './service'
+  import Service from '@/common/components/service/index'
   import {getMyInfo} from '@/common/utils/service'
   export default {
     name: "mine",

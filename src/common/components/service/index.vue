@@ -39,7 +39,7 @@
                 this.$emit('sureEvent')
             },
             handleInput(value){
-               this.$emit('closeEvent')
+                this.$emit('closeEvent')
             }
 
         },
