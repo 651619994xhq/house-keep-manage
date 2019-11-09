@@ -17,7 +17,7 @@
           求职状态：
         </div>
         <div class="content">
-          上门面试
+          {{infoData.workStatus | WORK_STATUS_FILTER}}
         </div>
       </div>
       <div class="item3 row flex-item flex-justify-start">
@@ -25,7 +25,7 @@
           求职意向：
         </div>
         <div class="content">
-          2019-09-09
+          {{infoData.serviceType | SERVICE_TYPE_FILTER}}
         </div>
       </div>
       <div class="item4 row flex-item flex-justify-start">
@@ -33,7 +33,7 @@
           现居住地：
         </div>
         <div class="content">
-          广东省广州市天河区XXXXXX
+          {{infoData.currentAddress}}
         </div>
       </div>
       <div class="item5 row flex-item flex-justify-start">
@@ -41,7 +41,7 @@
           意向城市：
         </div>
         <div class="content">
-          广东省广州市天河区XXXXXX
+          {{infoData.intentionAddress}}
         </div>
       </div>
     </div>

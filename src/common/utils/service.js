@@ -92,3 +92,8 @@ export const addComments=(param={})=>{
   let employeeId=param.employeeId?param.employeeId:'',comment=param.comment?param.comment:'',starClass=param.starClass?param.starClass:'';
   return awaitWrap(axios.post(api.ADD_COMMENTS,{employeeId,comment,starClass,source:1}))
 };
+//获取阿姨基本信息
+export const getEmployeeBaseInfo=(param={})=>{
+  let auntId=param.auntId?param.auntId:'';
+  return awaitWrap(axios.post(api.GET_EMPLOYEE_BASE_INFO,{auntId}))
+};
