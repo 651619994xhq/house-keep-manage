@@ -71,6 +71,12 @@ const schedule = (resolve) => {
     resolve(module)
   })
 };
+//签约月嫂
+const signMonthWoman = (resolve) => {
+  import('@/components/signMonthWoman/index').then((module) => {
+    resolve(module)
+  })
+};
 
 Vue.use(Router);
 
@@ -101,6 +107,7 @@ let router = new Router({
     {path: '/person-resume', name: 'personResume', component: personResume,meta:{title:'简历',index:5}},
     {path: '/schedule', name: 'schedule', component: schedule,meta:{title:'档期',index:6}},
     {path: '/sign-contract', name: 'signContract', component: signContract,meta:{title:'签约',index:6}},
+    {path: '/sign-month-woman', name: 'signMonthWoman', component: signMonthWoman,meta:{title:'签约',index:6}},
 
   ]
 })

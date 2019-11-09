@@ -237,12 +237,25 @@
                     return;
                 }
                 ;
-                this.$router.push({
-                    path: '/sign-contract',
-                    query: {
-                        id: this.infoData.employeeId
-                    }
-                });
+                if(this.infoData.type==1){
+                    this.$router.push({
+                        path: '/sign-month-woman',
+                        query: {
+                            id: this.infoData.employeeId
+                        }
+                    });
+                    return;
+                };
+                if(this.infoData.type==2||this.infoData.type==3){
+                    this.$router.push({
+                        path: '/sign-contract',
+                        query: {
+                            id: this.infoData.employeeId
+                        }
+                    });
+                    return;
+                }
+
             },
             handleSubmit2() {
                 this.evaluateData.isShow = true;
