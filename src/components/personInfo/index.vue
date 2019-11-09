@@ -62,7 +62,7 @@
     </div>
     <homeAddress :is-show="homeAddressData.isShow" @sureEvent="handleHomeAddressSure"
                  @cancelEvent="handleHomeAddressClose" @closeEvent="handleHomeAddressClose"></homeAddress>
-    <identityInfo :is-show="identityInfoData.isShow" @sureEvent="handleIdentitySure"></identityInfo>
+    <identityInfo :is-show="identityInfoData.isShow" :selectType="identityType" @sureEvent="handleIdentitySure" @closeEvent="handleIdentityClose" ></identityInfo>
     <birthday :is-show="birthdayData.isShow" @sureEvent="handleBirthdaySure" @cancelEvent="handleBirthdayCancel"
               @closeEvent="handleBirthdayClose"></birthday>
   </div>
@@ -88,6 +88,7 @@
                     isShow: false
                 },
                 userInfo: {},
+                identityType:'',
                 identityPeopleAction: '',  //birthday babyBirthday
 
             }
@@ -110,6 +111,7 @@
                 }
                 ;
                 this.userInfo = data || {};
+                this.identityType=this.userInfo.identityType;
             },
             handleGoUpdatePhone() {
                 this.$router.push({
@@ -119,8 +121,12 @@
                     }
                 });
             },
-            handleIdentitySure() {
+            handleIdentitySure(type) {
+                this.identityType=type;
                 this.identityInfoData.isShow = false;
+            },
+            handleIdentityClose(){
+                this.identityInfoData.isShow=false;
             },
             handleShowIdentity() {
                 this.identityInfoData.isShow = true;
@@ -144,6 +150,7 @@
                 this.$clear();
                 this.$toast.success('修改地址成功');
                 this.homeAddressData.isShow = false;
+                this.$getMyInfo();
             },
             handleHomeAddressClose() {
                 this.homeAddressData.isShow = false;
@@ -164,6 +171,7 @@
                     ;
                     this.$toast.success('修改生日成功');
                     this.hideBirthday();
+                    this.$getMyInfo();
                     return;
                 }
                 ;
@@ -177,6 +185,7 @@
                     ;
                     this.$toast.success('修改生日成功');
                     this.hideBirthday();
+                    this.$getMyInfo();
                     return;
                 }
                 ;

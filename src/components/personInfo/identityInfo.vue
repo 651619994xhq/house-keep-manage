@@ -5,16 +5,9 @@
           <div class="header">
              身份信息
           </div>
-          <div class="item">
-            宝爸宝妈
+          <div class="item" :class="curIdentityType==item.id?'item-active':''" v-for="(item,index) in IDENTITY_TYPE" :key="index" @click="handleSelectType(item.id)">
+            {{item.name}}
           </div>
-          <div class="item item-active">
-            备孕妈妈
-          </div>
-          <div class="item">
-            准爸爸准麻麻
-          </div>
-
       </div>
       <div class="control-btn" @click="handleSureEvent">
         确定
@@ -24,27 +17,43 @@
 </template>
 
 <script>
+    import {IDENTITY_TYPE} from '@/common/utils/constants'
     export default {
         name: "appointmentSuc",
         props: {
             isShow: {
                 type: Boolean,
                 default: false
+            },
+            selectType:{
+                type:Number,
+                default: 1
             }
         },
         data() {
-            return {}
+            return {
+                IDENTITY_TYPE,
+                curIdentityType:''
+            }
+        },
+        watch:{
+            selectType(val){
+                this.curIdentityType=val;
+            },
         },
         created() {
 
         },
         methods: {
             handleSureEvent(){
-                this.$emit('sureEvent')
+                this.$emit('sureEvent',this.curIdentityType);
             },
             handleInput(){
                 this.$emit('closeEvent')
             },
+            handleSelectType(type){
+               this.curIdentityType=type;
+            }
 
         },
     }
@@ -56,7 +65,7 @@
   }
   .service-box {
     width: 245px;
-    height: 214px;
+    min-height: 214px;
     background: rgba(255, 255, 255, 1);
     border-radius: 13px;
 
@@ -79,6 +88,9 @@
         font-weight:400;
         color:rgba(138,143,155,1);
         line-height:14px;
+        &:last-of-type{
+          margin-bottom: 20px;
+        }
       }
       .item-active{
         color:rgba(34,34,34,1);

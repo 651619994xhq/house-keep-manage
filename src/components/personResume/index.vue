@@ -245,6 +245,11 @@
                 this.isCollection = (this.infoData.isCollection == 1) ? true : false;
             },
             handleClickAppoint() {
+                console.log('id==>',this.infoData.id);
+                if(!this.infoData.id){
+                    this.$toast('id为空')
+                    return;
+                }
                 this.$router.push({
                     path: '/appointment',
                     query: {
