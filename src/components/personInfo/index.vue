@@ -60,16 +60,18 @@
         <div class="item-title2"><img src="~image/icon_next_gary@2x.png" alt=""></div>
       </div>
     </div>
-    <homeAddress :is-show="homeAddressData.isShow" @sureEvent="handleHomeAddressSure" @cancelEvent="handleHomeAddressClose" @closeEvent="handleHomeAddressClose"></homeAddress>
+    <homeAddress :is-show="homeAddressData.isShow" @sureEvent="handleHomeAddressSure"
+                 @cancelEvent="handleHomeAddressClose" @closeEvent="handleHomeAddressClose"></homeAddress>
     <identityInfo :is-show="identityInfoData.isShow" @sureEvent="handleIdentitySure"></identityInfo>
-    <birthday :is-show="birthdayData.isShow" @sureEvent="handleBirthdaySure" @cancelEvent="handleBirthdayCancel" @closeEvent="handleBirthdayClose"></birthday>
+    <birthday :is-show="birthdayData.isShow" @sureEvent="handleBirthdaySure" @cancelEvent="handleBirthdayCancel"
+              @closeEvent="handleBirthdayClose"></birthday>
   </div>
 </template>
 <script>
     import identityInfo from "./identityInfo";
     import homeAddress from "./homeAddress";
     import birthday from '@/common/components/birthday';
-    import {getMyInfo,updateUserInfo} from '@/common/utils/service'
+    import {getMyInfo, updateUserInfo} from '@/common/utils/service'
 
     export default {
         name: "personInfo",
@@ -82,11 +84,11 @@
                 birthdayData: {
                     isShow: false
                 },
-                homeAddressData:{
+                homeAddressData: {
                     isShow: false
                 },
-                userInfo:{},
-                identityPeopleAction:'',  //birthday babyBirthday
+                userInfo: {},
+                identityPeopleAction: '',  //birthday babyBirthday
 
             }
         },
@@ -100,18 +102,22 @@
         },
         methods: {
             //获取自己的信息
-            async $getMyInfo(){
-                let [err,data]=await getMyInfo();
-                if(err!==null){
-                    this.$toast(err||'系统错误');
-                    return ;
-                };
-                this.userInfo=data||{};
+            async $getMyInfo() {
+                let [err, data] = await getMyInfo();
+                if (err !== null) {
+                    this.$toast(err || '系统错误');
+                    return;
+                }
+                ;
+                this.userInfo = data || {};
             },
-            handleGoUpdatePhone(){
-              this.$router.push({
-                 path:'/update-phone'
-              });
+            handleGoUpdatePhone() {
+                this.$router.push({
+                    path: '/update-phone',
+                    query: {
+                        phone: this.userInfo.phone
+                    }
+                });
             },
             handleIdentitySure() {
                 this.identityInfoData.isShow = false;
@@ -119,49 +125,66 @@
             handleShowIdentity() {
                 this.identityInfoData.isShow = true;
             },
-            handleShowBirthday(action){
-                this.identityPeopleAction=action;
-                this.birthdayData.isShow=true;
+            handleShowBirthday(action) {
+                this.identityPeopleAction = action;
+                this.birthdayData.isShow = true;
             },
-            handleShowHomeAddress(){
-                this.homeAddressData.isShow=true;
+            handleShowHomeAddress() {
+                this.homeAddressData.isShow = true;
             },
-            async handleHomeAddressSure(value){
+            async handleHomeAddressSure(value) {
                 this.$loading();
-                let [err,data]=await updateUserInfo({address:value});
-                if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
+                let [err, data] = await updateUserInfo({address: value});
+                if (err !== null) {
+                    this.$clear();
+                    this.$toast(err || '系统错误');
+                    return;
+                }
+                ;
                 this.$clear();
                 this.$toast.success('修改地址成功');
-                this.homeAddressData.isShow=false;
+                this.homeAddressData.isShow = false;
             },
-            handleHomeAddressClose(){
-                this.homeAddressData.isShow=false;
+            handleHomeAddressClose() {
+                this.homeAddressData.isShow = false;
             },
-            hideBirthday(){
-                this.birthdayData.isShow=false;
+            hideBirthday() {
+                this.birthdayData.isShow = false;
             },
-            async handleBirthdaySure(time){
-                console.log('handleBirthdaySure==>',time);
+            async handleBirthdaySure(time) {
+                console.log('handleBirthdaySure==>', time);
                 this.$loading();
-                if(this.identityPeopleAction=='birthday'){
-                    let [err,data]=await updateUserInfo({birthday:time});
-                    if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
+                if (this.identityPeopleAction == 'birthday') {
+                    let [err, data] = await updateUserInfo({birthday: time});
+                    if (err !== null) {
+                        this.$clear();
+                        this.$toast(err || '系统错误');
+                        return;
+                    }
+                    ;
                     this.$toast.success('修改生日成功');
                     this.hideBirthday();
-                    return ;
-                };
-                if(this.identityPeopleAction=='babyBirthday'){
-                    let [err,data]=await updateUserInfo({babyBirthday:time});
-                    if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
+                    return;
+                }
+                ;
+                if (this.identityPeopleAction == 'babyBirthday') {
+                    let [err, data] = await updateUserInfo({babyBirthday: time});
+                    if (err !== null) {
+                        this.$clear();
+                        this.$toast(err || '系统错误');
+                        return;
+                    }
+                    ;
                     this.$toast.success('修改生日成功');
                     this.hideBirthday();
-                    return ;
-                };
+                    return;
+                }
+                ;
             },
-            handleBirthdayCancel(){
+            handleBirthdayCancel() {
                 this.hideBirthday();
             },
-            handleBirthdayClose(){
+            handleBirthdayClose() {
                 this.hideBirthday();
             }
 
@@ -243,7 +266,8 @@
       .item-title2 {
         width: 12px;
         height: 14px;
-        img{
+
+        img {
           display: block;
           width: 100%;
           height: 100%;
