@@ -52,7 +52,7 @@
     <appointTime :nowTime="popup.nowTime" :isShow="popup.isShow" @closeEvent="handleCloseEvent('appointTime')" @cancelEvent="handleTimeCancel" @sureEvent="handleTimeSure"></appointTime>
     <appointmentSuc :is-show="appointmentSucData.isShow" @sureEvent="handleAppointSureEvent"></appointmentSuc>
     <appointmentError :is-show="appointmentErrorData.isShow" @sureEvent="handleAppointErrorSureEvent"></appointmentError>
-    <fillAddress :is-show="fillAddressData.isShow" @sureEvent="handleFillAddressSureEvent"></fillAddress>
+    <fillAddress :is-show="fillAddressData.isShow" @sureEvent="handleFillAddressSureEvent" @closeEvent="handleFillAddressCloseEvent"></fillAddress>
   </div>
 </template>
 
@@ -82,6 +82,7 @@
                     isShow:false
                 },
                 selectTime:'',
+                realTime:'',
                 selectInterviewType:1, //面试方式1到点 2上门 3视频
                 message:'',
                 itemData:{}
@@ -110,6 +111,7 @@
             },
             handleAppointSureEvent(){
                 this.appointmentSucData.isShow=false;
+                this.$router.go(-1);
             },
             handleAppointErrorSureEvent(){
                 this.appointmentErrorData.isShow=false;
@@ -122,16 +124,28 @@
             handleTimeCancel(){
                this.hidePopup();
             },
-            handleTimeSure(time){
-               console.log(time)
+            handleTimeSure(time,time2){
+               console.log(time);
+               console.log('time2==>',time2);
                this.selectTime=time;
+               this.realTime=time2;
                this.hidePopup();
             },
             handleShowTime(){
                 this.popup.nowTime=new Date().getTime();
                 this.showPopup();
             },
-            handleFillAddressSureEvent(){
+            async handleFillAddressSureEvent(value){
+                this.$loading({duration: 0,forbidClick: true,message: "提交中..."});
+                let auntId=this.$route.query.id,interviewType=this.selectInterviewType,interviewTime=this.realTime
+                    ,remark=this.message,interviewAddress=value;
+                let [err,data]=await appointInterview({auntId,interviewType,interviewTime,remark,interviewAddress});
+                if(err!==null){this.$clear();this.$toast(err||'系统错误');this.appointmentErrorData.isShow=true;;return ;};
+                this.$clear();
+                this.appointmentSucData.isShow=true;
+                this.fillAddressData.isShow=false;
+            },
+            handleFillAddressCloseEvent(){
                 this.fillAddressData.isShow=false;
             },
             handleClickInterview(type){
@@ -147,9 +161,9 @@
                     return ;
                 }
                 this.$loading({duration: 0,forbidClick: true,message: "提交中..."});
-                let authId=this.$route.query.id,interviewType=this.selectInterviewType,interviewTime=this.selectTime
+                let auntId=this.$route.query.id,interviewType=this.selectInterviewType,interviewTime=this.realTime
                     ,remark=this.message,interviewAddress='';
-                let [err,data]=await appointInterview({authId,interviewType,interviewTime,remark,interviewAddress});
+                let [err,data]=await appointInterview({auntId,interviewType,interviewTime,remark,interviewAddress});
                 if(err!==null){this.$clear();this.$toast(err||'系统错误');this.appointmentErrorData.isShow=true;;return ;};
                 this.$clear();
                 this.appointmentSucData.isShow=true;

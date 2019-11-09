@@ -39,7 +39,11 @@
         },
         methods: {
             handleSureEvent(){
-                this.$emit('sureEvent')
+                if(!this.message){
+                    this.$toast('请输入地址');
+                    return;
+                };
+                this.$emit('sureEvent',this.message)
             },
             handleInput(){
                 this.$emit('closeEvent')

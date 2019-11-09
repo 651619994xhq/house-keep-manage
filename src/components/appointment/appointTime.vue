@@ -22,7 +22,7 @@
               今天
             </div>
             <div class="title2" :class="(currentDay=='today')?'active-color':''">
-              {{today}}
+              {{today.virtual}}
             </div>
             <div class="title3" :class="(currentDay=='today')?'active-bg':''">
 
@@ -34,7 +34,7 @@
               明天
             </div>
             <div class="title2" :class="(currentDay=='tomorrow')?'active-color':''">
-              {{tomorrow}}
+              {{tomorrow.virtual}}
             </div>
             <div class="title3" :class="(currentDay=='tomorrow')?'active-bg':''">
 
@@ -45,7 +45,7 @@
               后天
             </div>
             <div class="title2" :class="(currentDay=='after-tomorrow')?'active-color':''">
-              {{afterTomorrow}}
+              {{afterTomorrow.virtual}}
             </div>
             <div class="title3" :class="(currentDay=='after-tomorrow')?'active-bg':''">
 
@@ -89,15 +89,24 @@
         computed:{
             today:function () {
                 let $time = new Date(this.nowTime);
-                return ($time.getMonth()+1) + "月" + $time.getDate()+'日'
+                return {
+                    virtual:($time.getMonth()+1) + "月" + $time.getDate()+'日',
+                    real:`${$time.getFullYear()}-${(($time.getMonth()+1)>9)?($time.getMonth()+1):('0'+($time.getMonth()+1))}-${($time.getDate()>9)?($time.getDate()):('0'+($time.getDate()))}`
+                }
             },
             tomorrow:function () {
                 let $time = new Date(this.nowTime+24*60*60*1000);
-                return ($time.getMonth()+1) + "月" + $time.getDate()+'日'
+                return {
+                    virtual: ($time.getMonth()+1) + "月" + $time.getDate()+'日',
+                    real:`${$time.getFullYear()}-${(($time.getMonth()+1)>9)?($time.getMonth()+1):('0'+($time.getMonth()+1))}-${($time.getDate()>9)?($time.getDate()):('0'+($time.getDate()))}`
+                }
             },
             afterTomorrow:function(){
                 let $time = new Date(this.nowTime+24*60*60*1000*2);
-                return ($time.getMonth()+1) + "月" + $time.getDate()+'日'
+                return {
+                    virtual:($time.getMonth()+1) + "月" + $time.getDate()+'日',
+                    real:`${$time.getFullYear()}-${(($time.getMonth()+1)>9)?($time.getMonth()+1):('0'+($time.getMonth()+1))}-${($time.getDate()>9)?($time.getDate()):('0'+($time.getDate()))}`
+                }
             },
             nowDate:function(){
                 let $time = new Date(this.nowTime);
@@ -126,17 +135,20 @@
                     this.$toast('请选择时间');
                     return;
                 }
-                let $time=''
+                let $time='',realTime=''
                 if(this.currentDay=='today'){
-                    $time=`${this.today} ${this.selectTime}:00`
+                    $time=`${this.today.virtual} ${this.selectTime}:00`;
+                    realTime=`${this.today.real} ${(this.selectTime-9>0)?this.selectTime:('0'+this.selectTime)}:00:00`;
                 };
                 if(this.currentDay=='tomorrow'){
-                    $time=`${this.tomorrow} ${this.selectTime}:00`
+                    $time=`${this.tomorrow.virtual} ${this.selectTime}:00`;
+                    realTime=`${this.tomorrow.real} ${(this.selectTime-9>0)?this.selectTime:('0'+this.selectTime)}:00:00`;
                 };
                 if(this.currentDay=='after-tomorrow'){
-                    $time=`${this.afterTomorrow} ${this.selectTime}:00`
+                    $time=`${this.afterTomorrow.virtual} ${this.selectTime}:00`
+                    realTime=`${this.afterTomorrow.real} ${(this.selectTime-9>0)?this.selectTime:('0'+this.selectTime)}:00:00`;
                 };
-                this.$emit('sureEvent',$time);
+                this.$emit('sureEvent',$time,realTime);
             },
             handleInput() {
                 this.$emit('closeEvent');
