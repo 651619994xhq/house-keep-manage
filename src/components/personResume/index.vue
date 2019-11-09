@@ -185,31 +185,31 @@
 <script>
     import resume from '@/common/components/resume/index';
     import userEvaluate from "./userEvaluate";
-    import {getEmployeeInfo,collect,deleteCollect} from '@/common/utils/service';
+    import {getEmployeeInfo, collect, deleteCollect} from '@/common/utils/service';
 
     export default {
         name: "personResume",
         data() {
             return {
-                apponitPopupData:{
-                    isShow:false
+                apponitPopupData: {
+                    isShow: false
                 },
-                evaluateData:{
-                    isShow:false
+                evaluateData: {
+                    isShow: false
                 },
-                comments:[], //评论
-                isMoonWoman:true,
-                resumeData:{
-                    name:'',
-                    salary:'',
-                    oneSentenceEvaluation:'',
-                    age:'',
-                    workYear:'',
-                    nativePlace:'',
-                    education:''
+                comments: [], //评论
+                isMoonWoman: true,
+                resumeData: {
+                    name: '',
+                    salary: '',
+                    oneSentenceEvaluation: '',
+                    age: '',
+                    workYear: '',
+                    nativePlace: '',
+                    education: ''
                 },
-                infoData:{},
-                isCollection:false
+                infoData: {},
+                isCollection: false
 
 
             }
@@ -225,46 +225,65 @@
         },
 //一些自定义方法
         methods: {
-            async $getEmployeeInfo(){
-                let id=this.$route.query.id;
+            async $getEmployeeInfo() {
+                let id = this.$route.query.id;
                 this.$loading();
-                let [err,data]=await getEmployeeInfo({id});
-                if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
+                let [err, data] = await getEmployeeInfo({id});
+                if (err !== null) {
+                    this.$toast(err || '系统错误');
+                    this.$clear();
+                    return;
+                }
+                ;
                 this.initWithData(data);
                 this.$clear();
             },
-            initWithData(data){
-                this.comments=data.comments||[];
-                this.resumeData=data||[];
-                this.infoData=data||{};
-                this.isCollection=(this.infoData.isCollection==1)?true:false;
+            initWithData(data) {
+                this.comments = data.comments || [];
+                this.resumeData = data || [];
+                this.infoData = data || {};
+                this.isCollection = (this.infoData.isCollection == 1) ? true : false;
             },
-            handleClickAppoint(){
+            handleClickAppoint() {
                 this.$router.push({
-                    path:'/appointment',
-                    query:{
-                        id:this.infoData.id
+                    path: '/appointment',
+                    query: {
+                        id: this.infoData.id
                     }
                 })
             },
-            handleClickSchedule(){
+            handleClickSchedule() {
                 this.$router.push({
-                   path:'/schedule'
+                    path: '/schedule',
+                    query: {
+                        id: this.infoData.id
+                    }
                 });
             },
-            async handleCollectEvent(){
-                this.$loading({duration: 0,forbidClick: true,message: ""})
-                if(!this.isCollection){
-                    let [err,data]=await collect({employeeId:this.infoData.id});
-                    if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
-                    this.isCollection=true;
+            async handleCollectEvent() {
+                this.$loading({duration: 0, forbidClick: true, message: ""})
+                if (!this.isCollection) {
+                    let [err, data] = await collect({employeeId: this.infoData.id});
+                    if (err !== null) {
+                        this.$clear();
+                        this.$toast(err || '系统错误');
+                        return;
+                    }
+                    ;
+                    this.isCollection = true;
                     this.$clear();
                     this.$toast.success('已收藏');
-                    return ;
-                };
-                let [err,data]=await deleteCollect({employeeIds:[this.infoData.id]});
-                if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
-                this.isCollection=false;
+                    return;
+                }
+                ;
+                let [err, data] = await deleteCollect({employeeIds: [this.infoData.id]});
+                if (err !== null) {
+                    this.$clear();
+                    this.$toast(err || '系统错误');
+                    return;
+                }
+                ;
+                this.isCollection = false;
                 this.$clear();
                 this.$toast.success('已取消');
             }
@@ -277,6 +296,7 @@
   .container {
     width: 100%;
   }
+
   .job-intention {
     background: $white;
     width: 100%;
@@ -293,7 +313,8 @@
         margin-right: 10px;
         width: 20px;
         height: 20px;
-        img{
+
+        img {
           display: block;
           width: 100%;
           height: 100%;
@@ -350,6 +371,7 @@
     .item4 {
       width: 100%;
       height: 24px;
+
       .item-title {
         margin-left: 16px;
         font-size: 13px;
@@ -390,7 +412,6 @@
   }
 
 
-
   .work-info {
     /*margin-top: 10px;*/
     min-height: 153px;
@@ -408,7 +429,8 @@
         margin-right: 10px;
         width: 20px;
         height: 20px;
-        img{
+
+        img {
           display: block;
           width: 100%;
           height: 100%;
@@ -454,7 +476,8 @@
         margin-right: 10px;
         width: 20px;
         height: 20px;
-        img{
+
+        img {
           display: block;
           width: 100%;
           height: 100%;
@@ -499,7 +522,8 @@
         margin-right: 10px;
         width: 20px;
         height: 20px;
-        img{
+
+        img {
           display: block;
           width: 100%;
           height: 100%;
@@ -554,60 +578,68 @@
     box-sizing: border-box;
     height: 70px;
     background: $white;
-    .left{
+
+    .left {
       width: 40px;
       height: 70px;
-      .item-icon{
+
+      .item-icon {
         margin-left: 4px;
         width: 18px;
         height: 18px;
-        img{
+
+        img {
           display: block;
           width: 100%;
           height: 100%;
         }
       }
-      .text{
+
+      .text {
         margin-top: 6px;
-        height:17px;
-        font-size:12px;
-        font-family:PingFangSC-Regular,PingFang SC;
-        font-weight:400;
-        color:rgba(59,68,92,1);
-        line-height:17px;
+        height: 17px;
+        font-size: 12px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: rgba(59, 68, 92, 1);
+        line-height: 17px;
         white-space: nowrap;
       }
     }
-    .right{
+
+    .right {
       width: 296px;
       height: 42px;
       border-radius: 42px;
       overflow: hidden;
-      .left-btn{
-        background:linear-gradient(327deg,rgba(201,141,253,1) 0%,rgba(250,119,166,1) 100%);
+
+      .left-btn {
+        background: linear-gradient(327deg, rgba(201, 141, 253, 1) 0%, rgba(250, 119, 166, 1) 100%);
         line-height: 42px;
-        font-size:16px;
-        font-family:PingFangSC-Regular,PingFang SC;
-        font-weight:400;
-        color:rgba(255,255,255,1);
+        font-size: 16px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 1);
         text-align: center;
       }
-      .right-btn{
-        background:linear-gradient(323deg,rgba(237,119,250,1) 0%,rgba(150,141,253,1) 100%);
+
+      .right-btn {
+        background: linear-gradient(323deg, rgba(237, 119, 250, 1) 0%, rgba(150, 141, 253, 1) 100%);
         line-height: 42px;
-        font-size:16px;
-        font-family:PingFangSC-Regular,PingFang SC;
-        font-weight:400;
-        color:rgba(255,255,255,1);
+        font-size: 16px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 1);
         text-align: center;
       }
-      .mid-btn{
-        background:linear-gradient(328deg,rgba(201,141,253,1) 0%,rgba(250,119,119,1) 100%);
+
+      .mid-btn {
+        background: linear-gradient(328deg, rgba(201, 141, 253, 1) 0%, rgba(250, 119, 119, 1) 100%);
         line-height: 42px;
-        font-size:16px;
-        font-family:PingFangSC-Regular,PingFang SC;
-        font-weight:400;
-        color:rgba(255,255,255,1);
+        font-size: 16px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 1);
         text-align: center;
       }
     }

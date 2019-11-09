@@ -8,7 +8,7 @@
 <script>
     import resume from '@/common/components/resume/index';
     import date from '@/common/components/date/index';
-    import {getEmployeeInfo} from '@/common/utils/service'
+    import {getOccupyTime} from '@/common/utils/service'
 
     export default {
         name: "orderDetail",
@@ -23,19 +23,20 @@
         },
 //初始化数据
         created() {
-            this.$getEmployeeInfo();
+            this.$getOccupyTime();
         },
 //一些自定义方法
         methods: {
-            async $getEmployeeInfo(){
+            async $getOccupyTime(){
+                let id=this.$route.query.id;
                 this.$loading();
-                let [err,data]=await getEmployeeInfo({id:1});
+                let [err,data]=await getOccupyTime({auntId:id});
                 if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
                 this.initWithData(data);
                 this.$clear();
             },
             initWithData(data){
-
+                console.log('data==>',data);
             }
 
         }

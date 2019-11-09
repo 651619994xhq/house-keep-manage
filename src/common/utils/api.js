@@ -15,8 +15,8 @@ export default {
   CANCEL_INTERVIEW:'api/order/cancelInterview',//取消预约
   UPDATE_USER_INFO:'/api/user/updateUserInfo', //更新用户信息
   GET_EMPLOYEE_BASE_INFO:'/api/employee/employeeBaseInfo', // 获取阿姨基本信息
-  1:'1',//预约面试时间
-  2:'2',//预约面试
+  GET_OCCUPY_TIME:'api/order/occupyTime',//预约面试时间
+  APPOINT_INTERVIEW:'/api/order/appointmentInterview',//预约面试
   ADD_COMMENTS:'/api/comments/add', //雇主添加评论
   3:'3', //签约
 

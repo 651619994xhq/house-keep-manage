@@ -97,3 +97,13 @@ export const getEmployeeBaseInfo=(param={})=>{
   let auntId=param.auntId?param.auntId:'';
   return awaitWrap(axios.post(api.GET_EMPLOYEE_BASE_INFO,{auntId}))
 };
+//获取预约面试时间
+export const getOccupyTime=(param={})=>{
+  let auntId=param.auntId?param.auntId:'';
+  return awaitWrap(axios.post(api.GET_OCCUPY_TIME,{auntId}))
+};
+//预约面试
+export const appointInterview=(param={})=>{
+  let auntId=param.auntId?param.auntId:'',interviewType=param.interviewType?param.interviewType:'',interviewTime=param.interviewTime?param.interviewTime:'',remark=param.remark?param.remark:'',interviewAddress=param.interviewAddress?param.interviewAddress:'';
+  return awaitWrap(axios.post(api.APPOINT_INTERVIEW,{auntId,interviewType,interviewTime,remark,interviewAddress}));
+};
