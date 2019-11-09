@@ -40,7 +40,7 @@
           <div style="width: 100%;text-align: center;color: #9c9c9c;margin-top: 80px" v-if="list3.length==0">没有更多数据了</div>
         </swiper-slide>
         <swiper-slide class="switch-item">
-          <staffInfo2 v-for="(item,index) in moreList" :key="index" :itemInfo="item"></staffInfo2>
+          <staffInfo2 v-for="(item,index) in moreList" :key="index" :itemInfo="item" @appointEvent="handleShowService"></staffInfo2>
 <!--          <div style="width: 100%;text-align: center;color: #9c9c9c;margin-top: 80px" v-if="list4.length==0">没有更多数据了</div>-->
         </swiper-slide>
       </swiper>
@@ -214,14 +214,14 @@
                     return ;
                 }
                 if(this.nowIndex==3){
-                    let [err4,data4]=await getEmployeeList({type:4,pageNum:this.page.currentMorePage});
-                    if(err4!==null){this.$toast(err4||'系统错误');this.$clear();return ;};
-                    let list=data4.list||[];
-                    if(list.length==0){this.$clear();this.finish=true;return ;};
-                    this.list4=[...this.list4,...list];
-                    this.page.currentMorePage+=1;
-                    // this.load.loading=false;
-                    this.$clear();
+                    // let [err4,data4]=await getEmployeeList({type:4,pageNum:this.page.currentMorePage});
+                    // if(err4!==null){this.$toast(err4||'系统错误');this.$clear();return ;};
+                    // let list=data4.list||[];
+                    // if(list.length==0){this.$clear();this.finish=true;return ;};
+                    // this.list4=[...this.list4,...list];
+                    // this.page.currentMorePage+=1;
+                    // // this.load.loading=false;
+                    // this.$clear();
                     return ;
                 }
             },
@@ -261,14 +261,14 @@
                     return ;
                 }
                 if(this.nowIndex==3){
-                    if(this.list4.length>0){return;};
-                    this.$loading();
-                    let [err4,data4]=await getEmployeeList({type:4,pageNum:1});
-                    if(err4!==null){this.$toast(err4||'系统错误');this.$clear();return ;};
-                    let list=data4.list||[];
-                    this.list4=[...list];
-                    this.page.currentMorePage=1;
-                    this.$clear();
+                    // if(this.list4.length>0){return;};
+                    // this.$loading();
+                    // let [err4,data4]=await getEmployeeList({type:4,pageNum:1});
+                    // if(err4!==null){this.$toast(err4||'系统错误');this.$clear();return ;};
+                    // let list=data4.list||[];
+                    // this.list4=[...list];
+                    // this.page.currentMorePage=1;
+                    // this.$clear();
                     return ;
                 }
 
@@ -352,6 +352,9 @@
             },
             serviceCloseEvent(){
                 this.serviceData.isShow=false;
+            },
+            handleShowService(){
+                this.serviceData.isShow=true;
             }
 
 

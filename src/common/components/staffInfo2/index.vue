@@ -21,9 +21,9 @@
           <div class="item" @click="handleClickAppoint">
               立即预约
           </div>
-          <div class="item2" @click="handleClickLookDetail">
-              查看详情
-          </div>
+<!--          <div class="item2" @click="handleClickLookDetail">-->
+<!--              查看详情-->
+<!--          </div>-->
         </div>
     </div>
 </template>
@@ -52,11 +52,11 @@
         handleClickAppoint(){
             this.$emit('appointEvent')
         },
-        handleClickLookDetail(){
-            this.$router.push({
-                path:'/person-resume'
-            });
-        }
+        // handleClickLookDetail(){
+        //     this.$router.push({
+        //         path:'/person-resume'
+        //     });
+        // }
     }
   }
 </script>
@@ -140,6 +140,7 @@
             font-family:PingFangSC-Regular,PingFangSC;
             font-weight:400;
             color:rgba(255,255,255,1);
+            box-sizing: border-box;
         }
         .item2{
             width:72px;
@@ -155,6 +156,7 @@
             background:linear-gradient(338deg, rgba(201,141,253,1) 0%, rgba(250,119,119,1) 100%);
             -webkit-background-clip:text;
             -webkit-text-fill-color:transparent;
+            box-sizing: border-box;
         }
     }
 }

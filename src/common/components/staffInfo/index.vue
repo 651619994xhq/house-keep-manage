@@ -30,7 +30,7 @@
         {{itemInfo.age||'0'}}岁 | {{itemInfo.nativePlace || '国籍未知'}} | 从业{{itemInfo.workYear||'0'}}年
       </div>
       <div class="item3 row flex-item flex-justify-start wrap">
-        <div class="item-3" v-for="(item,index) in (itemInfo.labelStr||['细心'])" :key="index">
+        <div class="item-3" v-for="(item,index) in (itemInfo.labelList||['暂无'])" :key="index">
           {{item}}
         </div>
       </div>

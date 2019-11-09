@@ -164,7 +164,8 @@
                     nativePlace:'',
                     education:''
                 },
-                infoData:{}
+                infoData:{},
+
 
             }
         },
@@ -204,7 +205,7 @@
             },
             async handleCollectEvent(){
                 this.$loading({duration: 0,forbidClick: true,message: ""})
-                let [err,data]=await collect();
+                let [err,data]=await collect({employeeId:this.infoData.id});
                 if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
                 this.$clear();
             }
