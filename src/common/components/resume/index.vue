@@ -181,6 +181,7 @@
                         font-family:PingFangSC-Regular,PingFangSC;
                         font-weight:400;
                         color:rgba(3,8,24,1);
+                        white-space : nowrap
                     }
                     .item-3-title2{
                         margin-top: 2px;

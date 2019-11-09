@@ -1,52 +1,7 @@
 <template>
   <div class="container">
-    <resume></resume>
-<!--    <div class="order-item">-->
-<!--      <div class="item1 row flex-item flex-justify-between">-->
-<!--        <div class="row flex-item flex-justify-start">-->
-<!--          <div class="item-icon">-->
-<!--            <img src="~image/work@2x.png" alt="">-->
-<!--          </div>-->
-<!--          <div class="occupation">-->
-<!--            面试信息-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        &lt;!&ndash;          <div class="common-status item-status">&ndash;&gt;-->
-<!--        &lt;!&ndash;             待面试&ndash;&gt;-->
-<!--        &lt;!&ndash;          </div>&ndash;&gt;-->
-<!--        &lt;!&ndash;          <div class="common-status item-status1">&ndash;&gt;-->
-<!--        &lt;!&ndash;            面试结束&ndash;&gt;-->
-<!--        &lt;!&ndash;          </div>&ndash;&gt;-->
-<!--        <div class="common-status item-status2">-->
-<!--          待签约-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="item3 row flex-item flex-justify-start">-->
-<!--        <div class="item-title">-->
-<!--          面试方式：-->
-<!--        </div>-->
-<!--        <div class="content">-->
-<!--          上门面试-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="item3 row flex-item flex-justify-start">-->
-<!--        <div class="item-title">-->
-<!--          面试时间：-->
-<!--        </div>-->
-<!--        <div class="content">-->
-<!--          2019-09-09-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="item4 row flex-item flex-justify-start">-->
-<!--        <div class="item-title">-->
-<!--          面试地点：-->
-<!--        </div>-->
-<!--        <div class="content">-->
-<!--          广东省广州市天河区XXXXXX-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-    <div class="work-info">
+    <resume :itemInfo="resumeData"></resume>
+    <div class="work-info" v-if="infoData.personIntroduce">
       <div class="item1 row flex-item flex-justify-start">
         <div class="item1-icon">
           <img src="~image/work@2x.png" alt="">
@@ -56,10 +11,10 @@
         </div>
       </div>
       <div class="info">
-        从业经验丰富，照顾过早产儿。有丰富的产后调理经验， 可协助孕妈的身材尽快恢复。 性格乐观，爱干净。 最多500个汉字
+        {{infoData.personIntroduce}}
       </div>
     </div>
-    <div class="home-info">
+    <div class="home-info" v-if="infoData.familySituation">
       <div class="item1 row flex-item flex-justify-start">
         <div class="item1-icon">
           <img src="~image/home@2x.png" alt="">
@@ -69,7 +24,7 @@
         </div>
       </div>
       <div class="info">
-        爱人工作情况，子女情况，最多展示两行
+        {{infoData.familySituation}}
       </div>
     </div>
     <div class="certificate-info">
@@ -199,7 +154,18 @@
                     isShow:false
                 },
                 comments:[], //评论
-                isMoonWoman:true
+                isMoonWoman:true,
+                resumeData:{
+                    name:'',
+                    salary:'',
+                    oneSentenceEvaluation:'',
+                    age:'',
+                    workYear:'',
+                    nativePlace:'',
+                    education:''
+                },
+                infoData:{}
+
             }
         },
 //组件
@@ -214,14 +180,17 @@
 //一些自定义方法
         methods: {
             async $getEmployeeInfo(){
+                let id=this.$route.query.id;
                 this.$loading();
-                let [err,data]=await getEmployeeInfo({id:1});
+                let [err,data]=await getEmployeeInfo({id});
                 if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
                 this.initWithData(data);
                 this.$clear();
             },
             initWithData(data){
                 this.comments=data.comments||[];
+                this.resumeData=data||[];
+                this.infoData=data||{};
             },
             handleClickAppoint(){
                 this.$router.push({
