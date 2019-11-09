@@ -70,7 +70,14 @@ export const updatePhone=(param={})=>{
 //跟新用户信息
 export const updateUserInfo=(param={})=>{
   let babyBirthday=param.babyBirthday?param.babyBirthday:'',birthday=param.birthday?param.birthday:'',identityType=param.identityType?param.identityType:'',address=param.address?param.address:'';
-  return awaitWrap(axios.post(api.UPDATE_USER_INFO,{babyBirthday,birthday,identityType,address}))
+  let $param={babyBirthday,birthday,identityType,address};
+  let _param={};
+  for(let i in $param){
+    if($param[i]){
+      _param[i]=$param[i];
+    }
+  }
+  return awaitWrap(axios.post(api.UPDATE_USER_INFO,{..._param}))
 };
 //我的订单列表
 export const getMyOrderList=(param={})=>{

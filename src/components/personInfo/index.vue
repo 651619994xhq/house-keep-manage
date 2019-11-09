@@ -46,7 +46,7 @@
         您的生日
       </div>
       <div class="title2 row flex-item flex-justify-between">
-        <div class="item-title1">{{userInfo.birthday}}</div>
+        <div class="item-title1">{{userInfo.birthday.split(' ')[0]}}</div>
         <div class="item-title2"><img src="~image/icon_next_gary@2x.png" alt=""></div>
       </div>
     </div>
@@ -56,7 +56,7 @@
         您宝贝的生日
       </div>
       <div class="title2 row flex-item flex-justify-between">
-        <div class="item-title1">{{userInfo.babyBirthday}}</div>
+        <div class="item-title1">{{userInfo.babyBirthday.split(' ')[0]}}</div>
         <div class="item-title2"><img src="~image/icon_next_gary@2x.png" alt=""></div>
       </div>
     </div>
@@ -88,7 +88,7 @@
                     isShow: false
                 },
                 userInfo: {},
-                identityType:'',
+                identityType:0,
                 identityPeopleAction: '',  //birthday babyBirthday
 
             }
@@ -121,9 +121,15 @@
                     }
                 });
             },
-            handleIdentitySure(type) {
+            async handleIdentitySure(type) {
+                this.$loading();
+                let [err, data] = await updateUserInfo({identityType: type});
+                if (err !== null) {this.$clear();this.$toast(err || '系统错误');return;};
+                this.$toast.success('修改身份成功');
                 this.identityType=type;
                 this.identityInfoData.isShow = false;
+                this.$getMyInfo();
+
             },
             handleIdentityClose(){
                 this.identityInfoData.isShow=false;
