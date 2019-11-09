@@ -240,7 +240,7 @@
                 this.$router.push({
                     path: '/sign-contract',
                     query: {
-                        id: this.infoData.id
+                        id: this.infoData.employeeId
                     }
                 });
             },

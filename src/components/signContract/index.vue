@@ -50,6 +50,7 @@
 <script>
     import resume from '@/common/components/resume/index';
     import servicePeriod from "./servicePeriod";
+    import {getEmployeeBaseInfo} from '@/common/utils/service'
 
     export default {
         name: "signContract",
@@ -116,7 +117,7 @@
         },
 //初始化数据
         created() {
-            console.log(123);
+            this.$getEmployeeBaseInfo();
         },
 //一些自定义方法
         methods: {
@@ -144,6 +145,19 @@
             },
             handleServicePeriodClose() {
                 this.servicePeriodData.isShow = false;
+            },
+            async $getEmployeeBaseInfo(){
+                let id=this.$route.query.id;
+                this.$loading();
+                let [err,data]=await getEmployeeBaseInfo({auntId:id});
+                if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
+                this.initWithData(data);
+                this.$clear();
+
+            },
+            initWithData(data){
+                this.itemInfo=data||{};
+                console.log(this.itemData)
             }
 
         }
