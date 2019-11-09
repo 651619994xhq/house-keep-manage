@@ -40,8 +40,7 @@
           <div style="width: 100%;text-align: center;color: #9c9c9c;margin-top: 80px" v-if="list3.length==0">没有更多数据了</div>
         </swiper-slide>
         <swiper-slide class="switch-item">
-          <staffInfo2></staffInfo2>
-          <staffInfo2></staffInfo2>
+          <staffInfo2 v-for="(item,index) in moreList" :key="index" :itemInfo="item"></staffInfo2>
 <!--          <div style="width: 100%;text-align: center;color: #9c9c9c;margin-top: 80px" v-if="list4.length==0">没有更多数据了</div>-->
         </swiper-slide>
       </swiper>
@@ -115,6 +114,16 @@
                 list2: [], //育儿嫂列表
                 list3: [], //保姆列表
                 list4: [], //更多列表
+                moreList:[
+                    {
+                        workName:'小时工',
+                        workInfo:'小时工，打扫卫生，做饭，接送孩子，简单保洁，定时或者不定时的为雇主按小时的提供家政服务'
+                    },
+                    {
+                        workName: '催乳师',
+                        workInfo: '催乳师就是通过催乳技术即按摩手法，为产妇解决产后无乳、乳少等症状的专业护理人员'
+                    }
+                ], //更多列表 暂时前端写死
                 page: {
                     currentMoonWomanPage: 1,  //月嫂
                     currentChildRearingPage: 1, //育儿嫂

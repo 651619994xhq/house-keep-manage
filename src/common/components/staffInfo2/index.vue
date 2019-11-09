@@ -9,10 +9,10 @@
            </div>
             <div class="info col flex-item-start flex-justify-start">
                 <div class="name">
-                      小时工
+                  {{itemInfo.workName}}
                 </div>
                 <div class="content">
-                    小时工服务介绍，提供服务类型。服务专业度介绍等。小时工服务介绍，提供服务类型…
+                  {{itemInfo.workInfo}}
                 </div>
 
             </div>
@@ -32,6 +32,12 @@
   //首页列表2
   export default {
     name: 'staffInfo2',
+    props:{
+      itemInfo:{
+          type:Object,
+          default:{}
+      }
+    },
     data () {
       return {}
     },
@@ -44,9 +50,7 @@
 //一些自定义方法
     methods: {
         handleClickAppoint(){
-            this.$router.push({
-                path:'/appointment'
-            });
+            this.$emit('appointEvent')
         },
         handleClickLookDetail(){
             this.$router.push({
