@@ -241,7 +241,10 @@
             },
             handleClickAppoint(){
                 this.$router.push({
-                    path:'/appointment'
+                    path:'/appointment',
+                    query:{
+                        id:this.infoData.id
+                    }
                 })
             },
             handleClickSchedule(){

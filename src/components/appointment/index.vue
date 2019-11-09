@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <resume></resume>
+    <resume :itemInfo="itemData"></resume>
     <div class="interview-container col flex-item-start flex-justify-start">
       <div class="title">
         请选择面试方式
@@ -62,6 +62,7 @@
     import appointmentSuc from "./appointmentSuc";
     import appointmentError from "./appointmentError";
     import fillAddress from "./fillAddress";
+    import {getEmployeeBaseInfo} from '@/common/utils/service'
 
     export default {
         name: "apponitment",
@@ -83,6 +84,7 @@
                 selectTime:'',
                 selectInterviewType:1, //面试方式1到点 2上门 3视频
                 message:'',
+                itemData:{}
 
             }
         },
@@ -96,7 +98,7 @@
         },
 //初始化数据
         created() {
-           console.log(123);
+           this.$getEmployeeBaseInfo();
         },
 //一些自定义方法
         methods: {
@@ -144,6 +146,18 @@
                 }
                 this.$loading({duration: 0,forbidClick: true,message: "提交中..."});
 
+            },
+            async $getEmployeeBaseInfo(){
+                let id=this.$route.query.id;
+                this.$loading();
+                let [err,data]=await getEmployeeBaseInfo({auntId:id});
+                if(err!==null){this.$toast(err||'系统错误');this.$clear();};
+                this.initWithData(data);
+                this.$clear();
+            },
+            initWithData(data){
+                this.itemData=data||{};
+                console.log(this.itemData)
             }
 
         }

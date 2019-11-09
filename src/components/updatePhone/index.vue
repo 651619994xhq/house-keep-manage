@@ -28,6 +28,7 @@
 
 <script>
     import {updatePhone,sendUpdatePhoneCode} from '@/common/utils/service'
+    import md5 from 'js-md5';
     export default {
         name: "updatePhone",
         data() {
@@ -44,7 +45,8 @@
         components: {},
 //初始化数据
         created() {
-
+         let a=   md5('phone:17600297417&time:1573277968766&type:1');
+         console.log('aaaa=>',a)
         },
         destroyed(){
             this.clearTimer();
