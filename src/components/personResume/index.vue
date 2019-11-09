@@ -97,13 +97,13 @@
     </div>
     <userEvaluate :comments="comments"></userEvaluate>
 
-    <div class="submit-container row flex-item flex-justify-between" v-if="isMoonWoman">
+    <div class="submit-container row flex-item flex-justify-between" v-if="infoData.type==1">
       <div class="left col flex-item-start flex-justify" @click="handleCollectEvent">
         <div class="item-icon">
-          <img src="~image/Collection@2x.png" alt="">
+          <img src="~image/Collection@2x.png" alt="" v-if="!isCollection">
         </div>
         <div class="text">
-          收藏
+          {{isCollection?'取消':'收藏'}}
         </div>
 
       </div>
@@ -121,10 +121,10 @@
     <div class="submit-container row flex-item flex-justify-between" v-else>
       <div class="left col flex-item-start flex-justify" @click="handleCollectEvent">
         <div class="item-icon">
-          <img src="~image/Collection@2x.png" alt="">
+          <img src="~image/Collection@2x.png" alt="" v-if="!isCollection">
         </div>
         <div class="text">
-          收藏
+          {{isCollection?'取消':'收藏'}}
         </div>
 
       </div>
@@ -165,6 +165,7 @@
                     education:''
                 },
                 infoData:{},
+                isCollection:false
 
 
             }
@@ -192,6 +193,7 @@
                 this.comments=data.comments||[];
                 this.resumeData=data||[];
                 this.infoData=data||{};
+                this.isCollection=(this.infoData.isCollection==1)?true:false;
             },
             handleClickAppoint(){
                 this.$router.push({
@@ -205,9 +207,19 @@
             },
             async handleCollectEvent(){
                 this.$loading({duration: 0,forbidClick: true,message: ""})
-                let [err,data]=await collect({employeeId:this.infoData.id});
+                if(!this.isCollection){
+                    let [err,data]=await collect({employeeId:this.infoData.id});
+                    if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
+                    this.isCollection=true;
+                    this.$clear();
+                    this.$toast.success('已收藏');
+                    return ;
+                };
+                let [err,data]=await deleteCollect({employeeIds:[this.infoData.id]});
                 if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
+                this.isCollection=false;
                 this.$clear();
+                this.$toast.success('已取消');
             }
 
         }
@@ -402,6 +414,7 @@
         font-weight:400;
         color:rgba(59,68,92,1);
         line-height:17px;
+        white-space: nowrap;
       }
     }
     .right{
