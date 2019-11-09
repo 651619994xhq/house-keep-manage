@@ -62,7 +62,7 @@
     import appointmentSuc from "./appointmentSuc";
     import appointmentError from "./appointmentError";
     import fillAddress from "./fillAddress";
-    import {getEmployeeBaseInfo} from '@/common/utils/service'
+    import {getEmployeeBaseInfo,appointInterview} from '@/common/utils/service'
 
     export default {
         name: "apponitment",
@@ -123,6 +123,7 @@
                this.hidePopup();
             },
             handleTimeSure(time){
+               console.log(time)
                this.selectTime=time;
                this.hidePopup();
             },
@@ -136,24 +137,32 @@
             handleClickInterview(type){
                 this.selectInterviewType=type;
             },
-            handleSubmit(){
+            async handleSubmit(){
                 if(!this.selectTime){
                     this.$toast('请选择预约时间');
                     return
                 };
                 if(this.selectInterviewType==2){
                     this.fillAddressData.isShow=true;
+                    return ;
                 }
                 this.$loading({duration: 0,forbidClick: true,message: "提交中..."});
+                let authId=this.$route.query.id,interviewType=this.selectInterviewType,interviewTime=this.selectTime
+                    ,remark=this.message,interviewAddress='';
+                let [err,data]=await appointInterview({authId,interviewType,interviewTime,remark,interviewAddress});
+                if(err!==null){this.$clear();this.$toast(err||'系统错误');this.appointmentErrorData.isShow=true;;return ;};
+                this.$clear();
+                this.appointmentSucData.isShow=true;
 
             },
             async $getEmployeeBaseInfo(){
                 let id=this.$route.query.id;
                 this.$loading();
                 let [err,data]=await getEmployeeBaseInfo({auntId:id});
-                if(err!==null){this.$toast(err||'系统错误');this.$clear();};
+                if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
                 this.initWithData(data);
                 this.$clear();
+
             },
             initWithData(data){
                 this.itemData=data||{};

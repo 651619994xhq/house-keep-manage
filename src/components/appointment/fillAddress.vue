@@ -72,6 +72,7 @@
 
       .title2 {
         margin-top: 6px;
+        padding: 2px;
         width: 216px;
         height: 48px;
         border: 1px solid #868687;
