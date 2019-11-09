@@ -17,8 +17,8 @@
         <!--          <div class="common-status item-status1">-->
         <!--            面试结束-->
         <!--          </div>-->
-        <div class="common-status item-status2">
-          {{infoData.status | ORDER_STATUS_FILTER}}
+        <div class="common-status item-status2" @click="handleShowCancelInterview">
+          {{infoData.status | ORDER_DETAIL_STATUS_FILTER}}
         </div>
       </div>
       <div class="item3 row flex-item flex-justify-start">
@@ -143,45 +143,46 @@
 
     <div class="submit-container col flex-item flex-justify" @click="handleSubmit">
       <div class="submit-btn">
-        立即预约
+        立即签约
       </div>
     </div>
-<!--    <div class="submit-container col flex-item flex-justify" @click="handleSubmit2">-->
-<!--      <div class="submit-btn2">-->
-<!--        <div class="box">-->
-<!--          <span class="purple-color">去评价</span>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-    <apponitPopup :is-show="apponitPopupData.isShow"></apponitPopup>
-    <evaluate :is-show="evaluateData.isShow" @cancelEvent="handleEvaluateCancel" @closeEvent="handleEvaluateClose" @sureEvent="handleEvaluateSure"></evaluate>
+    <!--    <div class="submit-container col flex-item flex-justify" @click="handleSubmit2">-->
+    <!--      <div class="submit-btn2">-->
+    <!--        <div class="box">-->
+    <!--          <span class="purple-color">去评价</span>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <cancelApponitPopup :is-show="cancelApponitPopup.isShow" @cancelEvent="handleCancelApponitCancel" @sureEvent="handleCancelApponitSure" @closeEvent="handleCancelApponitCancel"></cancelApponitPopup>
+    <evaluate :is-show="evaluateData.isShow" @cancelEvent="handleEvaluateCancel" @closeEvent="handleEvaluateClose"
+              @sureEvent="handleEvaluateSure"></evaluate>
   </div>
 </template>
 
 <script>
     import resume from '@/common/components/resume/index';
-    import apponitPopup from "./apponitPopup";
+    import cancelApponitPopup from "./cancelApponitPopup";
     import evaluate from "./evaluate";
-    import {getOrderDetail,cancelInterview,addComments} from '@/common/utils/service'
+    import {getOrderDetail, cancelInterview, addComments} from '@/common/utils/service'
 
     export default {
         name: "orderDetail",
         data() {
             return {
-                apponitPopupData:{
-                    isShow:false
+                cancelApponitPopup: {
+                    isShow: false
                 },
-                evaluateData:{
-                    isShow:false
+                evaluateData: {
+                    isShow: false
                 },
-                itemInfo:{},
-                infoData:{},
+                itemInfo: {},
+                infoData: {},
             }
         },
 //组件
         components: {
             resume,
-            apponitPopup,
+            cancelApponitPopup,
             evaluate
         },
 //初始化数据
@@ -190,44 +191,77 @@
         },
 //一些自定义方法
         methods: {
-            async $getOrderDetail(){
-                let orderId=this.$route.query.id;
+            async $getOrderDetail() {
+                let orderId = this.$route.query.id;
                 this.$loading();
-                let [err,data]=await getOrderDetail({orderId});
-                if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
+                let [err, data] = await getOrderDetail({orderId});
+                if (err !== null) {
+                    this.$toast(err || '系统错误');
+                    this.$clear();
+                    return;
+                }
+                ;
                 this.initWithData(data);
                 this.$clear();
             },
-            initWithData(data){
-                let $data=data||{};
-                let name=$data.employeeName;
-                $data.name=name;
-                this.itemInfo=$data;
-                this.infoData=$data;
+            initWithData(data) {
+                let $data = data || {};
+                let name = $data.employeeName;
+                $data.name = name;
+                this.itemInfo = $data;
+                this.infoData = $data;
             },
-            handleEvaluateCancel(){
-                this.evaluateData.isShow=false;
+            handleEvaluateCancel() {
+                this.evaluateData.isShow = false;
             },
-            handleEvaluateClose(){
-                this.evaluateData.isShow=false;
+            handleEvaluateClose() {
+                this.evaluateData.isShow = false;
             },
-            async handleEvaluateSure(content){
-                console.log('content==>',content);
+            async handleEvaluateSure(content) {
+                console.log('content==>', content);
                 this.$loading();
-                let [err,data]=await addComments({employeeId:'',comment:content.text,starClass:content.star});
-                if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
+                let [err, data] = await addComments({employeeId: '', comment: content.text, starClass: content.star});
+                if (err !== null) {
+                    this.$toast(err || '系统错误');
+                    this.$clear();
+                    return;
+                }
+                ;
                 this.$toast('提价评论成功');
                 this.$clear();
-                this.evaluateData.isShow=false;
+                this.evaluateData.isShow = false;
             },
-            handleSubmit(){
-                 this.$router.push({
-                    path:'/appointment'
-                 });
+            handleSubmit() {
+                if (!this.infoData.id) {
+                    this.$toast('缺少id');
+                    return;
+                }
+                ;
+                this.$router.push({
+                    path: '/sign-contract',
+                    query: {
+                        id: this.infoData.id
+                    }
+                });
             },
-            handleSubmit2(){
-                 this.evaluateData.isShow=true;
+            handleSubmit2() {
+                this.evaluateData.isShow = true;
             },
+            handleShowCancelInterview(){
+                 this.cancelApponitPopup.isShow=true;
+            },
+            handleCancelApponitCancel(){
+                this.cancelApponitPopup.isShow=false;
+            },
+            async handleCancelApponitSure(){
+                let orderId=this.infoData.id;
+                this.$loading();
+                let [err,data]=await cancelInterview({orderId});
+                if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;}
+                this.$clear();
+                this.$toast.success('取消面试成功');
+                this.cancelApponitPopup.isShow=false;
+            }
 
         }
     }
@@ -254,7 +288,8 @@
         margin-right: 10px;
         width: 20px;
         height: 20px;
-        img{
+
+        img {
           display: block;
           width: 100%;
           height: 100%;
@@ -347,7 +382,8 @@
         margin-right: 10px;
         width: 20px;
         height: 20px;
-        img{
+
+        img {
           display: block;
           width: 100%;
           height: 100%;
@@ -393,7 +429,8 @@
         margin-right: 10px;
         width: 20px;
         height: 20px;
-        img{
+
+        img {
           display: block;
           width: 100%;
           height: 100%;
@@ -438,7 +475,8 @@
         margin-right: 10px;
         width: 20px;
         height: 20px;
-        img{
+
+        img {
           display: block;
           width: 100%;
           height: 100%;
@@ -484,15 +522,16 @@
     }
   }
 
-  .submit-container{
+  .submit-container {
     position: fixed;
     bottom: 0;
-    left:0;
+    left: 0;
     width: 100%;
     height: 70px;
     border-top: 1px solid #F7F7F7;
     background: #FFFFFF;
   }
+
   .submit-btn {
     width: 296px;
     height: 42px;
@@ -505,24 +544,26 @@
     font-weight: 400;
     color: rgba(255, 255, 255, 1);
   }
-  .submit-btn2{
-    width:296px;
-    height:42px;
+
+  .submit-btn2 {
+    width: 296px;
+    height: 42px;
     box-sizing: border-box;
-    border-radius:21px;
+    border-radius: 21px;
     padding: 1px;
-    background:linear-gradient(338deg, rgba(201,141,253,1) 0%, rgba(250,119,119,1) 100%);
-    .box{
+    background: linear-gradient(338deg, rgba(201, 141, 253, 1) 0%, rgba(250, 119, 119, 1) 100%);
+
+    .box {
       width: 100%;
       height: 100%;
       border-radius: 21px;
       text-align: center;
       background: #FFFFFF;
-      font-size:16px;
-      font-family:PingFangSC-Regular,PingFang SC;
-      font-weight:400;
-      color:rgba(255,255,255,1);
-      line-height:42px;
+      font-size: 16px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 1);
+      line-height: 42px;
     }
   }
 </style>
