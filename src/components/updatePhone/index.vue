@@ -70,6 +70,8 @@
                 let [err,data]=await updatePhone({checkCode:this.sms,phone:this.phone});
                 if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
                 this.$clear();
+                this.$toast.success('修改成功');
+                this.$router.go(-1);
             },
             async handleSendSms() {
                 let $phone=this.phone;
