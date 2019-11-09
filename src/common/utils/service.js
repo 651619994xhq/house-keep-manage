@@ -86,8 +86,8 @@ export const getMyOrderList=(param={})=>{
 };
 //获取订单详情
 export const getOrderDetail=(param={})=>{
-  let id=param.id?param.id:'';
-  return awaitWrap(axios.post(api.GET_ORDER_DETAIL,{id}))
+  let orderId=param.orderId?param.orderId:'';
+  return awaitWrap(axios.post(api.GET_ORDER_DETAIL,{orderId}))
 };
 //取消预约
 export const cancelInterview=(param={})=>{

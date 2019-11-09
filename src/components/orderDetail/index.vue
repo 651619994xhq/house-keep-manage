@@ -189,9 +189,9 @@
 //一些自定义方法
         methods: {
             async $getOrderDetail(){
-                let id=this.$route.query.id;
+                let orderId=this.$route.query.id;
                 this.$loading();
-                let [err,data]=await getOrderDetail({id});
+                let [err,data]=await getOrderDetail({orderId});
                 if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
                 this.initWithData(data);
                 this.$clear();

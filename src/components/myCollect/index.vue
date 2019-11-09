@@ -11,9 +11,9 @@
       <li v-for="(item,index) of list" :key="index">
         <van-swipe-cell :right-width="70" :left-width="0" :on-close='onClose'>
           <van-cell-group>
-            <staffInfo></staffInfo>
+            <staffInfo :itemInfo="item"></staffInfo>
           </van-cell-group>
-          <div class="delete" slot="right" @click="handleShowDeleteDialog">删除</div>
+          <div class="delete" slot="right" @click="handleShowDeleteDialog(item.id,index)">删除</div>
         </van-swipe-cell>
       </li>
       </van-list>
@@ -63,7 +63,7 @@
                 instance.close();//这个函数就是让滑动的模块返回的操作  e.preventDefault()阻止默认行为;e.stopPropagation()阻止冒泡
                 console.log('正在左滑')
             },
-            handleShowDeleteDialog(id) {
+            handleShowDeleteDialog(id,index) {
                 this.deleteId = id;
                 this.$dialog.confirm({
                     message: '确认删除吗',
@@ -73,7 +73,9 @@
                     let [err,data]=await deleteCollect({employeeIds:[id]});
                     if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
                     this.$clear();
-                    this.$toast('已删除');
+                    this.$toast.success('已删除');
+                    this.list.splice(index,1);
+
                 }).catch(() => {
                     console.log('取消删除')
                 });
