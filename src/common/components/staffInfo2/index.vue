@@ -2,7 +2,10 @@
     <div class="staff-info2 col flex-item flex-justify-between">
         <div class="top-module row flex-item flex-justify-start">
            <div class="user-img">
-
+             <img src="" alt="">
+             <div class="exclusive">
+               独家
+             </div>
            </div>
             <div class="info col flex-item-start flex-justify-start">
                 <div class="name">
@@ -69,6 +72,28 @@
             width: 60px;
             height: 60px;
             background: #666666;
+            position: relative;
+            img{
+              display: block;
+              width: 100%;
+              height: 100%;
+            }
+          .exclusive{
+            position: absolute;
+            top: -14px;
+            right: -20px;
+            width: 64px;
+            height: 28px;
+            line-height: 28px;
+            background: linear-gradient(338deg, rgba(201, 141, 253, 1) 0%, rgba(250, 119, 119, 1) 100%);
+            border-radius: 14px 14px 14px 2px;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+            text-align: center;
+            font-size: 20px;
+            transform: scale(0.5);
+          }
         }
         .info{
             width: 267px;

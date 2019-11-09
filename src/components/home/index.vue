@@ -40,8 +40,9 @@
           <div style="width: 100%;text-align: center;color: #9c9c9c;margin-top: 80px" v-if="list3.length==0">没有更多数据了</div>
         </swiper-slide>
         <swiper-slide class="switch-item">
-          <staffInfo2 v-for="(item ,index) in list4" :key="index" :itemInfo="item" v-if="list4.length>0"></staffInfo2>
-          <div style="width: 100%;text-align: center;color: #9c9c9c;margin-top: 80px" v-if="list4.length==0">没有更多数据了</div>
+          <staffInfo2></staffInfo2>
+          <staffInfo2></staffInfo2>
+<!--          <div style="width: 100%;text-align: center;color: #9c9c9c;margin-top: 80px" v-if="list4.length==0">没有更多数据了</div>-->
         </swiper-slide>
       </swiper>
 <!--    </van-list>-->
