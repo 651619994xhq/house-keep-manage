@@ -18,7 +18,5 @@ export default {
   GET_OCCUPY_TIME:'api/order/occupyTime',//预约面试时间
   APPOINT_INTERVIEW:'/api/order/appointmentInterview',//预约面试
   ADD_COMMENTS:'/api/comments/add', //雇主添加评论
-  3:'3', //签约
-
-
+  SIGN:'/api/order/sign', //签约
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <resume></resume>
+    <resume :itemInfo="itemInfo"></resume>
     <div class="order-item">
       <div class="item1 row flex-item flex-justify-between">
         <div class="row flex-item flex-justify-start">
@@ -18,7 +18,7 @@
         <!--            面试结束-->
         <!--          </div>-->
         <div class="common-status item-status2">
-          待签约
+          {{infoData.status | ORDER_STATUS_FILTER}}
         </div>
       </div>
       <div class="item3 row flex-item flex-justify-start">
@@ -26,7 +26,7 @@
           面试方式：
         </div>
         <div class="content">
-          上门面试
+          {{infoData.interviewType | INTERVIEW_TYPE_FILTER}}
         </div>
       </div>
       <div class="item3 row flex-item flex-justify-start">
@@ -34,7 +34,7 @@
           面试时间：
         </div>
         <div class="content">
-          2019-09-09
+          {{infoData.interviewTime}}
         </div>
       </div>
       <div class="item4 row flex-item flex-justify-start">
@@ -42,11 +42,11 @@
           面试地点：
         </div>
         <div class="content">
-          广东省广州市天河区XXXXXX
+          {{infoData.interviewAddress}}
         </div>
       </div>
     </div>
-    <div class="work-info">
+    <div class="work-info" v-if="infoData.personIntroduce">
       <div class="item1 row flex-item flex-justify-start">
         <div class="item1-icon">
           <img src="~image/work@2x.png" alt="">
@@ -59,7 +59,7 @@
         从业经验丰富，照顾过早产儿。有丰富的产后调理经验， 可协助孕妈的身材尽快恢复。 性格乐观，爱干净。 最多500个汉字
       </div>
     </div>
-    <div class="home-info">
+    <div class="home-info" v-if="infoData.familySituation">
       <div class="item1 row flex-item flex-justify-start">
         <div class="item1-icon">
           <img src="~image/home@2x.png" alt="">
@@ -173,7 +173,9 @@
                 },
                 evaluateData:{
                     isShow:false
-                }
+                },
+                itemInfo:{},
+                infoData:{},
             }
         },
 //组件
@@ -197,7 +199,11 @@
                 this.$clear();
             },
             initWithData(data){
-
+                let $data=data||{};
+                let name=$data.employeeName;
+                $data.name=name;
+                this.itemInfo=$data;
+                this.infoData=$data;
             },
             handleEvaluateCancel(){
                 this.evaluateData.isShow=false;

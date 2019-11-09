@@ -114,3 +114,9 @@ export const appointInterview=(param={})=>{
   let auntId=param.auntId?param.auntId:'',interviewType=param.interviewType?param.interviewType:'',interviewTime=param.interviewTime?param.interviewTime:'',remark=param.remark?param.remark:'',interviewAddress=param.interviewAddress?param.interviewAddress:'';
   return awaitWrap(axios.post(api.APPOINT_INTERVIEW,{auntId,interviewType,interviewTime,remark,interviewAddress}));
 };
+//签约
+export const sign=(param={})=>{
+  let auntId=param.auntId?param.auntId:'',signCycle=param.signCycle?param.signCycle:'',
+    startTime=param.startTime?param.startTime:'',serverType=param.serverType?param.serverType:'',orderId=param.orderId?param.orderId:'';
+  return awaitWrap(axios.post(api.GET_OCCUPY_TIME,{auntId}))
+};
