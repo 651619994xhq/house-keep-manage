@@ -9,7 +9,7 @@
     <div class="title2">
       别紧张，试试去看看～
     </div>
-    <div class="look-btn col flex-item flex-justify">
+    <div class="look-btn col flex-item flex-justify" @click="handleLook">
       <span class="purple-color">去看看</span>
     </div>
 
@@ -32,6 +32,9 @@
 
         },
         methods: {
+            handleLook(){
+                this.$emit('lookEvent')
+            }
 
         },
     }
@@ -42,6 +45,9 @@
      width: 100%;
      height: 100%;
      overflow: hidden;
+     position: fixed;
+     top: 0;
+     left: 0;
      .img-container{
        width: 344px;
        height: 192px;

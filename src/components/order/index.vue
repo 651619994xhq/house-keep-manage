@@ -18,13 +18,16 @@
               {{item.orderType | WORK_TYPE_FILTER}}
             </div>
           </div>
-          <!--          <div class="common-status item-status">-->
-          <!--             待面试-->
-          <!--          </div>-->
-          <!--          <div class="common-status item-status1">-->
-          <!--            面试结束-->
-          <!--          </div>-->
-          <div class="common-status item-status2">
+          <div class="common-status item-status2" style="color: #E9AC7E" v-if="item.status==5||item.status==15">
+            {{item.status | ORDER_STATUS_FILTER}}
+          </div>
+          <div class="common-status item-status2" style="color: #CECFD1" v-if="item.status==10||item.status==35||item.status==40">
+            {{item.status | ORDER_STATUS_FILTER}}
+          </div>
+          <div class="common-status item-status2" style="color: #7DB5FB" v-if="item.status==20">
+            {{item.status | ORDER_STATUS_FILTER}}
+          </div>
+          <div class="common-status item-status2 purple-color" v-if="item.status==25||item.status==30 ">
             {{item.status | ORDER_STATUS_FILTER}}
           </div>
         </div>

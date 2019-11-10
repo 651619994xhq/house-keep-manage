@@ -11,13 +11,10 @@
             面试信息
           </div>
         </div>
-        <!--          <div class="common-status item-status">-->
-        <!--             待面试-->
-        <!--          </div>-->
-        <!--          <div class="common-status item-status1">-->
-        <!--            面试结束-->
-        <!--          </div>-->
-        <div class="common-status item-status2" @click="handleShowCancelInterview">
+        <div class="common-status item-status2 hairlines" v-if="infoData.status==5" @click="handleShowCancelInterview">
+          {{infoData.status | ORDER_DETAIL_STATUS_FILTER}}
+        </div>
+        <div class="common-status item-status2" v-if="infoData.status!=5">
           {{infoData.status | ORDER_DETAIL_STATUS_FILTER}}
         </div>
       </div>
@@ -141,18 +138,18 @@
       </div>
     </div>
 
-    <div class="submit-container col flex-item flex-justify" @click="handleSubmit">
+    <div class="submit-container col flex-item flex-justify" @click="handleSubmit" v-if="infoData.status==20">
       <div class="submit-btn">
         立即签约
       </div>
     </div>
-<!--        <div class="submit-container col flex-item flex-justify" @click="handleSubmit2">-->
-<!--          <div class="submit-btn2">-->
-<!--            <div class="box">-->
-<!--              <span class="purple-color">去评价</span>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
+        <div class="submit-container col flex-item flex-justify" @click="handleSubmit2" v-if="infoData.status==10">
+          <div class="submit-btn2">
+            <div class="box">
+              <span class="purple-color">去评价</span>
+            </div>
+          </div>
+        </div>
     <cancelApponitPopup :is-show="cancelApponitPopup.isShow" @cancelEvent="handleCancelApponitCancel" @sureEvent="handleCancelApponitSure" @closeEvent="handleCancelApponitCancel"></cancelApponitPopup>
     <evaluate :is-show="evaluateData.isShow" @cancelEvent="handleEvaluateCancel" @closeEvent="handleEvaluateClose"
               @sureEvent="handleEvaluateSure"></evaluate>
@@ -322,6 +319,8 @@
         font-size: 13px;
         font-family: PingFangSC-Regular, PingFangSC;
         font-weight: 400;
+        width: 60px;
+        text-align: center;
       }
 
       .item-status {
@@ -334,6 +333,9 @@
 
       .item-status2 {
         color: #7DB5FB;
+      }
+      .hairlines{
+        border: 1px solid #7DB5FB;
       }
     }
 
