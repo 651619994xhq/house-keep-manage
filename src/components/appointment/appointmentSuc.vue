@@ -1,5 +1,5 @@
 <template>
-  <van-popup :value="isShow" @input="handleInput" class="popup-box">
+  <van-popup v-model="isShow" :close-on-click-overlay="isClickOverlay" class="popup-box">
     <div class="service-box col flex-item flex-justify-between">
       <div class="content flex-grow col flex-item flex-justify">
         <div class="title">预约成功</div>
@@ -22,7 +22,9 @@
             }
         },
         data() {
-            return {}
+            return {
+                isClickOverlay:false
+            }
         },
         created() {
 

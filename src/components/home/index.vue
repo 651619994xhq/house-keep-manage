@@ -179,8 +179,9 @@
         methods: {
             async loadEvent() {
                 console.log('loadEvent is run');
-                this.$loading();
+
                 if(this.nowIndex==0){
+                    this.$loading();
                     let [err,data]=await getEmployeeList({type:1,pageNum:this.page.currentMoonWomanPage});
                     if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
                     let list=data.list||[],totalPage=data.totalPage;
@@ -192,6 +193,7 @@
                     return ;
                 };
                 if(this.nowIndex==1){
+                    this.$loading();
                     let [err2,data2]=await getEmployeeList({type:2,pageNum:this.page.currentChildRearingPage});
                     if(err2!==null){this.$toast(err2||'系统错误');this.$clear();return ;};
                     let list=data2.list||[],totalPage=data2.totalPage;
@@ -203,6 +205,7 @@
                     return ;
                 }
                 if(this.nowIndex==2){
+                    this.$loading();
                     let [err3,data3]=await getEmployeeList({type:3,pageNum:this.page.currentBabySitterPage});
                     if(err3!==null){this.$toast(err3||'系统错误');this.$clear();return ;};
                     let list=data3.list||[],totalPage=data3.totalPage;
