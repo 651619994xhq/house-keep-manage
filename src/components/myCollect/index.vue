@@ -48,8 +48,8 @@
                 this.$loading();
                 let [err,data]=await getMyCollectList({pageNum:this.currentPage});
                 if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
-                let list=data.list||[];
-                if(list.length==0){;this.load.finished=true;this.load.loading=false;this.$clear();return ;};
+                let list=data.list||[],totalPage=data.totalPage;
+                if(this.currentPage-1==totalPage){;this.load.finished=true;this.load.loading=false;this.$clear();return ;};
                 this.list=[...this.list,...list];
                 this.currentPage+=1;
                 this.load.loading=false;
