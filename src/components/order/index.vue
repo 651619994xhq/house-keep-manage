@@ -103,8 +103,8 @@
                     return;
                 }
                 ;
-                let list = data.list;
-                if (list.length == 0) {
+                let totalPage = data.totalPage, list = data.list;
+                if (this.currentPage - 1== totalPage) {
                     this.load.loading=false;
                     this.load.finished=true;
                     this.$clear();
