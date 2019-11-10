@@ -7,6 +7,7 @@
       :error.sync="load.error"
       error-text="请求失败，点击重新加载"
       @load="loadEvent"
+      v-if="isHasData"
     >
       <div class="order-item" v-for="(item,index) in list" @click="handleGoToOrderDetailPage(item.id)">
         <div class="item1 row flex-item flex-justify-between">
@@ -66,12 +67,14 @@
         </div>
       </div>
     </van-list>
+    <noData v-if="!isHasData" @lookEvent="handleLookEvent"></noData>
   </div>
 </template>
 
 <script>
     import {getMyOrderList} from '@/common/utils/service'
     import backTop from '@/common/components/backTop'
+    import noData from "@/common/components/noData/index";
 
     export default {
         name: "order",
@@ -83,18 +86,35 @@
                     loading: false, //加载更多
                     finished: false //完成
                 },
-                currentPage: 1
+                currentPage: 1,
+                isHasData:false,
 
             }
         },
 //组件
-        components: {},
+        components: {
+            noData
+        },
 //初始化数据
         created() {
-
+           this.updateList();
         },
 //一些自定义方法
         methods: {
+            async updateList(){
+                let [err, data] = await getMyOrderList({pageNum: 1});
+                if (err !== null) {
+                    this.$toast(err || '系统错误');
+                    return;
+                };
+                let list = data.list;
+                if(list.length>0){
+                    this.isHasData=false;
+                    return ;
+                };
+                this.isHasData=false;
+
+            },
             async loadEvent() {
                 this.$loading();
                 let [err, data] = await getMyOrderList({pageNum: this.currentPage});
@@ -131,6 +151,11 @@
                     query: {
                         id
                     }
+                })
+            },
+            handleLookEvent(){
+                this.$router.push({
+                    path:'/index/home'
                 })
             }
 
