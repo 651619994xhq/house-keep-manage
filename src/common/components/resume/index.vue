@@ -7,8 +7,9 @@
             </div>
             <div class="info col flex-item flex-justify">
                <div class="item1 row flex-item flex-justify-between">
-                   <div class="name">
-                       {{itemInfo.name||'未知'}}
+                   <div class="name row flex-item flex-justify-start">
+                       <div class="nick-name">{{itemInfo.name||'未知'}}</div>
+                       <div class="code">{{itemInfo.code}}</div>
                    </div>
                    <div class="money">
                        ￥ {{itemInfo.salary||'0'}}/月
@@ -128,7 +129,7 @@
            margin-left: 16px;
            width: 188px;
            height: 100%;
-           overflow: hidden;
+           /*overflow: hidden;*/
             .item1{
                 width: 100%;
                 height: 30px;
@@ -138,11 +139,22 @@
                     font-family:PingFangSC-Semibold,PingFangSC;
                     font-weight:600;
                     color:rgba(3,8,24,1);
+                    .nick-name{
+                      white-space: nowrap;
+                    }
+                    .code{
+                      margin-left: 8px;
+                      color:rgba(138,143,155,1);
+                      font-size:12px;
+                      font-family:PingFangSC-Regular,PingFang SC;
+                      font-weight:400;
+                    }
                 }
                 .money{
                     font-family:PingFangSC-Medium,PingFangSC;
                     font-weight:500;
                     color:$pink;
+                    white-space: nowrap;
                 }
             }
             .item2{
