@@ -183,8 +183,8 @@
                 if(this.nowIndex==0){
                     let [err,data]=await getEmployeeList({type:1,pageNum:this.page.currentMoonWomanPage});
                     if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
-                    let list=data.list||[];
-                    if(list.length==0){this.$clear();this.finish=true;return ;};
+                    let list=data.list||[],totalPage=data.totalPage;
+                    if(this.page.currentMoonWomanPage-1>=totalPage){this.$clear();this.finish=true;return ;};
                     this.list1=[...this.list1,...list];
                     this.page.currentMoonWomanPage+=1;
                     // this.load.loading=false;
@@ -194,8 +194,8 @@
                 if(this.nowIndex==1){
                     let [err2,data2]=await getEmployeeList({type:2,pageNum:this.page.currentChildRearingPage});
                     if(err2!==null){this.$toast(err2||'系统错误');this.$clear();return ;};
-                    let list=data2.list||[];
-                    if(list.length==0){this.$clear();this.finish=true;return ;};
+                    let list=data2.list||[],totalPage=data2.totalPage;
+                    if(this.page.currentChildRearingPage-1>=totalPage){this.$clear();this.finish=true;return ;};
                     this.list2=[...this.list2,...list];
                     this.page.currentChildRearingPage+=1;
                     // this.load.loading=false;
@@ -205,8 +205,8 @@
                 if(this.nowIndex==2){
                     let [err3,data3]=await getEmployeeList({type:3,pageNum:this.page.currentBabySitterPage});
                     if(err3!==null){this.$toast(err3||'系统错误');this.$clear();return ;};
-                    let list=data3.list||[];
-                    if(list.length==0){this.$clear();this.finish=true;return ;};
+                    let list=data3.list||[],totalPage=data3.totalPage;
+                    if(this.page.currentBabySitterPage-1>=totalPage){this.$clear();this.finish=true;return ;};
                     this.list3=[...this.list3,...list];
                     this.page.currentBabySitterPage+=1;
                     // this.load.loading=false;
@@ -234,7 +234,7 @@
                     if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
                     let list=data.list||[];
                     this.list1=[...list];
-                    this.page.currentMoonWomanPage=1;
+                    this.page.currentMoonWomanPage=2;
                     this.$clear();
                     return ;
                 };
@@ -245,7 +245,7 @@
                     if(err2!==null){this.$toast(err2||'系统错误');this.$clear();return ;};
                     let list=data2.list||[];
                     this.list2=[...list];
-                    this.page.currentChildRearingPage=1;
+                    this.page.currentChildRearingPage=2;
                     this.$clear();
                     return ;
                 }
@@ -256,7 +256,7 @@
                     if(err3!==null){this.$toast(err3||'系统错误');this.$clear();return ;};
                     let list=data3.list||[];
                     this.list3=[...list];
-                    this.page.currentBabySitterPage=1;
+                    this.page.currentBabySitterPage=2;
                     this.$clear();
                     return ;
                 }
