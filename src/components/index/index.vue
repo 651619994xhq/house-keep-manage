@@ -3,7 +3,7 @@
 <!--      <keep-alive>-->
         <router-view v-keep-scroll-position></router-view>
 <!--      </keep-alive>-->
-        <tabBar :currentType="type" @changeTabBarType="changeTabBarType"></tabBar>
+        <tabBar :currentType="type"></tabBar>
     </div>
 </template>
 
@@ -19,6 +19,20 @@
 //组件
         components: {
             tabBar
+        },
+        watch:{
+            '$route.path':function(newVal,oldVal){
+                  console.log('newVal==>',newVal,'  oldVal==>',oldVal);
+                if(newVal=='/index/home'){
+                    this.type='home';
+                }
+                if(newVal=='/index/mine'){
+                    this.type='mine';
+                }
+                if(newVal=='/index/order'){
+                    this.type='order';
+                }
+             }
         },
 //初始化数据
         created() {
@@ -39,10 +53,10 @@
         },
 //一些自定义方法
         methods: {
-            changeTabBarType(e){
-                console.log(e);
-                this.type=e;
-            }
+            // changeTabBarType(e){
+            //     console.log(e);
+            //     this.type=e;
+            // }
         }
     }
 </script>

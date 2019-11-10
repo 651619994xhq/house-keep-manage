@@ -36,17 +36,15 @@
         components: {},
 //初始化数据
         created() {
-          this.type=this._props.currentType;
+          // this.type=this._props.currentType;
         },
 //一些自定义方法
         methods: {
             switchTab(type){
-                if(type==this.type){
+                if(type==this.currentType){
                     console.log('底部切换一致，不用切换')
                     return;
                 };
-                this.type=type;
-                this.$emit('changeTabBarType',type);
                 if(type=='home'){
                     this.$router.push({
                        path:'/index/home'

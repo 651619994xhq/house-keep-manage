@@ -109,7 +109,7 @@
                 };
                 let list = data.list;
                 if(list.length>0){
-                    this.isHasData=false;
+                    this.isHasData=true;
                     return ;
                 };
                 this.isHasData=false;
