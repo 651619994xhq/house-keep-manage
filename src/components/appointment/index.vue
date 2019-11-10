@@ -195,6 +195,7 @@
     width: 100%;
     background: #f7f7f7;
     overflow: hidden;
+    padding-bottom: 100px;
   }
 
   .interview-container {
