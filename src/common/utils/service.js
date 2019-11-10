@@ -118,5 +118,5 @@ export const appointInterview=(param={})=>{
 export const sign=(param={})=>{
   let auntId=param.auntId?param.auntId:'',signCycle=param.signCycle?param.signCycle:'',
     startTime=param.startTime?param.startTime:'',serverType=param.serverType?param.serverType:'',orderId=param.orderId?param.orderId:'';
-  return awaitWrap(axios.post(api.GET_OCCUPY_TIME,{auntId}))
+  return awaitWrap(axios.post(api.SIGN,{auntId,signCycle,startTime,serverType,orderId}))
 };

@@ -241,7 +241,8 @@
                     this.$router.push({
                         path: '/sign-month-woman',
                         query: {
-                            id: this.infoData.employeeId
+                            id: this.infoData.employeeId,
+                            orderId: this.infoData.id
                         }
                     });
                     return;
@@ -250,7 +251,8 @@
                     this.$router.push({
                         path: '/sign-contract',
                         query: {
-                            id: this.infoData.employeeId
+                            id: this.infoData.employeeId,
+                            orderId: this.infoData.id
                         }
                     });
                     return;

@@ -41,7 +41,7 @@
         <div style="color: #3B445C">{{servicePeriod}}</div>
       </div>
     </div>
-    <div class="submit-container col flex-item flex-justify">
+    <div class="submit-container col flex-item flex-justify" @click="handleSubmit($route.query.id,$route.query.orderId)">
       <div class="submit">
         签约
       </div>
@@ -54,7 +54,8 @@
 <script>
     import resume from '@/common/components/resume/index';
     import servicePeriod from "./servicePeriod";
-    import {getEmployeeBaseInfo} from '@/common/utils/service'
+    import {getEmployeeBaseInfo,sign} from '@/common/utils/service'
+    import awaitWrap from "../../common/utils/awaitWrap";
 
     export default {
         name: "signContract",
@@ -139,13 +140,30 @@
             handleClickServicePeriod(period) {
                 this.selectServicePeriod = period;
             },
-            handleSubmit() {
-                if (!this.selectTime) {
+            async handleSubmit(id,orderId) {
+                if(!id){
+                    this.$toast('id 为空')
+                    return;
+                }
+                if(!orderId){
+                    this.$toast('orderId 为空')
+                    return;
+                }
+                if (!this.selectStartTime) {
                     this.$toast('请选择预约时间');
                     return
                 }
                 ;
-                this.$loading({duration: 0, forbidClick: true, message: "提交中..."});
+                this.$loading({duration: 0, forbidClick: true, message: "签约中..."});
+                let [err,data]=await sign({auntId: id,signCycle:this.servicePeriod,startTime:this.selectStartTime,serverType:this.selectServicePeriod,orderId:orderId})
+                if(err!==null){
+                    this.$toast(err||'系统错误');
+                    this.$clear();
+                    return ;
+                };
+                this.$clear();
+                this.$toast.success('签约成功');
+                this.$router.go(-1);
 
             },
             handleShowTime() {
