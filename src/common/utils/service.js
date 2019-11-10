@@ -120,3 +120,19 @@ export const sign=(param={})=>{
     startTime=param.startTime?param.startTime:'',serverType=param.serverType?param.serverType:'',orderId=param.orderId?param.orderId:'';
   return awaitWrap(axios.post(api.SIGN,{auntId,signCycle,startTime,serverType,orderId}))
 };
+
+//获取access_token
+export const getAccessToken=(param={})=> {
+  let path='/test/cgi-bin/token?grant_type=client_credential&appid=wx9e4e8c44087bd7ca&secret=4efbebf29a4b179376a9964ae1d33016';
+  return awaitWrap(axios.getWeiXin(path));
+};
+//获取openId
+export const getOpenId=(param={})=> {
+  let path=`/test/cgi-bin/user/info/updateremark?access_token=${param.access_token}`;
+  return awaitWrap(axios.postWeiXin(path,{}));
+};
+//获取用户信息
+export const getUserInfo=(param={})=> {
+  let path=`/test/cgi-bin/user/info?access_token=${param.access_token}&openid=${param.openId}&lang=zh_CN`;
+  return awaitWrap(axios.reqWeiXin(path));
+};

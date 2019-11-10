@@ -55,19 +55,75 @@ class Axios {
     }
 
     //暂时所有的请求 都用post get请求 暂时没有处理逻辑 如果之后需要 再加
-    get (path, {success, error}) {
+    get (path) {
+      return new Promise((resolve, reject)=>{
         this.instance.get(path)
-            .then(function (response) {
-                if (response && response.data && (Number(response.data.status) === 0 || response.data.code === 200)) {
-                    success && success(response.data.data)
-                } else {
-                    error && error(response.data.msg)
-                }
-            })
-            .catch(function (e) {
-                error && error(e)
-            })
+          .then((res)=>{
+            console.log('res==>',res);
+            if(res.data.status=='SUCCESS'){
+              resolve(res.data.returnData||{});
+              return;
+            };
+            reject(res.message||'系统错误');
+          })
+          .catch((e)=> {
+            let msg=e+'';
+            if( msg.indexOf('timeout') > -1){
+              reject('网络超时,请稍后重试');
+              return;
+            };
+            reject(e||'系统错误');
+          })
+      })
+
     }
+    getWeiXin (path) {
+      return new Promise((resolve, reject)=>{
+        this.instance.get(path)
+          .then((res)=>{
+            if(res.status=='200'){
+              console.log('res2==>',res.data);
+              resolve(res.data||{});
+              return;
+            };
+            reject(res.statusText||'系统错误');
+          })
+          .catch((e)=> {
+            let msg=e+'';
+            if( msg.indexOf('timeout') > -1){
+              reject('网络超时,请稍后重试');
+              return;
+            };
+            reject(e||'系统错误');
+          })
+      })
+
+    }
+
+  postWeiXin (path, params) {
+    var self=this;
+    return new Promise((resolve, reject)=>{
+      this.instance.post(path,{...params},{headers:{}})
+        .then((res)=>{
+          if(res.status=='200'){
+            console.log('res2==>',res.data);
+            resolve(res.data||{});
+            return;
+          };
+          reject(res.statusText||'系统错误');
+
+        })
+        .catch((e)=> {
+          let msg=e+'';
+          if( msg.indexOf('timeout') > -1){
+            reject('网络超时,请稍后重试');
+            return;
+          };
+          reject(e||'系统错误');
+        })
+    });
+
+  }
     //这里只是用来写测试掉接口用的
     testPost (path,params, {success, error}) {
         success && success()

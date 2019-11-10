@@ -46,7 +46,7 @@
 
 <script>
     import {mapMutations} from 'vuex';
-    import {sendRegisterCode,register} from '@/common/utils/service';
+    import {sendRegisterCode,register,getAccessToken,getOpenId} from '@/common/utils/service';
     import {IDENTITY_TYPE} from '@/common/utils/constants'
     let userToken='8b5d3b67-5f52-41d8-93d8-648e04545ef0';
 
@@ -116,11 +116,12 @@
                 this.selectId = id;
             },
             async handleRegisterEvent(){
+                this.test();
                 console.log('handleRegisterEvent is run');
-                this.UPDATE_TOKEN(userToken);
-                this.$router.replace({
-                    path:'/index'
-                });
+                // this.UPDATE_TOKEN(userToken);
+                // this.$router.replace({
+                //     path:'/index'
+                // });
                 // if(!this.phone){this.$toast('请输入手机号');return ;};
                 // if(!this.isPoneAvailable(this.phone)){this.$toast('请输入正确的手机号');return ;};
                 // if(!this.sms){this.$toast('请输入验证码');return ;};
@@ -129,6 +130,13 @@
                 // if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
                 // this.$clear();
                 // this.$toast.success('注册成功');
+            },
+            async test(){
+                let [err,data]=await getAccessToken();
+                let access_token=data.access_token;
+                let [err1,data1]=await getOpenId({access_token});
+                 this.$toast(JSON.stringify(data1));
+
             }
         }
     }
