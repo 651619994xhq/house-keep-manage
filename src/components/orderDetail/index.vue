@@ -146,13 +146,13 @@
         立即签约
       </div>
     </div>
-    <!--    <div class="submit-container col flex-item flex-justify" @click="handleSubmit2">-->
-    <!--      <div class="submit-btn2">-->
-    <!--        <div class="box">-->
-    <!--          <span class="purple-color">去评价</span>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
+<!--        <div class="submit-container col flex-item flex-justify" @click="handleSubmit2">-->
+<!--          <div class="submit-btn2">-->
+<!--            <div class="box">-->
+<!--              <span class="purple-color">去评价</span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
     <cancelApponitPopup :is-show="cancelApponitPopup.isShow" @cancelEvent="handleCancelApponitCancel" @sureEvent="handleCancelApponitSure" @closeEvent="handleCancelApponitCancel"></cancelApponitPopup>
     <evaluate :is-show="evaluateData.isShow" @cancelEvent="handleEvaluateCancel" @closeEvent="handleEvaluateClose"
               @sureEvent="handleEvaluateSure"></evaluate>
@@ -220,14 +220,13 @@
             async handleEvaluateSure(content) {
                 console.log('content==>', content);
                 this.$loading();
-                let [err, data] = await addComments({employeeId: '', comment: content.text, starClass: content.star});
+                let [err, data] = await addComments({employeeId: this.infoData.employeeId, comment: content.text, starClass: content.star});
                 if (err !== null) {
                     this.$toast(err || '系统错误');
                     this.$clear();
                     return;
-                }
-                ;
-                this.$toast('提价评论成功');
+                };
+                this.$toast.success('添加评论成功');
                 this.$clear();
                 this.evaluateData.isShow = false;
             },
