@@ -46,8 +46,8 @@
 //初始化数据
         created() {
             this.phone=this.$route.query.phone;
-         let a=   md5('phone:17600297417&time:1573277968766&type:1');
-         console.log('aaaa=>',a)
+         // let a=   md5('phone:17600297417&time:1573277968766&type:1');
+         // console.log('aaaa=>',a)
         },
         destroyed(){
             this.clearTimer();

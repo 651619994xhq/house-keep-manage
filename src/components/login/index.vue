@@ -48,6 +48,7 @@
     import {mapMutations} from 'vuex';
     import {sendRegisterCode,register,getAccessToken,getOpenId} from '@/common/utils/service';
     import {IDENTITY_TYPE} from '@/common/utils/constants'
+    import md5 from 'js-md5';
     let userToken='8b5d3b67-5f52-41d8-93d8-648e04545ef0';
 
     export default {
@@ -56,7 +57,7 @@
             return {
                 IDENTITY_TYPE,
                 border:false,
-                phone: 18614084016,//手机号
+                phone: '',//手机号
                 sms: '', //验证码
                 isShowBtn: true, //是否展示发送按钮
                 timer: null, //定时器
@@ -85,11 +86,14 @@
                 }
             },
             async handleSendSms() {
-                if(!this.phone){this.$toast('请输入手机号');return ;};
-                if(!this.isPoneAvailable(this.phone)){this.$toast('请输入正确的手机号');return ;};
+                let $phone=this.phone;
+                if(!$phone){this.$toast('请输入手机号');return ;};
+                if(!this.isPoneAvailable($phone)){this.$toast('请输入正确的手机号');return ;};
                 this.isShowBtn = false;
-                let [err, data] = await sendRegisterCode({phone: this.phone});
-                if(err!==null){this.$toast(err||'系统错误');return ;};
+                let time=new Date().getTime(),
+                    sign=md5(`phone:${$phone}&time:${time}&type:1`);
+                let [err, data] = await sendRegisterCode({phone: $phone,time,sign});
+                if(err!==null){this.isShowBtn = true;this.$toast(err||'系统错误');return ;};
                 this.$toast('验证码发送成功');
                 this.startTimer(); //开始定时器
             },

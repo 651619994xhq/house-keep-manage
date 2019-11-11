@@ -4,8 +4,8 @@ import api from './api';
 
 //发送注册验证码
 export const sendRegisterCode =(param={})=>{
-  let phone=param.phone?param.phone:'';
-  return awaitWrap(axios.post(api.SEND_SMS_CODE,{phone,type:1}))
+  let phone=param.phone?param.phone:'',time=param.time?param.time:'',sign=param.sign?param.sign:'';
+  return awaitWrap(axios.post(api.SEND_SMS_CODE,{phone,time,sign,type:1}))
 };
 //发送修改手机号代码
 export const sendUpdatePhoneCode =(param={})=>{
