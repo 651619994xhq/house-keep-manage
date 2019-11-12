@@ -2,9 +2,9 @@
   <div class="container">
     <div class="info col flex-item flex-justify">
       <div class="header-img">
-        <img src="" alt="">
+        <img :src="headUrl||''" alt="">
       </div>
-      <p class="name">海强</p>
+      <p class="name">{{nickName||'未知'}}</p>
     </div>
     <div class="col flex-item flex-justify-start">
       <div class="item hairlines row flex-item flex-justify-between">
@@ -46,7 +46,7 @@
 
 <script>
     import {mapMutations} from 'vuex';
-    import {sendRegisterCode,register,getAccessToken,getOpenId,login} from '@/common/utils/service';
+    import {sendRegisterCode,getMyInfo,register,getAccessToken,getOpenId,login} from '@/common/utils/service';
     import {IDENTITY_TYPE} from '@/common/utils/constants'
     import md5 from 'js-md5';
     let userToken='8b5d3b67-5f52-41d8-93d8-648e04545ef0';
@@ -63,13 +63,15 @@
                 timer: null, //定时器
                 count: 60,
                 selectId: 1, //默认选中的ID
+                headUrl:'',
+                nickName:'',
             }
         },
 //组件
         components: {},
 //初始化数据
         created() {
-
+            this.$getMyInfo();
         },
         destroyed() {
             this.clearTimer();
@@ -77,6 +79,13 @@
 //一些自定义方法
         methods: {
             ...mapMutations(['UPDATE_TOKEN']),
+            async $getMyInfo(){
+              let [err,data]=await getMyInfo();
+              if(err!==null){this.$toast(err||'系统错误');return ;};
+              let $data=data||{};
+              this.headUrl=$data.headUrl;
+              this.nickName=$data.nickName;
+            },
             isPoneAvailable($poneInput) {
                 var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
                 if (!myreg.test($poneInput)) {
