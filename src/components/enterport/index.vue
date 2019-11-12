@@ -14,11 +14,16 @@
         },
         methods:{
             async $isGoSupplementInfo(){
-                setTimeout(()=>{
-                    this.$router.replace({
-                       path:'/login'
-                    });
-                },3000);
+               let [err,data]=await isGoSupplementInfo();
+               if(data==1){
+                   this.$router.replace({
+                       path:'/index/home'
+                   });
+                   return ;
+               }
+               this.$router.replace({
+                  path:'/login'
+               });
             }
         }
     }

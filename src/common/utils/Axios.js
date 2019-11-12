@@ -39,6 +39,12 @@ class Axios {
                         resolve(res.data.returnData||{});
                         return;
                   };
+                  let $status=res.data.status;
+                  if($status==9999){
+                    store.commit('CLEAR_TOKEN');
+                    return;
+                  }
+
                   reject(res.message||'系统错误');
 
               })

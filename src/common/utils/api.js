@@ -19,4 +19,5 @@ export default {
   APPOINT_INTERVIEW:'/api/order/appointmentInterview',//预约面试
   ADD_COMMENTS:'/api/comments/add', //雇主添加评论
   SIGN:'/api/order/sign', //签约
+  IS_HAS_INFO:'/api/user/isHasInfo', //判断是否有信息
 }

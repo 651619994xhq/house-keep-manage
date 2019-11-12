@@ -138,5 +138,5 @@ export const getUserInfo=(param={})=> {
 };
 //是否去补充信息
 export const isGoSupplementInfo=()=>{
-
+  return awaitWrap(axios.post(api.IS_HAS_INFO,{}))
 };

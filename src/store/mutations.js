@@ -11,6 +11,7 @@ export default {
   CLEAR_TOKEN(state) {
     removeToken();
     state.token = '';
+    window.location.reload();
   },
 
 }
