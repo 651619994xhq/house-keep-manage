@@ -15,8 +15,8 @@
                         class="item row flex-item flex-justify">
             <headerItem :pictureUrl="slide.pictureUrl" :bannerUrl="slide.bannerUrl"></headerItem>
           </swiper-slide>
-          <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
+        <div class="swiper-pagination row flex-item flex-justify self-pagination" style="width: 100%" slot="pagination"></div>
       </div>
       <div class="navlist">
         <ul class="row flex-item flex-justify-around nav-container" :class="navBarFixed?'nav-fixed':''">
@@ -79,7 +79,7 @@
                     },
                     pagination: {
                         el: '.swiper-pagination'
-                    }
+                    },
                 },
                 serviceData:{
                     isShow:false
@@ -378,6 +378,9 @@
     height: 196px;
     background: #FFFFFF;
     overflow: hidden;
+    .self-pagination{
+      margin-top: 10px;
+    }
   }
 
   .swipe-container {
