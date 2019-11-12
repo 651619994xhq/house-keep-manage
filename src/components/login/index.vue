@@ -46,7 +46,7 @@
 
 <script>
     import {mapMutations} from 'vuex';
-    import {sendRegisterCode,register,getAccessToken,getOpenId} from '@/common/utils/service';
+    import {sendRegisterCode,register,getAccessToken,getOpenId,login} from '@/common/utils/service';
     import {IDENTITY_TYPE} from '@/common/utils/constants'
     import md5 from 'js-md5';
     let userToken='8b5d3b67-5f52-41d8-93d8-648e04545ef0';
@@ -121,11 +121,12 @@
             },
             async handleRegisterEvent(){
                 // this.test();
+                this.$login();
                 console.log('handleRegisterEvent is run');
-                this.UPDATE_TOKEN(userToken);
-                this.$router.replace({
-                    path:'/index'
-                });
+                // this.UPDATE_TOKEN(userToken);
+                // this.$router.replace({
+                //     path:'/index'
+                // });
                 // if(!this.phone){this.$toast('请输入手机号');return ;};
                 // if(!this.isPoneAvailable(this.phone)){this.$toast('请输入正确的手机号');return ;};
                 // if(!this.sms){this.$toast('请输入验证码');return ;};
@@ -141,6 +142,9 @@
                 let [err1,data1]=await getOpenId({access_token});
                  this.$toast(JSON.stringify(data1));
 
+            },
+            async $login(){
+                let [err,data]=await login({code:'0013Yhfv0xnxPh1XgZdv05iofv03Yhfo'})
             }
         }
     }

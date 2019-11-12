@@ -78,6 +78,13 @@ const signMonthWoman = (resolve) => {
   })
 };
 
+//中转页
+const enterport = (resolve) => {
+  import('@/components/enterport/index').then((module) => {
+    resolve(module)
+  })
+};
+
 Vue.use(Router);
 
 let router = new Router({
@@ -98,6 +105,7 @@ let router = new Router({
         {path: 'order', name: 'order', component: order, meta: {title: '我的订单', index: 1}},
       ]
     },
+    {path: '/enterport', name: 'enterport', component: enterport, meta: {title: '正在登录...', index: 2}},
     {path: '/login', name: 'login', component: login, meta: {title: '登录/注册', index: 2}},
     {path: '/appointment', name: 'appointment', component: appointment, meta: {title: '预约面试', index: 6}},
     {path: '/person-info', name: 'personInfo', component: personInfo, meta: {title: '个人信息', index: 4}},

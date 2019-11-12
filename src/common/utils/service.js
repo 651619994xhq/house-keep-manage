@@ -136,3 +136,7 @@ export const getUserInfo=(param={})=> {
   let path=`/test/cgi-bin/user/info?access_token=${param.access_token}&openid=${param.openId}&lang=zh_CN`;
   return awaitWrap(axios.reqWeiXin(path));
 };
+//是否去补充信息
+export const isGoSupplementInfo=()=>{
+
+};
