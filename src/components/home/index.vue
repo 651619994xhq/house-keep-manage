@@ -3,7 +3,7 @@
     <div class="navlist navlist2"  v-if="navBarFixed" style="position: fixed;top: 0;left: 0;z-index: 100">
       <ul class="row flex-item flex-justify-around nav-container">
         <li class="navli" :class="(nowIndex==index)?'navli-active':''" v-for="(item,index) in navList"
-            @click="tabClick(index)"><i>{{item.name}}</i>
+            @click="tabClick(index)">{{item.name}}
         </li>
       </ul>
     </div>
@@ -22,7 +22,7 @@
       <div class="navlist" >
         <ul class="row flex-item flex-justify-around nav-container" v-if="!navBarFixed">
           <li class="navli" :class="(nowIndex==index)?'navli-active':''" v-for="(item,index) in navList"
-              @click="tabClick(index)"><i>{{item.name}}</i>
+              @click="tabClick(index)">{{item.name}}
           </li>
         </ul>
       </div>
