@@ -28,10 +28,10 @@
       </div>
       <div class="item2 row flex-item flex-justify-start flex-item-start">
         <div class="title2">
-          身份选择
+          选择服务
         </div>
         <div class="label-content row flex-grow flex-item flex-justify-start flex-item-start wrap">
-          <div :class="item.id==selectId?'label-active':'label'" v-for="(item,index) in IDENTITY_TYPE"
+          <div :class="item.id==selectId?'label-active':'label'" v-for="(item,index) in SELECT_SERVICE_TYPE"
                @click="handleSelectEvent(item.id)">{{item.name}}
           </div>
         </div>
@@ -47,7 +47,7 @@
 <script>
     import {mapMutations} from 'vuex';
     import {sendRegisterCode,getMyInfo,register,getAccessToken,getOpenId,login} from '@/common/utils/service';
-    import {IDENTITY_TYPE} from '@/common/utils/constants'
+    import {SELECT_SERVICE_TYPE} from '@/common/utils/constants'
     import md5 from 'js-md5';
     let userToken='8b5d3b67-5f52-41d8-93d8-648e04545ef0';
 
@@ -55,7 +55,7 @@
         name: "index",
         data() {
             return {
-                IDENTITY_TYPE,
+                SELECT_SERVICE_TYPE,
                 border:false,
                 phone: '',//手机号
                 sms: '', //验证码

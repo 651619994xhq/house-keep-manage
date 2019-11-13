@@ -6,3 +6,4 @@ export const IDENTITY_TYPE=[{name:'准妈妈',id:1},{name:'备孕宝妈',id:2},{
 export const SERVICE_PERIOD_STATUS=[{name:'标准周期12个月',id:1},{name:'灵活周期6个月',id:2},{name:'随心周期3个月',id:3}];
 export const SERVICE_TYPE=[{name:'住家',id:1},{name:'白班',id:2}];
 export const WORK_STATUS=[{name:'在职',id:1},{name:'离职',id:2},{name:'正在找工作',id:3}];
+export const SELECT_SERVICE_TYPE=[{name:'月嫂',id:1},{name:'育儿嫂',id:2},{name:'保姆',id:3},{name:'小时工',id:4},{name:'催乳师',id:5},{name:'先逛逛',id:6}];
