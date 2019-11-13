@@ -1,4 +1,5 @@
-import {setToken, removeToken} from '../common/utils/localStorage'
+import {setToken, removeToken} from '../common/utils/localStorage';
+
 
 export default {
   changeTransition(state, transitionName) {
@@ -11,7 +12,9 @@ export default {
   CLEAR_TOKEN(state) {
     removeToken();
     state.token = '';
-    window.location.reload();
+    const h5BaseURL = process.env.H5_BASE_URL;
+    // window.location.reload();
+    window.location=`${h5BaseURL}/#/enterport?time=${new Date().getTime()}`
   },
 
 }
