@@ -127,6 +127,7 @@
     }
     .bottom-module{
         width: 100%;
+        margin-bottom: 6px;
         .item{
             margin-left: 92px;
             margin-right: 8px;
