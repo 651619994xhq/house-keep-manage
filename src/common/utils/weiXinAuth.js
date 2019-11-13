@@ -21,15 +21,6 @@ let getUrlCode = () => {
 };
 
 
-new Vue({
-  el: '#app',
-  router,
-  store,
-  components: {App},
-  template: '<App/>'
-});
-
-
 let initVue=()=>{
   //这个是已经登录的逻辑
   if (getToken()) {
