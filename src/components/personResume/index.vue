@@ -145,6 +145,7 @@
       <div class="left col flex-item-start flex-justify" @click="handleCollectEvent">
         <div class="item-icon">
           <img src="~image/Collection@2x.png" alt="" v-if="!isCollection">
+          <img src="~image/Collection_light@2x.png" alt="" v-if="isCollection">
         </div>
         <div class="text">
           {{isCollection?'取消':'收藏'}}
