@@ -185,7 +185,7 @@
                 width: 100%;
                 height: 40px;
                 .item-3{
-                    margin-right: 8.5px;
+                    margin-right: 8px;
                     height: 40px;
                     width: 40px;
                     .item-3-title{

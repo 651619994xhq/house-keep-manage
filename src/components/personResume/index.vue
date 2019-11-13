@@ -454,8 +454,8 @@
     .info {
       margin-left: 16px;
       margin-top: 16px;
+      margin-bottom: 16px;
       width: 343px;
-      height: 80px;
       font-size: 13px;
       font-family: PingFangSC-Regular, PingFangSC;
       font-weight: 400;
