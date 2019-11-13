@@ -10,7 +10,7 @@
       <div class="item1 row flex-item flex-justify-between">
         <div class="name row flex-item flex-justify-start">
           <div class="name1">
-            {{itemInfo.name}}
+            {{itemInfo.name||'未知'}}
           </div>
           <div class="order-number">
             {{itemInfo.code}}
@@ -21,16 +21,16 @@
             <img src="~image/icon_red@2x.png" alt="">
           </div>
           <div class="text">
-            {{itemInfo.oneSentenceEvaluation||'未知'}}
+            {{itemInfo.oneSentenceEvaluation||''}}
           </div>
         </div>
 
       </div>
       <div class="item2">
-        {{itemInfo.age||'0'}}岁 | {{itemInfo.nativePlace || '国籍未知'}} | 从业{{itemInfo.workYear||'0'}}年
+        {{itemInfo.age||'0'}}岁 | {{itemInfo.nativePlace || ''}} {{itemInfo.nativePlace?'|':''}} 从业{{itemInfo.workYear||'0'}}年
       </div>
       <div class="item3 row flex-item flex-justify-start wrap">
-        <div class="item-3" v-for="(item,index) in (itemInfo.labelList||['暂无'])" :key="index">
+        <div class="item-3" v-for="(item,index) in (itemInfo.labelList||[])" :key="index">
           {{item}}
         </div>
       </div>
@@ -169,7 +169,9 @@
         .item-3 {
           margin-right: 6px;
           text-align: center;
-          width: 60px;
+          min-width: 60px;
+          padding: 0 4px;
+          box-sizing: border-box;
           height: 18px;
           line-height: 18px;
           background: rgba(245, 245, 246, 1);
