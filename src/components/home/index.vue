@@ -1,5 +1,14 @@
 <template>
+  <div>
+    <div class="navlist navlist2"  v-if="navBarFixed" style="position: fixed;top: 0;left: 0;z-index: 100">
+      <ul class="row flex-item flex-justify-around nav-container">
+        <li class="navli" :class="(nowIndex==index)?'navli-active':''" v-for="(item,index) in navList"
+            @click="tabClick(index)"><i>{{item.name}}</i>
+        </li>
+      </ul>
+    </div>
   <div class="container" ref="wrapper" :scrollbar="options.scrollbar" :startY="options.startY">
+
     <div class="content">
       <div class="header-box">
         <swiper :options="swiperOption" class="swipe-container">
@@ -10,8 +19,8 @@
         </swiper>
         <div class="swiper-pagination row flex-item flex-justify self-pagination" style="width: 100%" slot="pagination"></div>
       </div>
-      <div class="navlist">
-        <ul class="row flex-item flex-justify-around nav-container" :class="navBarFixed?'nav-fixed':''">
+      <div class="navlist" >
+        <ul class="row flex-item flex-justify-around nav-container" v-if="!navBarFixed">
           <li class="navli" :class="(nowIndex==index)?'navli-active':''" v-for="(item,index) in navList"
               @click="tabClick(index)"><i>{{item.name}}</i>
           </li>
@@ -42,6 +51,7 @@
     <div class="load row flex-item flex-justify" v-if="loading&&((nowIndex==0&&(list1.length>0))||(nowIndex==1&&(list2.length>0))||(nowIndex==2&&(list3.length>0))||(nowIndex==3&&(list4.length>0)))"><van-loading size="24px"></van-loading><div class="text">加载中...</div></div>
     <div class="load row flex-item flex-justify" v-if="finish&&!loading&&((nowIndex==0&&(list1.length>0))||(nowIndex==1&&(list2.length>0))||(nowIndex==2&&(list3.length>0))||(nowIndex==3&&(list4.length>0)))"><div class="text">没有更多数据了</div></div>
     </div>
+  </div>
   </div>
 </template>
 <script>
@@ -268,77 +278,79 @@
                 this.nowIndex = this.swicthSwiper.activeIndex
                 this.updateList();
             },
-            watchScroll() {
+            watchScroll(y) {
                 console.log('watchScroll==>',new Date().getTime());
-                let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop; //滚动视窗的高度距离window顶部的距离，它会随着往上滚动而不断增加，初始值是0，它是一个变化的值；
+                // let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop; //滚动视窗的高度距离window顶部的距离，它会随着往上滚动而不断增加，初始值是0，它是一个变化的值；
                 //  当滚动超过 50 时，实现吸顶效果
-                if (scrollTop > 206 * this.screenWidth / 375) {
-                    this.navBarFixed = true
-                } else {
-                    this.navBarFixed = false
-                }
-                if(scrollTop>1000){
-                    this.backTop=true;
-                }else{
-                    this.backTop=false;
-                }
-                // this.navBarFixed = true
-            },
-            watchScroll2:Throttle(async function(){
-                let clientHeight  = document.documentElement.clientHeight; //浏览器高度
-                let scrollHeight = document.body.scrollHeight; //滚动高度
-                let distance = 50;  //距离视窗还用50的时候，开始触发；
-                let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop; //滚动视窗的高度距离window顶部的距离，它会随着往上滚动而不断增加，初始值是0，它是一个变化的值；
-                //是否触底
-                if ((scrollTop + clientHeight) >= (scrollHeight - distance)) {
-                    if(this.isLocked){
-                        console.log('加锁了');
-                        return ;
+                let scrollTop=0-y;
+                //  this.$toast('scrollTop==>'+scrollTop);
+                    if (scrollTop > 206 * this.screenWidth / 375) {
+                        this.navBarFixed = true
+                    } else {
+                        this.navBarFixed = false
                     }
-                    this.loading=true;
-                    console.log("到底了，开始加载数据");
-                    this.isLocked=true;
-                    await  this.loadEvent();
-                    console.log('loadEvent is finish')
-                    this.isLocked=false;
-                    this.loading=false;
-                };
-            },300) ,
-            //更新头部bannerList 数据
-            async updateBannerList() {
-                let [err, data] = await getBannerList();
-                if (err !== null) {
-                    this.$toast(err || '系统错误')
-                    return;
-                }
-                ;
-                let list=data||[];
-                this.swiperSlides=[...list];
-            },
-            serviceCancelEvent(){
-                this.serviceData.isShow=false;
-            },
-            serviceSureEvent(){
-                this.serviceData.isShow=false;
-            },
-            serviceCloseEvent(){
-                this.serviceData.isShow=false;
-            },
-            handleShowService(){
-                this.serviceData.isShow=true;
-            },
-            load(){
-                if (!this.scroll) {
-                    this.scroll = new BScroll(this.$refs.wrapper, this.options);
-                    // 上拉
-                    this.scroll.on('pullingUp', () => {
-                        // 刷新数据的过程中，回弹停留在距离顶部还有20px的位置
-                        this.setData();
-                    });
-                    //实时监听
-                    this.scroll.on('scroll',()=>{
-
-                        this.watchScroll();
+                    if(scrollTop>1000){
+                        this.backTop=true;
+                    }else{
+                        this.backTop=false;
+                    }
+                    // this.navBarFixed = true
+                },
+                watchScroll2:Throttle(async function(){
+                    let clientHeight  = document.documentElement.clientHeight; //浏览器高度
+                    let scrollHeight = document.body.scrollHeight; //滚动高度
+                    let distance = 50;  //距离视窗还用50的时候，开始触发；
+                    let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop; //滚动视窗的高度距离window顶部的距离，它会随着往上滚动而不断增加，初始值是0，它是一个变化的值；
+                    //是否触底
+                    if ((scrollTop + clientHeight) >= (scrollHeight - distance)) {
+                        if(this.isLocked){
+                            console.log('加锁了');
+                            return ;
+                        }
+                        this.loading=true;
+                        console.log("到底了，开始加载数据");
+                        this.isLocked=true;
+                        await  this.loadEvent();
+                        console.log('loadEvent is finish')
+                        this.isLocked=false;
+                        this.loading=false;
+                    };
+                },300) ,
+                    //更新头部bannerList 数据
+                    async updateBannerList() {
+                    let [err, data] = await getBannerList();
+                    if (err !== null) {
+                        this.$toast(err || '系统错误')
+                        return;
+                    }
+                    ;
+                    let list=data||[];
+                    this.swiperSlides=[...list];
+                },
+                serviceCancelEvent(){
+                    this.serviceData.isShow=false;
+                },
+                serviceSureEvent(){
+                    this.serviceData.isShow=false;
+                },
+                serviceCloseEvent(){
+                    this.serviceData.isShow=false;
+                },
+                handleShowService(){
+                    this.serviceData.isShow=true;
+                },
+                load(){
+                    if (!this.scroll) {
+                        this.scroll = new BScroll(this.$refs.wrapper, this.options);
+                        // 上拉
+                        this.scroll.on('pullingUp', () => {
+                            // 刷新数据的过程中，回弹停留在距离顶部还有20px的位置
+                            this.setData();
+                        });
+                        //实时监听
+                        this.scroll.on('scroll',(e)=>{
+                        // this.$toast('x==>'+e.x+'  y==>'+e.y)
+                        this.watchScroll(e.y);
 
                     });
                 } else {//欢迎加入全栈开发交流圈一起学习交流：864305860
@@ -401,7 +413,6 @@
     height: 52px;
     width: 100%;
     background: #FFFFFF;
-
     .nav-container {
       width: 100%;
       height: 52px;
@@ -440,6 +451,9 @@
         background: $pink;
       }
     }
+  }
+  .navlist2{
+    margin-top: 0;
   }
 
   .switch-container {
