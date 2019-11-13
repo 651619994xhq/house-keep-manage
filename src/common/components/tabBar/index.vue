@@ -12,7 +12,7 @@
         </div>
         <div class="item col flex-item flex-justify" @click="switchTab('mine')">
             <img src="~image/me-light@2x.png" alt="" class="item-image" v-if="currentType=='mine'">
-            <img src="~image/mine-icon.png" alt="" class="item-image" v-else>
+            <img src="~image/me_gary@2x.png" alt="" class="item-image" v-else>
             <span class="item-title" :class="(currentType=='mine')?'active-item-title':''">我的</span>
         </div>
     </div>
