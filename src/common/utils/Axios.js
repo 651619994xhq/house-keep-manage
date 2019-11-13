@@ -45,7 +45,7 @@ class Axios {
                     return;
                   }
 
-                  reject(res.message||'系统错误');
+                  reject(res.data.message||'系统错误');
 
               })
               .catch((e)=> {
