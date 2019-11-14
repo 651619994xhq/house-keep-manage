@@ -14,7 +14,16 @@
         <div class="common-status item-status2 hairlines" v-if="infoData.status==5" @click="handleShowCancelInterview">
           {{infoData.status | ORDER_DETAIL_STATUS_FILTER}}
         </div>
-        <div class="common-status item-status2" v-if="infoData.status!=5">
+        <div class="common-status item-status2" v-if="infoData.status==15">
+          {{infoData.status | ORDER_DETAIL_STATUS_FILTER}}
+        </div>
+        <div class="common-status item-status2" style="color: #CECFD1" v-if="infoData.status==10||infoData.status==35||infoData.status==40">
+          {{infoData.status | ORDER_DETAIL_STATUS_FILTER}}
+        </div>
+        <div class="common-status item-status2" style="color: #7DB5FB" v-if="infoData.status==20">
+          {{infoData.status | ORDER_DETAIL_STATUS_FILTER}}
+        </div>
+        <div class="common-status item-status2 purple-color" v-if="infoData.status==25 ||infoData.status==30 ">
           {{infoData.status | ORDER_DETAIL_STATUS_FILTER}}
         </div>
       </div>
