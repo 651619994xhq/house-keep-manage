@@ -178,6 +178,7 @@
     margin-bottom: 10px;
 
     .item1 {
+      margin-top: 16px;
       width: 100%;
       height: 30px;
 
