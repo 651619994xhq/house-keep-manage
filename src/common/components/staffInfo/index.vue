@@ -126,7 +126,7 @@
           .order-number {
             margin-left: 10px;
             font-size: 12px;
-            font-weight: 400;
+            font-weight: normal;
             color: #949EA4;
           }
         }

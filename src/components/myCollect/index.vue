@@ -10,7 +10,7 @@
       >
       <li v-for="(item,index) of list" :key="index">
         <van-swipe-cell :right-width="70" :left-width="0" :on-close='onClose'>
-          <van-cell-group>
+          <van-cell-group :border="false">
             <staffInfo :itemInfo="item"></staffInfo>
           </van-cell-group>
           <div class="delete" slot="right" @click="handleShowDeleteDialog(item.id,index)">删除</div>
