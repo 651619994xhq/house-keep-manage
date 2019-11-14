@@ -64,7 +64,7 @@
 <style scoped lang="scss">
 .staff-info2{
     width:100%;
-    height: 114px;
+    height: 130px;
     background: #FFFFFF;
     .top-module{
         margin-top: 24px;
@@ -127,7 +127,7 @@
     }
     .bottom-module{
         width: 100%;
-        margin-bottom: 6px;
+        margin-bottom: 20px;
         .item{
             margin-left: 92px;
             margin-right: 8px;
