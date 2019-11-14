@@ -7,7 +7,7 @@
   >
     <div class="birthday-box">
       <div class="title">
-        日历组件
+        修改生日
       </div>
       <div class="select-day-container">
         <van-datetime-picker
