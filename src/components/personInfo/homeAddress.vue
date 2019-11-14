@@ -108,6 +108,7 @@
       width: 100%;
       background: #FFFFFF;
       border-top: 1px solid #d3d2d3;
+      border-radius: 0 0 13px 13px;
 
       .cancel-btn {
         height: 100%;
