@@ -484,7 +484,7 @@
 
   .certificate-info {
     margin-top: 10px;
-    min-height: 310px;
+    min-height: 240px;
     width: 100%;
     overflow: hidden;
     background: #FFFFFF;
