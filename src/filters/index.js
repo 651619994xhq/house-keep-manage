@@ -1,4 +1,4 @@
-import {INTERVIEW_TYPE,WORK_TYPE,ORDER_STATUS,IDENTITY_TYPE,SERVICE_TYPE,WORK_STATUS,ORDER_DETAIL_STATUS} from '../common/utils/constants';
+import {INTERVIEW_TYPE,WORK_TYPE,ORDER_STATUS,IDENTITY_TYPE,SERVICE_TYPE,WORK_STATUS,ORDER_DETAIL_STATUS,SELECT_SERVICE_TYPE} from '../common/utils/constants';
 import Vue from 'vue';
 Vue.filter('INTERVIEW_TYPE_FILTER',function (value) {
    for(let i=0,len=INTERVIEW_TYPE.length;i<len;i++){
@@ -52,6 +52,14 @@ Vue.filter('WORK_STATUS_FILTER',function (value) {
   for(let i=0,len=WORK_STATUS.length;i<len;i++){
     if(value==WORK_STATUS[i]['id']){
       return WORK_STATUS[i]['name']
+    };
+  };
+  return '';
+});
+Vue.filter('SELECT_SERVICE_TYPE_FILTER',function (value) {
+  for(let i=0,len=SELECT_SERVICE_TYPE.length;i<len;i++){
+    if(value==SELECT_SERVICE_TYPE[i]['id']){
+      return SELECT_SERVICE_TYPE[i]['name']
     };
   };
   return '';

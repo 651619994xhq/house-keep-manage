@@ -3,10 +3,10 @@
     <div class="service-box col flex-item flex-justify-between">
       <div class="content flex-grow col flex-item flex-justify-start">
           <div class="header">
-             身份信息
+             服务信息
           </div>
-          <div class="item" :class="curIdentityType==item.id?'item-active':''" v-for="(item,index) in IDENTITY_TYPE" :key="index" @click="handleSelectType(item.id)">
-            {{item.name}}
+          <div class="select-container">
+            <van-picker :columns="columns" :defaultIndex="selectType-1" :visible-item-count="3" @change="handleSelectType"/>
           </div>
       </div>
       <div class="control-btn" @click="handleSureEvent">
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-    import {IDENTITY_TYPE} from '@/common/utils/constants'
+    import {SELECT_SERVICE_TYPE} from '@/common/utils/constants'
     export default {
         name: "appointmentSuc",
         props: {
@@ -32,14 +32,24 @@
         },
         data() {
             return {
-                IDENTITY_TYPE,
-                curIdentityType:''
+                SELECT_SERVICE_TYPE,
+                curIdentityType:'',
             }
         },
         watch:{
             selectType(val){
                 this.curIdentityType=val;
             },
+        },
+        computed:{
+            columns:function(){
+                let $columns=[];
+                $columns=this.SELECT_SERVICE_TYPE.map((item,index)=>{
+                    return item.name
+                });
+                return $columns
+
+            }
         },
         created() {
 
@@ -51,8 +61,11 @@
             handleInput(){
                 this.$emit('closeEvent')
             },
-            handleSelectType(type){
-               this.curIdentityType=type;
+            handleSelectType(picker,value){
+                let $index=picker.getIndexes()[0];
+                console.log("$index==>",$index)
+                let type=this.SELECT_SERVICE_TYPE[$index].id;
+                this.curIdentityType=type;
             }
 
         },
@@ -65,7 +78,7 @@
   }
   .service-box {
     width: 245px;
-    min-height: 214px;
+    height: 214px;
     background: rgba(255, 255, 255, 1);
     border-radius: 13px;
 
@@ -80,20 +93,10 @@
         margin-top: 20px;
         margin-bottom: 4px;
       }
-      .item{
-        margin-top: 20px;
-        height:14px;
-        font-size:14px;
-        font-family:PingFangSC-Regular,PingFang SC;
-        font-weight:400;
-        color:rgba(138,143,155,1);
-        line-height:14px;
-        &:last-of-type{
-          margin-bottom: 20px;
-        }
-      }
-      .item-active{
-        color:rgba(34,34,34,1);
+      .select-container{
+        width: 100%;
+        height: 130px;
+        overflow: hidden;
       }
     }
 
