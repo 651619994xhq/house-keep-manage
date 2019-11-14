@@ -4,6 +4,7 @@
     @input="handleInput"
     round="true"
     :style="{borderRadius:'13px'}"
+    :close-on-click-overlay="false"
   >
     <div class="birthday-box">
       <div class="title">
