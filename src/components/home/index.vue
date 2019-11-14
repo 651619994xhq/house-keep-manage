@@ -439,7 +439,10 @@
     }
 
     .navli-active {
-      color: $pink;
+      color:rgba(255,255,255,1);
+      background:linear-gradient(338deg, rgba(201,141,253,1) 0%, rgba(250,119,119,1) 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
 
       &::after {
         margin-top: -2px;
@@ -448,7 +451,7 @@
         display: block;
         width: 16px;
         height: 2px;
-        background: $pink;
+        background:linear-gradient(338deg, rgba(201,141,253,1) 0%, rgba(250,119,119,1) 100%);
       }
     }
   }
