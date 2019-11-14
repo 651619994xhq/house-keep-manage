@@ -9,7 +9,7 @@
     <div class="content" v-for="(item,index) in comments" :key="index">
       <div class="header row flex-item flex-justify-between">
         <div class="name">{{item.createUser||'未知'}}</div>
-        <van-rate v-model="item.starClass||'0'" :size="size" :readonly="readonly" :gutter="gutter" class="rate"/>
+        <van-rate v-model="item.starClass||'0'" :size="size" :readonly="readonly" :gutter="gutter" color="#FCCE85" class="rate"/>
       </div>
       <div class="item-content">
        {{item.comment||'无'}}

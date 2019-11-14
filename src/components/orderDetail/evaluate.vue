@@ -3,7 +3,7 @@
     <div class="service-box col flex-item flex-justify-between">
       <div class="content flex-grow col flex-item-start flex-justify">
         <div class="title">您好，您对我们很重要。</div>
-        <div class="title2 row flex-item flex-justify-start">面试评分：<van-rate v-model="rateValue" :size="size" @change="handleChangeRate" class="rate"/></div>
+        <div class="title2 row flex-item flex-justify-start">面试评分：<van-rate v-model="rateValue" :size="size" color="#FCCE85" @change="handleChangeRate" class="rate"/></div>
         <div class="evaluate-container">
           <input type="text" placeholder="请填写您的评价，谢谢" v-model="evaluateText" class="evaluate-input">
         </div>
