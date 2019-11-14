@@ -6,14 +6,35 @@
         请选择面试方式
       </div>
       <div class="title2 row flex-item flex-justify-start">
-        <div class="item" :class="selectInterviewType==1?'item-active':'item-normal'" @click="handleClickInterview(1)">
-          到店面试
+        <div class="item" @click="handleClickInterview(1)">
+          <div class="item-normal" v-if="selectInterviewType!=1">
+            到店面试
+          </div>
+          <div class="item-active" v-if="selectInterviewType==1">
+            <div class="inner-item">
+              <span class="purple-color">到店面试</span>
+            </div>
+          </div>
         </div>
-        <div class="item" :class="selectInterviewType==2?'item-active':'item-normal'" @click="handleClickInterview(2)">
-          上门面试
+        <div class="item" @click="handleClickInterview(2)">
+          <div class="item-normal" v-if="selectInterviewType!=2">
+            上门面试
+          </div>
+          <div class="item-active" v-if="selectInterviewType==2">
+            <div class="inner-item">
+              <span class="purple-color">上门面试</span>
+            </div>
+          </div>
         </div>
-        <div class="item" :class="selectInterviewType==3?'item-active':'item-normal'" @click="handleClickInterview(3)">
-          视频面试
+        <div class="item" @click="handleClickInterview(3)">
+          <div class="item-normal" v-if="selectInterviewType!=3">
+            视频面试
+          </div>
+          <div class="item-active" v-if="selectInterviewType==3">
+            <div class="inner-item">
+              <span class="purple-color">视频面试</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="title3 row flex-item flex-justify-start">
@@ -232,22 +253,35 @@
         text-align: center;
         margin-right: 19px;
         box-sizing: border-box;
-      }
+        .item-normal{
+            width: 100%;
+            height: 100%;
+            color: rgba(0, 2, 18, 1);
+            background: rgba(241, 241, 241, 1);
+            border: 1px solid rgba(241, 241, 241, 1);
+            box-sizing: border-box;
+            border-radius: 6px;
+        }
 
-      .item-normal {
-        color: rgba(0, 2, 18, 1);
-        background: rgba(241, 241, 241, 1);
-      }
+        .item-active{
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+          border-radius: 6px;
+          padding: 1px;
+          background: linear-gradient(338deg, rgba(201, 141, 253, 1) 0%, rgba(250, 119, 119, 1) 100%);
+          .inner-item{
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+            text-align: center;
+            background: #FFFFFF;
+            font-family: PingFangSC-Regular, PingFang SC;
+          }
 
-      .item-active {
-        border: 1px solid;
-        border-image: linear-gradient(338deg, rgba(201, 141, 253, 1), rgba(250, 119, 119, 1)) 1 1;
-        color: rgba(0, 2, 18, 1);
-        background: linear-gradient(338deg, rgba(201, 141, 253, 1) 0%, rgba(250, 119, 119, 1) 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
+        }
 
+      }
     }
 
     .title3 {
