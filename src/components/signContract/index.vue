@@ -6,17 +6,36 @@
         请选择服务周期
       </div>
       <div class="title2 row flex-item flex-justify-start">
-        <div class="item" :class="selectServicePeriod==1?'item-active':'item-normal'"
+        <div class="item"
              @click="handleClickServicePeriod(1)">
-          标准周期12个月
+          <div class="item-normal" v-if="selectServicePeriod!=1">
+            标准周期12个月
+          </div>
+          <div class="item-active" v-if="selectServicePeriod==1">
+            <div class="inner-item">
+              <span class="purple-color">标准周期12个月</span>
+            </div>
+          </div>
         </div>
-        <div class="item" :class="selectServicePeriod==2?'item-active':'item-normal'"
-             @click="handleClickServicePeriod(2)">
-          灵活周期6个月
+        <div class="item" @click="handleClickServicePeriod(2)">
+          <div class="item-normal" v-if="selectServicePeriod!=2">
+            灵活周期6个月
+          </div>
+          <div class="item-active" v-if="selectServicePeriod==2">
+            <div class="inner-item">
+              <span class="purple-color">灵活周期6个月</span>
+            </div>
+          </div>
         </div>
-        <div class="item" :class="selectServicePeriod==3?'item-active':'item-normal'"
-             @click="handleClickServicePeriod(3)">
-          随心周期3个月
+        <div class="item" @click="handleClickServicePeriod(3)">
+          <div class="item-normal" v-if="selectServicePeriod!=3">
+            随心周期3个月
+          </div>
+          <div class="item-active" v-if="selectServicePeriod==3">
+            <div class="inner-item">
+              <span class="purple-color">随心周期3个月</span>
+            </div>
+          </div>
         </div>
       </div>
       <!--      <div class="title3 row flex-item flex-justify-start">-->
@@ -222,21 +241,35 @@
         text-align: center;
         margin-right: 19px;
         box-sizing: border-box;
+        .item-normal{
+          width: 100%;
+          height: 100%;
+          color: rgba(0, 2, 18, 1);
+          background: rgba(241, 241, 241, 1);
+          border: 1px solid rgba(241, 241, 241, 1);
+          box-sizing: border-box;
+          border-radius: 6px;
+        }
+
+        .item-active{
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+          border-radius: 6px;
+          padding: 1px;
+          background: linear-gradient(338deg, rgba(201, 141, 253, 1) 0%, rgba(250, 119, 119, 1) 100%);
+          .inner-item{
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+            text-align: center;
+            background: #FFFFFF;
+            font-family: PingFangSC-Regular, PingFang SC;
+          }
+
+        }
       }
 
-      .item-normal {
-        color: rgba(0, 2, 18, 1);
-        background: rgba(241, 241, 241, 1);
-      }
-
-      .item-active {
-        border: 1px solid;
-        border-image: linear-gradient(338deg, rgba(201, 141, 253, 1), rgba(250, 119, 119, 1)) 1 1;
-        color: rgba(0, 2, 18, 1);
-        background: linear-gradient(338deg, rgba(201, 141, 253, 1) 0%, rgba(250, 119, 119, 1) 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
 
     }
 
