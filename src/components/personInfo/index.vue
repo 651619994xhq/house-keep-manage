@@ -22,10 +22,10 @@
 
     <div class="item row flex-item flex-justify-between" @click="handleShowIdentity">
       <div class="title1">
-        身份信息
+        服务信息
       </div>
       <div class="title2 row flex-item flex-justify-between">
-        <div class="item-title1">{{userInfo.identityType | IDENTITY_TYPE_FILTER}}</div>
+        <div class="item-title1">{{userInfo.identityType | SELECT_SERVICE_TYPE_FILTER}}</div>
         <div class="item-title2"><img src="~image/icon_next_gary@2x.png" alt=""></div>
       </div>
     </div>
@@ -91,7 +91,7 @@
                     birthday:'',
                     babyBirthday:''
                 },
-                identityType:0,
+                identityType:1,
                 identityPeopleAction: '',  //birthday babyBirthday
 
             }
