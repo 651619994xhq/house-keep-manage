@@ -6,27 +6,47 @@
         请选择服务周期
       </div>
       <div class="title2 row flex-item flex-justify-start wrap">
-        <div class="item" :class="selectServicePeriod==1?'item-active':'item-normal'"
-             @click="handleClickServicePeriod(1)">
-          标准周期26天
+        <div class="item" @click="handleClickServicePeriod(1)">
+          <div class="item-normal" v-if="selectServicePeriod!=1">
+            标准周期26天
+          </div>
+          <div class="item-active" v-if="selectServicePeriod==1">
+            <div class="inner-item">
+              <span class="purple-color">标准周期26天</span>
+            </div>
+          </div>
         </div>
-        <div class="item" :class="selectServicePeriod==2?'item-active':'item-normal'"
-             @click="handleClickServicePeriod(2)">
-          升级周期42天
+        <div class="item" @click="handleClickServicePeriod(2)">
+          <div class="item-normal" v-if="selectServicePeriod!=2">
+            升级周期42天
+          </div>
+          <div class="item-active" v-if="selectServicePeriod==2">
+            <div class="inner-item">
+              <span class="purple-color">升级周期42天</span>
+            </div>
+          </div>
         </div>
-        <div class="item" :class="selectServicePeriod==3?'item-active':'item-normal'"
-             @click="handleClickServicePeriod(3)">
-          升级周期52天
+        <div class="item" @click="handleClickServicePeriod(3)">
+          <div class="item-normal" v-if="selectServicePeriod!=3">
+            升级周期52天
+          </div>
+          <div class="item-active" v-if="selectServicePeriod==3">
+            <div class="inner-item">
+              <span class="purple-color">升级周期52天</span>
+            </div>
+          </div>
         </div>
-        <div class="item" :class="selectServicePeriod==4?'item-active':'item-normal'"
-             @click="handleClickServicePeriod(4)">
-          省心周期78天
+        <div class="item" @click="handleClickServicePeriod(4)">
+          <div class="item-normal" v-if="selectServicePeriod!=4">
+            省心周期78天
+          </div>
+          <div class="item-active" v-if="selectServicePeriod==4">
+            <div class="inner-item">
+              <span class="purple-color">省心周期78天</span>
+            </div>
+          </div>
         </div>
       </div>
-      <!--      <div class="title3 row flex-item flex-justify-start">-->
-      <!--        <div class="text1">到店面试地址：</div>-->
-      <!--        <div class="text2">北京市朝阳区金茂府2期东区6号楼</div>-->
-      <!--      </div>-->
     </div>
     <div class="appointment-btn row flex-item flex-justify-between" @click="handleShowTime">
       <div class="title1">选择服务开始时间</div>
@@ -55,7 +75,6 @@
     import resume from '@/common/components/resume/index';
     import servicePeriod from "./servicePeriod";
     import {getEmployeeBaseInfo,sign} from '@/common/utils/service'
-    import awaitWrap from "../../common/utils/awaitWrap";
 
     export default {
         name: "signContract",
@@ -239,21 +258,49 @@
           margin-top: 12px;
           margin-bottom: 16px;
         }
+
+        .item-normal{
+          width: 100%;
+          height: 100%;
+          color: rgba(0, 2, 18, 1);
+          background: rgba(241, 241, 241, 1);
+          border: 1px solid rgba(241, 241, 241, 1);
+          box-sizing: border-box;
+          border-radius: 6px;
+        }
+
+        .item-active{
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+          border-radius: 6px;
+          padding: 1px;
+          background: linear-gradient(338deg, rgba(201, 141, 253, 1) 0%, rgba(250, 119, 119, 1) 100%);
+          .inner-item{
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+            text-align: center;
+            background: #FFFFFF;
+            font-family: PingFangSC-Regular, PingFang SC;
+          }
+
+        }
       }
 
-      .item-normal {
-        color: rgba(0, 2, 18, 1);
-        background: rgba(241, 241, 241, 1);
-      }
+      /*.item-normal {*/
+      /*  color: rgba(0, 2, 18, 1);*/
+      /*  background: rgba(241, 241, 241, 1);*/
+      /*}*/
 
-      .item-active {
-        border: 1px solid;
-        border-image: linear-gradient(338deg, rgba(201, 141, 253, 1), rgba(250, 119, 119, 1)) 1 1;
-        color: rgba(0, 2, 18, 1);
-        background: linear-gradient(338deg, rgba(201, 141, 253, 1) 0%, rgba(250, 119, 119, 1) 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
+      /*.item-active {*/
+      /*  border: 1px solid;*/
+      /*  border-image: linear-gradient(338deg, rgba(201, 141, 253, 1), rgba(250, 119, 119, 1)) 1 1;*/
+      /*  color: rgba(0, 2, 18, 1);*/
+      /*  background: linear-gradient(338deg, rgba(201, 141, 253, 1) 0%, rgba(250, 119, 119, 1) 100%);*/
+      /*  -webkit-background-clip: text;*/
+      /*  -webkit-text-fill-color: transparent;*/
+      /*}*/
 
     }
 
