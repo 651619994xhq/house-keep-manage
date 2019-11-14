@@ -87,7 +87,10 @@
                 homeAddressData: {
                     isShow: false
                 },
-                userInfo: {},
+                userInfo: {
+                    birthday:'',
+                    babyBirthday:''
+                },
                 identityType:0,
                 identityPeopleAction: '',  //birthday babyBirthday
 
