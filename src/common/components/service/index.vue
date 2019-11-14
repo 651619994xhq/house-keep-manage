@@ -67,7 +67,7 @@
       .phone {
         margin-top: 8px;
         font-size: 20px;
-        font-family: SFProText-Medium, SFProText;
+        font-family: PingFangSC-Regular, PingFang SC;
         font-weight: 500;
         color: rgba(0, 0, 0, 1);
       }
