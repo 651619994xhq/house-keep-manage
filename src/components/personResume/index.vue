@@ -142,13 +142,13 @@
     <userEvaluate :comments="comments"></userEvaluate>
 
     <div class="submit-container row flex-item flex-justify-between" v-if="infoData.type==1">
-      <div class="left col flex-item-start flex-justify" @click="handleCollectEvent">
+      <div class="left col flex-item flex-justify" @click="handleCollectEvent">
         <div class="item-icon">
           <img src="~image/Collection@2x.png" alt="" v-if="!isCollection">
           <img src="~image/Collection_light@2x.png" alt="" v-if="isCollection">
         </div>
         <div class="text">
-          {{isCollection?'取消':'收藏'}}
+          {{isCollection?'已收藏':'收藏'}}
         </div>
 
       </div>
@@ -164,12 +164,13 @@
 
 
     <div class="submit-container row flex-item flex-justify-between" v-else>
-      <div class="left col flex-item-start flex-justify" @click="handleCollectEvent">
+      <div class="left col flex-item flex-justify" @click="handleCollectEvent">
         <div class="item-icon">
           <img src="~image/Collection@2x.png" alt="" v-if="!isCollection">
+          <img src="~image/Collection_light@2x.png" alt="" v-if="isCollection">
         </div>
         <div class="text">
-          {{isCollection?'取消':'收藏'}}
+          {{isCollection?'已收藏':'收藏'}}
         </div>
 
       </div>
@@ -580,17 +581,16 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 0 16px;
+    padding: 0 16px 0 0;
     box-sizing: border-box;
     height: 70px;
     background: $white;
 
     .left {
-      width: 40px;
+      width: 50px;
       height: 70px;
 
       .item-icon {
-        margin-left: 4px;
         width: 18px;
         height: 18px;
 
