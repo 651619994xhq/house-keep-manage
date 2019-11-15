@@ -55,11 +55,12 @@
       </div>
       <div class="bottom-pop row flex-item-start flex-justify-start wrap">
         <div class="time" v-for="(item ,index) in times" :key="index">
-          <div style="width: 100%;height: 100%" class="dis-time" v-if="((currentDay=='today')&&((nowDate-item)>=0))">
+          <div style="width: 100%;height: 100%" class="item-time dis-time" v-if="((currentDay=='today')&&((nowDate-item)>=0))">
             {{`${item}:00`}}
           </div>
-          <div style="width: 100%;height: 100%" :class="selectTimeIndex===index?'active-time':'normal-time'"  @click="handleClickTime(index,item)" v-else>
-            {{`${item}:00`}}
+          <div style="width: 100%;height: 100%"   @click="handleClickTime(index,item)" v-else>
+            <div style="width: 100%;height: 100%" class="item-time active-time" v-if="selectTimeIndex===index" ><span class="purple-color">{{`${item}:00`}}</span></div>
+            <div style="width: 100%;height: 100%"  class="item-time normal-time" v-else >{{`${item}:00`}}</div>
           </div>
         </div>
       </div>
@@ -304,23 +305,21 @@
       color: rgba(3, 8, 24, 1);
 
     }
+    .item-time{
+      border: 0.5px solid rgba(241, 241, 241, 1);
+    }
     .dis-time{
       background: rgba(250, 250, 250, 1);
-      border-top: 1px solid rgba(241, 241, 241, 1);
-      border-left: 1px solid rgba(241, 241, 241, 1);
+      /*border-top: 1px solid rgba(241, 241, 241, 1);*/
+      /*border-left: 1px solid rgba(241, 241, 241, 1);*/
     }
     .normal-time{
-      border-top: 1px solid rgba(241, 241, 241, 1);
-      border-left: 1px solid rgba(241, 241, 241, 1);
+      /*border-top: 1px solid rgba(241, 241, 241, 1);*/
+      /*border-left: 1px solid rgba(241, 241, 241, 1);*/
     }
     .active-time{
-      border-top: 1px solid rgba(241, 241, 241, 1);
-      border-left: 1px solid rgba(241, 241, 241, 1);
-      background: red;
-      background:linear-gradient(338deg,rgba(201,141,253,1) 0%,rgba(250,119,119,1) 100%);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      color:rgba(3,8,24,1);
+      /*border:0.5px solid;*/
+      /*border-image:linear-gradient(338deg, rgba(201,141,253,1), rgba(250,119,119,1)) 1 1;*/
     }
 
     .right-border {
