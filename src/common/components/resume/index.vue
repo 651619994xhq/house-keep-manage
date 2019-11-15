@@ -12,7 +12,7 @@
                        <div class="code">{{itemInfo.code}}</div>
                    </div>
                    <div class="money">
-                       ￥ {{itemInfo.salary||'0'}}/月
+                       ￥{{itemInfo.salary||'0'}}/月
                    </div>
                </div>
                <div class="item2 row flex-item flex-justify-start" v-show="itemInfo.oneSentenceEvaluation">
