@@ -83,7 +83,7 @@
     import appointmentSuc from "./appointmentSuc";
     import appointmentError from "./appointmentError";
     import fillAddress from "./fillAddress";
-    import {getEmployeeBaseInfo,appointInterview} from '@/common/utils/service'
+    import {getEmployeeBaseInfo,appointInterview,getOccupyTime} from '@/common/utils/service'
 
     export default {
         name: "apponitment",
@@ -124,7 +124,16 @@
         },
 //一些自定义方法
         methods: {
-            showPopup() {
+            async showPopup() {
+                let auntId=this.$route.query.id;
+                if(!auntId){
+                    this.$toast('auntId is null');
+                  return ;
+                };
+                this.$loading();
+                let [err,data]=await getOccupyTime({auntId});
+                if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
+                this.$clear();
                 this.popup.isShow = true;
             },
             hidePopup() {

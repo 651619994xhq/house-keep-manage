@@ -3,7 +3,7 @@
     <div class="navlist navlist2"  v-if="navBarFixed" style="position: fixed;top: 0;left: 0;z-index: 100">
       <ul class="row flex-item flex-justify-around nav-container">
         <li class="navli" :class="(nowIndex==index)?'navli-active':''" v-for="(item,index) in navList"
-            @click="tabClick(index)">{{item.name}}
+            @click="tabClick(index)"><span :class="(nowIndex==index)?'purple-color':''">{{item.name}}</span>
         </li>
       </ul>
     </div>
@@ -22,7 +22,7 @@
       <div class="navlist" >
         <ul class="row flex-item flex-justify-around nav-container" v-if="!navBarFixed">
           <li class="navli" :class="(nowIndex==index)?'navli-active':''" v-for="(item,index) in navList"
-              @click="tabClick(index)">{{item.name}}
+              @click="tabClick(index)"><span :class="(nowIndex==index)?'purple-color':''">{{item.name}}</span>
           </li>
         </ul>
       </div>
@@ -439,11 +439,6 @@
     }
 
     .navli-active {
-      color:rgba(255,255,255,1);
-      background:linear-gradient(338deg, rgba(201,141,253,1) 0%, rgba(250,119,119,1) 100%);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-
       &::after {
         margin-top: -2px;
         margin-left: 40px;
