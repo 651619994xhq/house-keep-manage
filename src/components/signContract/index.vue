@@ -152,7 +152,7 @@
                     this.$toast('orderId 为空')
                     return;
                 }
-                if (!this.selectTime) {
+                if (!this.selectStartTime) {
                     this.$toast('请选择预约时间');
                     return
                 }

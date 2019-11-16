@@ -71,7 +71,7 @@
         {{infoData.familySituation}}
       </div>
     </div>
-    <div class="certificate-info">
+    <div class="certificate-info" v-if="infoData.personCertList&&infoData.personCertList.length>0">
       <div class="item1 row flex-item flex-justify-start">
         <div class="item1-icon">
           <img src="~image/certificate@2x.png" alt="">
@@ -81,60 +81,12 @@
         </div>
       </div>
       <div class="info row flex-item flex-justify-start wrap">
-        <div class="item col flex-item flex-justify">
+        <div class="item col flex-item flex-justify" v-for="(item,index) in infoData.personCertList" :key="index">
           <div class="item-icon">
 
           </div>
           <div class="item-text">
-            健康证
-          </div>
-        </div>
-        <div class="item col flex-item flex-justify">
-          <div class="item-icon">
-
-          </div>
-          <div class="item-text">
-            月嫂证
-          </div>
-        </div>
-        <div class="item col flex-item flex-justify">
-          <div class="item-icon">
-
-          </div>
-          <div class="item-text">
-            护照
-          </div>
-        </div>
-        <div class="item col flex-item flex-justify">
-          <div class="item-icon">
-
-          </div>
-          <div class="item-text">
-            港澳通行证
-          </div>
-        </div>
-        <div class="item col flex-item flex-justify">
-          <div class="item-icon">
-
-          </div>
-          <div class="item-text">
-            按摩技师证
-          </div>
-        </div>
-        <div class="item col flex-item flex-justify">
-          <div class="item-icon">
-
-          </div>
-          <div class="item-text">
-            小儿推拿师证
-          </div>
-        </div>
-        <div class="item col flex-item flex-justify">
-          <div class="item-icon">
-
-          </div>
-          <div class="item-text">
-            幼儿护理证
+            {{item}}
           </div>
         </div>
       </div>
