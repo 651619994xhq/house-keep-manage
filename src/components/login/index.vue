@@ -129,21 +129,18 @@
                 this.selectId = id;
             },
             async handleRegisterEvent(){
-                // this.test();
-                this.$login();
-                console.log('handleRegisterEvent is run');
-                // this.UPDATE_TOKEN(userToken);
-                // this.$router.replace({
-                //     path:'/index'
-                // });
-                // if(!this.phone){this.$toast('请输入手机号');return ;};
-                // if(!this.isPoneAvailable(this.phone)){this.$toast('请输入正确的手机号');return ;};
-                // if(!this.sms){this.$toast('请输入验证码');return ;};
-                // this.$loading();
-                // let [err,data]=await register({phone:this.phone,smsCode:this.sms,identityType:this.selectId});
-                // if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
-                // this.$clear();
-                // this.$toast.success('注册成功');
+                if(!this.phone){this.$toast('请输入手机号');return ;};
+                if(!this.isPoneAvailable(this.phone)){this.$toast('请输入正确的手机号');return ;};
+                if(!this.sms){this.$toast('请输入验证码');return ;};
+                this.$loading();
+                let [err,data]=await register({phone:this.phone,smsCode:this.sms,identityType:this.selectId});
+                if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
+                this.$clear();
+                this.$toast.success('注册成功');
+                this.$router.replace({
+                    path:'/index'
+                });
+
             },
             async test(){
                 let [err,data]=await getAccessToken();

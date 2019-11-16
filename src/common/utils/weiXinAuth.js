@@ -50,6 +50,10 @@ let initVue=()=>{
     let [err, data] = await login({code});
     if (err !== null) {Toast(err || '系统错误');return;};
     let $token = data.token;
+    if(!$token){
+      Toast('login token is null');
+      return ;
+    }
     store.commit('UPDATE_TOKEN', $token);
     new Vue({
       el: '#app',
