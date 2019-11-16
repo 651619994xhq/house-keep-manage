@@ -71,7 +71,7 @@
         {{infoData.familySituation}}
       </div>
     </div>
-    <div class="certificate-info" v-if="infoData.personCertList&&infoData.personCertList.length>0">
+    <div class="certificate-info" v-if="infoData.personCert">
       <div class="item1 row flex-item flex-justify-start">
         <div class="item1-icon">
           <img src="~image/certificate@2x.png" alt="">
@@ -81,9 +81,9 @@
         </div>
       </div>
       <div class="info row flex-item flex-justify-start wrap">
-        <div class="item col flex-item flex-justify" v-for="(item,index) in infoData.personCertList" :key="index">
+        <div class="item col flex-item flex-justify" v-for="(item,index) in infoData.personCert.split(',')" :key="index">
           <div class="item-icon">
-
+            <img src="~image/zhengshu.png" alt="" style="display: block;width: 100%;height: 100%">
           </div>
           <div class="item-text">
             {{item}}
@@ -511,7 +511,7 @@
         .item-icon {
           width: 22px;
           height: 18px;
-          background: #666666;
+          /*background: #666666;*/
           margin-bottom: 9px;
         }
 
