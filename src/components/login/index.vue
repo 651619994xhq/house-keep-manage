@@ -46,7 +46,7 @@
 
 <script>
     import {mapMutations} from 'vuex';
-    import {sendRegisterCode,getUserInfo,register,getAccessToken,getOpenId,login} from '@/common/utils/service';
+    import {sendRegisterCode,getUserInfo,register} from '@/common/utils/service';
     import {SELECT_SERVICE_TYPE} from '@/common/utils/constants'
     import md5 from 'js-md5';
     let userToken='8b5d3b67-5f52-41d8-93d8-648e04545ef0';
@@ -143,14 +143,14 @@
 
             },
             async test(){
-                let [err,data]=await getAccessToken();
-                let access_token=data.access_token;
-                let [err1,data1]=await getOpenId({access_token});
-                 this.$toast(JSON.stringify(data1));
+                // let [err,data]=await getAccessToken();
+                // let access_token=data.access_token;
+                // let [err1,data1]=await getOpenId({access_token});
+                //  this.$toast(JSON.stringify(data1));
 
             },
             async $login(){
-                let [err,data]=await login({code:'0013Yhfv0xnxPh1XgZdv05iofv03Yhfo'})
+                // let [err,data]=await login({code:'0013Yhfv0xnxPh1XgZdv05iofv03Yhfo'})
             }
         }
     }

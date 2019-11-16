@@ -3,7 +3,7 @@
     <div class="mine-header row flex-item flex-justify-start" :style="{backgroundImage:`url(${imgPath})`}"
          style="background-repeat:no-repeat; background-size:100% 100%;">
       <div class="img-container">
-        <img src="" alt="">
+        <img :src="userInfo.headUrl" alt="">
       </div>
       <div class="text-container col flex-justify flex-item-start">
         <p class="title1">{{userInfo.nickName}}</p>
@@ -230,6 +230,7 @@
       border-radius: 4px;
       border: 1px solid rgba(255, 255, 255, 1);
       margin-left: 16px;
+      overflow: hidden;
 
       img {
         display: block;

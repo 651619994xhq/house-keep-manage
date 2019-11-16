@@ -3,7 +3,7 @@ import App from '@/App'
 import router from '@/router'
 import store from '@/store'
 Vue.config.productionTip = false;
-import {getToken} from "./localStorage";
+import {getToken,removeToken} from "./localStorage";
 import {login} from './service';
 import {Toast} from 'vant';
 
@@ -22,6 +22,13 @@ let getUrlCode = () => {
 
 
 let initVue=()=>{
+  let clearLocal=window.location.href;
+  if(clearLocal.indexOf('clearLocal')){
+    removeToken();
+    Toast('已清除缓存');
+    return;
+  }
+
   //这个是已经登录的逻辑
   if (getToken()) {
     store.commit('UPDATE_TOKEN', getToken());
