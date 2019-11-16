@@ -70,7 +70,7 @@
       </div>
     </div>
 
-    <appointTime :nowTime="popup.nowTime" :isShow="popup.isShow" @closeEvent="handleCloseEvent('appointTime')" @cancelEvent="handleTimeCancel" @sureEvent="handleTimeSure"></appointTime>
+    <appointTime :nowTime="popup.nowTime" :isShow="popup.isShow" :data="popup.data" @closeEvent="handleCloseEvent('appointTime')" @cancelEvent="handleTimeCancel" @sureEvent="handleTimeSure"></appointTime>
     <appointmentSuc :is-show="appointmentSucData.isShow" @sureEvent="handleAppointSureEvent"></appointmentSuc>
     <appointmentError :is-show="appointmentErrorData.isShow" @sureEvent="handleAppointErrorSureEvent" @closeEvent="handleAppointErrorCloseEvent"></appointmentError>
     <fillAddress :is-show="fillAddressData.isShow" @sureEvent="handleFillAddressSureEvent" @closeEvent="handleFillAddressCloseEvent"></fillAddress>
@@ -91,7 +91,8 @@
             return {
                 popup: {
                     isShow: false,
-                    nowTime:''
+                    nowTime:'',
+                    data:[]
                 },
                 appointmentSucData:{
                     isShow:false
@@ -134,6 +135,7 @@
                 let [err,data]=await getOccupyTime({auntId});
                 if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;};
                 this.$clear();
+                this.popup.data=data||[];
                 this.popup.isShow = true;
             },
             hidePopup() {

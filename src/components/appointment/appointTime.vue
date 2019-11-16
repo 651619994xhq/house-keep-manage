@@ -22,7 +22,7 @@
               今天
             </div>
             <div class="title2" :class="(currentDay=='today')?'active-color':''">
-              {{today.virtual}}
+              {{data[0]&&data[0].interviewDate | formatTime}}
             </div>
             <div class="title3" :class="(currentDay=='today')?'active-bg':''">
 
@@ -34,7 +34,7 @@
               明天
             </div>
             <div class="title2" :class="(currentDay=='tomorrow')?'active-color':''">
-              {{tomorrow.virtual}}
+              {{data[1]&&data[1].interviewDate | formatTime}}
             </div>
             <div class="title3" :class="(currentDay=='tomorrow')?'active-bg':''">
 
@@ -45,7 +45,7 @@
               后天
             </div>
             <div class="title2" :class="(currentDay=='after-tomorrow')?'active-color':''">
-              {{afterTomorrow.virtual}}
+              {{data[2]&&data[2].interviewDate | formatTime}}
             </div>
             <div class="title3" :class="(currentDay=='after-tomorrow')?'active-bg':''">
 
@@ -54,8 +54,8 @@
         </div>
       </div>
       <div class="bottom-pop row flex-item-start flex-justify-start wrap">
-        <div class="time" v-for="(item ,index) in times" :key="index">
-          <div style="width: 100%;height: 100%" class="item-time dis-time" v-if="((currentDay=='today')&&((nowDate-item)>=0))">
+        <div class="time" v-for="(item ,index) in times" :key="index" v-if="currentDay=='today'">
+          <div style="width: 100%;height: 100%" class="item-time dis-time" v-if="isNoAvailableDate(item,data[0]&&data[0].occupy)">
             {{`${item}:00`}}
           </div>
           <div style="width: 100%;height: 100%"   @click="handleClickTime(index,item)" v-else>
@@ -63,6 +63,27 @@
             <div style="width: 100%;height: 100%"  class="item-time normal-time" v-else >{{`${item}:00`}}</div>
           </div>
         </div>
+
+        <div class="time" v-for="(item ,index) in times" :key="index" v-if="currentDay=='tomorrow'">
+          <div style="width: 100%;height: 100%" class="item-time dis-time" v-if="isNoAvailableDate(item,data[1]&&data[1].occupy)">
+            {{`${item}:00`}}
+          </div>
+          <div style="width: 100%;height: 100%"   @click="handleClickTime(index,item)" v-else>
+            <div style="width: 100%;height: 100%" class="item-time active-time" v-if="selectTimeIndex===index" ><span class="purple-color">{{`${item}:00`}}</span></div>
+            <div style="width: 100%;height: 100%"  class="item-time normal-time" v-else >{{`${item}:00`}}</div>
+          </div>
+        </div>
+
+        <div class="time" v-for="(item ,index) in times" :key="index" v-if="currentDay=='after-tomorrow'">
+          <div style="width: 100%;height: 100%" class="item-time dis-time" v-if="isNoAvailableDate(item,data[2]&&data[2].occupy)">
+            {{`${item}:00`}}
+          </div>
+          <div style="width: 100%;height: 100%"   @click="handleClickTime(index,item)" v-else>
+            <div style="width: 100%;height: 100%" class="item-time active-time" v-if="selectTimeIndex===index" ><span class="purple-color">{{`${item}:00`}}</span></div>
+            <div style="width: 100%;height: 100%"  class="item-time normal-time" v-else >{{`${item}:00`}}</div>
+          </div>
+        </div>
+
       </div>
     </div>
   </van-popup>
@@ -73,6 +94,23 @@
     export default {
         name: 'appointTime',
         props: {
+            data:{
+              type:Array,
+              default:[
+                  {
+                      interviewDate:'',
+                      occupy:[]
+                  },
+                  {
+                      interviewDate:'',
+                      occupy:[]
+                  },
+                  {
+                      interviewDate:'',
+                      occupy:[]
+                  },
+              ]
+            },
             isShow: {
                 type: Boolean,
                 value: false
@@ -88,30 +126,36 @@
             }
         },
         computed:{
-            today:function () {
-                let $time = new Date(this.nowTime);
-                return {
-                    virtual:($time.getMonth()+1) + "月" + $time.getDate()+'日',
-                    real:`${$time.getFullYear()}-${(($time.getMonth()+1)>9)?($time.getMonth()+1):('0'+($time.getMonth()+1))}-${($time.getDate()>9)?($time.getDate()):('0'+($time.getDate()))}`
-                }
-            },
-            tomorrow:function () {
-                let $time = new Date(this.nowTime+24*60*60*1000);
-                return {
-                    virtual: ($time.getMonth()+1) + "月" + $time.getDate()+'日',
-                    real:`${$time.getFullYear()}-${(($time.getMonth()+1)>9)?($time.getMonth()+1):('0'+($time.getMonth()+1))}-${($time.getDate()>9)?($time.getDate()):('0'+($time.getDate()))}`
-                }
-            },
-            afterTomorrow:function(){
-                let $time = new Date(this.nowTime+24*60*60*1000*2);
-                return {
-                    virtual:($time.getMonth()+1) + "月" + $time.getDate()+'日',
-                    real:`${$time.getFullYear()}-${(($time.getMonth()+1)>9)?($time.getMonth()+1):('0'+($time.getMonth()+1))}-${($time.getDate()>9)?($time.getDate()):('0'+($time.getDate()))}`
-                }
-            },
-            nowDate:function(){
-                let $time = new Date(this.nowTime);
-                return $time.getHours();
+            // today:function () {
+            //     let $time = new Date(this.nowTime);
+            //     return {
+            //         virtual:($time.getMonth()+1) + "月" + $time.getDate()+'日',
+            //         real:`${$time.getFullYear()}-${(($time.getMonth()+1)>9)?($time.getMonth()+1):('0'+($time.getMonth()+1))}-${($time.getDate()>9)?($time.getDate()):('0'+($time.getDate()))}`
+            //     }
+            // },
+            // tomorrow:function () {
+            //     let $time = new Date(this.nowTime+24*60*60*1000);
+            //     return {
+            //         virtual: ($time.getMonth()+1) + "月" + $time.getDate()+'日',
+            //         real:`${$time.getFullYear()}-${(($time.getMonth()+1)>9)?($time.getMonth()+1):('0'+($time.getMonth()+1))}-${($time.getDate()>9)?($time.getDate()):('0'+($time.getDate()))}`
+            //     }
+            // },
+            // afterTomorrow:function(){
+            //     let $time = new Date(this.nowTime+24*60*60*1000*2);
+            //     return {
+            //         virtual:($time.getMonth()+1) + "月" + $time.getDate()+'日',
+            //         real:`${$time.getFullYear()}-${(($time.getMonth()+1)>9)?($time.getMonth()+1):('0'+($time.getMonth()+1))}-${($time.getDate()>9)?($time.getDate()):('0'+($time.getDate()))}`
+            //     }
+            // },
+            // nowDate:function(){
+            //     let $time = new Date(this.nowTime);
+            //     return $time.getHours();
+            // }
+        },
+        filters:{
+            formatTime(time){
+                let $time = new Date(time);
+                return ($time.getMonth()+1) + "月" + $time.getDate()+'日';
             }
         },
         components: {},
@@ -128,6 +172,17 @@
         },
 //一些自定义方法
         methods: {
+            isNoAvailableDate(date,occupy){
+                if(!occupy){
+                  return false
+                };
+                for(let i=0,len=occupy.length;i<len;i++){
+                  if(date==occupy[i]) {
+                      return true;
+                  }
+                };
+                return false
+            },
             handleCancelEvent() {
                 this.$emit('cancelEvent');
             },
@@ -138,16 +193,22 @@
                 }
                 let $time='',realTime=''
                 if(this.currentDay=='today'){
-                    $time=`${this.today.virtual} ${this.selectTime}:00`;
-                    realTime=`${this.today.real} ${(this.selectTime-9>0)?this.selectTime:('0'+this.selectTime)}:00:00`;
+                    let time=new Date(this.data[0].interviewDate);
+                    let $realTime=`${time.getFullYear()}-${((time.getMonth()+1)>9)?(time.getMonth()+1):('0'+(time.getMonth()+1))}-${(time.getDate()>9)?(time.getDate()):('0'+(time.getDate()))}`;
+                    $time=`${(time.getMonth()+1)}月${time.getDate()}日 ${this.selectTime}:00`;
+                    realTime=`${$realTime} ${(this.selectTime-9>0)?this.selectTime:('0'+this.selectTime)}:00:00`;
                 };
                 if(this.currentDay=='tomorrow'){
-                    $time=`${this.tomorrow.virtual} ${this.selectTime}:00`;
-                    realTime=`${this.tomorrow.real} ${(this.selectTime-9>0)?this.selectTime:('0'+this.selectTime)}:00:00`;
+                    let time=new Date(this.data[1].interviewDate);
+                    let $realTime=`${time.getFullYear()}-${((time.getMonth()+1)>9)?(time.getMonth()+1):('0'+(time.getMonth()+1))}-${(time.getDate()>9)?(time.getDate()):('0'+(time.getDate()))}`;
+                    $time=`${(time.getMonth()+1)}月${time.getDate()}日 ${this.selectTime}:00`;
+                    realTime=`${$realTime} ${(this.selectTime-9>0)?this.selectTime:('0'+this.selectTime)}:00:00`;
                 };
                 if(this.currentDay=='after-tomorrow'){
-                    $time=`${this.afterTomorrow.virtual} ${this.selectTime}:00`
-                    realTime=`${this.afterTomorrow.real} ${(this.selectTime-9>0)?this.selectTime:('0'+this.selectTime)}:00:00`;
+                    let time=new Date(this.data[2].interviewDate);
+                    let $realTime=`${time.getFullYear()}-${((time.getMonth()+1)>9)?(time.getMonth()+1):('0'+(time.getMonth()+1))}-${(time.getDate()>9)?(time.getDate()):('0'+(time.getDate()))}`;
+                    $time=`${(time.getMonth()+1)}月${time.getDate()}日 ${this.selectTime}:00`;
+                    realTime=`${$realTime} ${(this.selectTime-9>0)?this.selectTime:('0'+this.selectTime)}:00:00`;
                 };
                 this.$emit('sureEvent',$time,realTime);
             },
@@ -156,11 +217,23 @@
             },
             handleSwitchDay(type) {
                 if(type=='today'){
-                    if(this.nowTime-this.selectTime>=0){
+                    if(this.isNoAvailableDate(this.selectTime,this.data[0].occupy)){
                         this.selectTimeIndex='';
                         this.selectTime='';
                     };
                 };
+                if(type=='tomorrow'){
+                    if(this.isNoAvailableDate(this.selectTime,this.data[1].occupy)){
+                        this.selectTimeIndex='';
+                        this.selectTime='';
+                    };
+                }
+                if(type=='after-tomorrow'){
+                    if(this.isNoAvailableDate(this.selectTime,this.data[2].occupy)){
+                        this.selectTimeIndex='';
+                        this.selectTime='';
+                    };
+                }
                 this.currentDay = type;
             },
             handleClickTime(index,time){
