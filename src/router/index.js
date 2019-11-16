@@ -88,7 +88,7 @@ const enterport = (resolve) => {
 Vue.use(Router);
 
 let router = new Router({
-  mode: 'history',
+  mode: 'hash',
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition

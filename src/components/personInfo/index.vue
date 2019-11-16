@@ -46,7 +46,7 @@
         您的生日
       </div>
       <div class="title2 row flex-item flex-justify-between">
-        <div class="item-title1">{{userInfo.birthday.split(' ')[0]}}</div>
+        <div class="item-title1">{{userInfo.birthday&&userInfo.birthday.split(' ')[0]}}</div>
         <div class="item-title2"><img src="~image/icon_next_gary@2x.png" alt=""></div>
       </div>
     </div>
@@ -56,7 +56,7 @@
         您宝贝的生日
       </div>
       <div class="title2 row flex-item flex-justify-between">
-        <div class="item-title1">{{userInfo.babyBirthday.split(' ')[0]}}</div>
+        <div class="item-title1">{{userInfo.babyBirthday&&userInfo.babyBirthday.split(' ')[0]}}</div>
         <div class="item-title2"><img src="~image/icon_next_gary@2x.png" alt=""></div>
       </div>
     </div>
@@ -114,6 +114,7 @@
                 }
                 ;
                 this.userInfo = data || {};
+                console.log('userInfo==>',this.userInfo)
                 this.identityType=this.userInfo.identityType;
             },
             handleGoUpdatePhone() {
