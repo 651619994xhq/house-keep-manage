@@ -14,7 +14,7 @@
           <div class="item" style="color: #8A8F9B">六</div>
         </div>
       </div>
-      <div class="date-time" v-for="(item,index) in infoData" :key="index">
+      <div class="date-time" v-for="(item,index) in dateInfo" :key="index">
       <div class="month">
         {{item.month}}月
       </div>
@@ -61,7 +61,10 @@
     export default {
         name: 'date',
         props:{
-
+            dateInfo:{
+                type:Array,
+                default:[]
+            }
         },
         data () {
             return {
