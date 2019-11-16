@@ -1,19 +1,21 @@
 <template>
   <div class="container">
-    <resume></resume>
-    <date></date>
+    <resume :itemInfo="itemInfo"></resume>
+    <date :dateInfo="dateInfo"></date>
   </div>
 </template>
 
 <script>
     import resume from '@/common/components/resume/index';
     import date from '@/common/components/date/index';
-    import {getOccupyTime} from '@/common/utils/service'
+    import {getEmployeeBaseInfo,getScheduleTime} from '@/common/utils/service'
 
     export default {
-        name: "orderDetail",
+        name: "schedule",
         data() {
             return {
+                itemInfo:{},
+                dateInfo:[],
             }
         },
 //组件
@@ -23,19 +25,66 @@
         },
 //初始化数据
         created() {
-            this.$getOccupyTime();
+            this.$getEmployeeBaseInfo();
+            this.$getScheduleTime();
         },
 //一些自定义方法
         methods: {
-            async $getOccupyTime(){
+            async $getEmployeeBaseInfo(){
                 let id=this.$route.query.id;
-                this.$loading();
-                let [err,data]=await getOccupyTime({auntId:id});
+                let [err,data]=await getEmployeeBaseInfo({auntId:id});
                 if(err!==null){this.$toast(err||'系统错误');this.$clear();return ;};
                 this.initWithData(data);
+            },
+            async $getScheduleTime(){
+                let id=this.$route.query.id;
+                this.$loading();
+                let time=new Date();
+                let $month=time.getMonth()+1;
+                let $fullYear=time.getFullYear();
+                let yearMonth1=`${$fullYear}${$month>9?$month:('0'+$month)}`;
+                let yearMonth2=($month+1>12)?`${$fullYear+1}${($month+1-12)>9?($month+1-12):('0'+($month+1-12))}`:`${$fullYear}${($month+1)>9?($month+1):('0'+($month+1))}`;
+                let yearMonth3=($month+2>12)?`${$fullYear+1}${($month+2-12)>9?($month+2-12):('0'+($month+2-12))}`:`${$fullYear}${($month+2)>9?($month+2):('0'+($month+2))}`;
+                let yearMonth4=($month+3>12)?`${$fullYear+1}${($month+3-12)>9?($month+3-12):('0'+($month+3-12))}`:`${$fullYear}${($month+3)>9?($month+3):('0'+($month+3))}`;
+                let yearMonth5=($month+4>12)?`${$fullYear+1}${($month+4-12)>9?($month+4-12):('0'+($month+4-12))}`:`${$fullYear}${($month+4)>9?($month+4):('0'+($month+4))}`;
+                let yearMonth6=($month+5>12)?`${$fullYear+1}${($month+5-12)>9?($month+5-12):('0'+($month+5-12))}`:`${$fullYear}${($month+5)>9?($month+5):('0'+($month+5))}`;
+                let yearMonth7=($month+6>12)?`${$fullYear+1}${($month+6-12)>9?($month+6-12):('0'+($month+6-12))}`:`${$fullYear}${($month+6)>9?($month+6):('0'+($month+6))}`;
+                let yearMonth8=($month+7>12)?`${$fullYear+1}${($month+7-12)>9?($month+7-12):('0'+($month+7-12))}`:`${$fullYear}${($month+7)>9?($month+7):('0'+($month+7))}`;
+                let yearMonth9=($month+8>12)?`${$fullYear+1}${($month+8-12)>9?($month+8-12):('0'+($month+8-12))}`:`${$fullYear}${($month+8)>9?($month+8):('0'+($month+8))}`;
+                let yearMonth10=($month+9>12)?`${$fullYear+1}${($month+9-12)>9?($month+9-12):('0'+($month+9-12))}`:`${$fullYear}${($month+9)>9?($month+9):('0'+($month+9))}`;
+                let yearMonth11=($month+10>12)?`${$fullYear+1}${($month+10-12)>9?($month+10-12):('0'+($month+10-12))}`:`${$fullYear}${($month+10)>9?($month+10):('0'+($month+10))}`;
+                let yearMonth12=($month+11>12)?`${$fullYear+1}${($month+11-12)>9?($month+11-12):('0'+($month+11-12))}`:`${$fullYear}${($month+11)>9?($month+11):('0'+($month+11))}`;
+
+
+                let [err1,data1]=await getScheduleTime({auntId:id,yearMonth:yearMonth1});
+                if(err1!==null){this.$toast(err1||'系统错误');this.$clear();return ;};
+                let [err2,data2]=await getScheduleTime({auntId:id,yearMonth:yearMonth2});
+                if(err2!==null){this.$toast(err2||'系统错误');this.$clear();return ;};
+                let [err3,data3]=await getScheduleTime({auntId:id,yearMonth:yearMonth3});
+                if(err3!==null){this.$toast(err3||'系统错误');this.$clear();return ;};
+                let [err4,data4]=await getScheduleTime({auntId:id,yearMonth:yearMonth4});
+                if(err4!==null){this.$toast(err4||'系统错误');this.$clear();return ;};
+                let [err5,data5]=await getScheduleTime({auntId:id,yearMonth:yearMonth5});
+                if(err5!==null){this.$toast(err5||'系统错误');this.$clear();return ;};
+                let [err6,data6]=await getScheduleTime({auntId:id,yearMonth:yearMonth6});
+                if(err6!==null){this.$toast(err6||'系统错误');this.$clear();return ;};
+                let [err7,data7]=await getScheduleTime({auntId:id,yearMonth:yearMonth7});
+                if(err7!==null){this.$toast(err7||'系统错误');this.$clear();return ;};
+                let [err8,data8]=await getScheduleTime({auntId:id,yearMonth:yearMonth8});
+                if(err8!==null){this.$toast(err8||'系统错误');this.$clear();return ;};
+                let [err9,data9]=await getScheduleTime({auntId:id,yearMonth:yearMonth9});
+                if(err9!==null){this.$toast(err9||'系统错误');this.$clear();return ;};
+                let [err10,data10]=await getScheduleTime({auntId:id,yearMonth:yearMonth10});
+                if(err10!==null){this.$toast(err10||'系统错误');this.$clear();return ;};
+                let [err11,data11]=await getScheduleTime({auntId:id,yearMonth:yearMonth11});
+                if(err11!==null){this.$toast(err11||'系统错误');this.$clear();return ;};
+                let [err12,data12]=await getScheduleTime({auntId:id,yearMonth:yearMonth12});
+                if(err12!==null){this.$toast(err12||'系统错误');this.$clear();return ;};
+                this.dateInfo=[data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,data12];
                 this.$clear();
             },
             initWithData(data){
+                this.itemInfo=data||{};
                 console.log('data==>',data);
             }
 

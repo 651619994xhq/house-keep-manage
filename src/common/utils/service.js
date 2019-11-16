@@ -113,6 +113,11 @@ export const getOccupyTime=(param={})=>{
   let auntId=param.auntId?param.auntId:'';
   return awaitWrap(axios.post(api.GET_OCCUPY_TIME,{auntId}))
 };
+//获取档期
+export const getScheduleTime=(param={})=>{
+  let auntId=param.auntId?param.auntId:'',yearMonth=param.yearMonth?param.yearMonth:'';
+  return awaitWrap(axios.post(api.GET_SCHEDULE_TIME,{auntId,yearMonth}))
+};
 //预约面试
 export const appointInterview=(param={})=>{
   let auntId=param.auntId?param.auntId:'',interviewType=param.interviewType?param.interviewType:'',interviewTime=param.interviewTime?param.interviewTime:'',remark=param.remark?param.remark:'',interviewAddress=param.interviewAddress?param.interviewAddress:'';
@@ -126,15 +131,15 @@ export const sign=(param={})=>{
 };
 
 //获取access_token
-export const getAccessToken=(param={})=> {
-  let path='/test/cgi-bin/token?grant_type=client_credential&appid=wx9e4e8c44087bd7ca&secret=4efbebf29a4b179376a9964ae1d33016';
-  return awaitWrap(axios.getWeiXin(path));
-};
+// export const getAccessToken=(param={})=> {
+//   let path='/test/cgi-bin/token?grant_type=client_credential&appid=wx9e4e8c44087bd7ca&secret=4efbebf29a4b179376a9964ae1d33016';
+//   return awaitWrap(axios.getWeiXin(path));
+// };
 //获取openId
-export const getOpenId=(param={})=> {
-  let path=`/test/cgi-bin/user/info/updateremark?access_token=${param.access_token}`;
-  return awaitWrap(axios.postWeiXin(path,{}));
-};
+// export const getOpenId=(param={})=> {
+//   let path=`/test/cgi-bin/user/info/updateremark?access_token=${param.access_token}`;
+//   return awaitWrap(axios.postWeiXin(path,{}));
+// };
 //获取用户信息
 // export const getUserInfo=(param={})=> {
 //   let path=`/test/cgi-bin/user/info?access_token=${param.access_token}&openid=${param.openId}&lang=zh_CN`;

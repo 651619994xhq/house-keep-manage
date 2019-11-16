@@ -14,98 +14,17 @@
           <div class="item" style="color: #8A8F9B">六</div>
         </div>
       </div>
-      <div class="date-time">
-        <div class="month">
-          10月
-        </div>
-        <div class="day-time row flex-item flex-justify wrap">
-          <div class="item"></div>
-          <div class="item"></div>
-          <div class="item">1</div>
-          <div class="item">2</div>
-          <div class="item">3</div>
-          <div class="item">4</div>
-          <div class="item">5</div>
-
-          <div class="item">6</div>
-          <div class="item">7</div>
-          <div class="item">8</div>
-          <div class="item">9</div>
-          <div class="item">10</div>
-          <div class="item">11</div>
-          <div class="item">12</div>
-
-          <div class="item">13</div>
-          <div class="item">14</div>
-          <div class="item">15</div>
-          <div class="item">16</div>
-          <div class="item">17</div>
-          <div class="item">18</div>
-          <div class="item">19</div>
-
-          <div class="item">20</div>
-          <div class="item">21</div>
-          <div class="item">22</div>
-          <div class="item">23</div>
-          <div class="item">24</div>
-          <div class="item">25</div>
-          <div class="item">26</div>
-
-          <div class="item">27</div>
-          <div class="item">28</div>
-          <div class="item">29</div>
-          <div class="item">30</div>
-          <div class="item">31</div>
-          <div class="item"></div>
-          <div class="item"></div>
-
-        </div>
-      </div>
-      <div class="date-time">
+      <div class="date-time" v-for="(item,index) in infoData" :key="index">
       <div class="month">
-        11月
+        {{item.month}}月
       </div>
       <div class="day-time row flex-item flex-justify wrap">
         <div class="item item-none"></div>
         <div class="item item-none"></div>
-        <div class="item item-start">1</div>
-        <div class="item">2</div>
-        <div class="item">3</div>
-        <div class="item">4</div>
-        <div class="item">5</div>
-
-        <div class="item">6</div>
-        <div class="item">7</div>
-        <div class="item">8</div>
-        <div class="item">9</div>
-        <div class="item">10</div>
-        <div class="item">11</div>
-        <div class="item">12</div>
-
-        <div class="item">13</div>
-        <div class="item">14</div>
-        <div class="item">15</div>
-        <div class="item">16</div>
-        <div class="item">17</div>
-        <div class="item">18</div>
-        <div class="item">19</div>
-
-        <div class="item">20</div>
-        <div class="item">21</div>
-        <div class="item">22</div>
-        <div class="item">23</div>
-        <div class="item">24</div>
-        <div class="item">25</div>
-        <div class="item">26</div>
-
-        <div class="item">27</div>
-        <div class="item">28</div>
-        <div class="item">29</div>
-        <div class="item item-end">30</div>
-        <div class="item item-none"></div>
-        <div class="item item-none"></div>
-        <div class="item item-none"></div>
-
+        <div class="item" :class="isClass((index2+1),item.occupy)" v-for="(item2,index2) in item.days" :key="index2">{{index2+1}}</div>
+<!--        <div class="item item-start item-end">2</div>-->
+<!--        <div class="item ">30</div>-->
+        <div class="item item-none" v-for="item3 in (33-item.days)" :key="item3+'-none'"></div>
       </div>
     </div>
 
@@ -113,6 +32,31 @@
 </template>
 
 <script>
+  let _data=[
+      {
+      time:'',
+      month:10,
+      days:31,
+      occupy:[]
+      },
+      {
+          month:11,
+          days:30,
+          occupy:[[2,5],[9,30]]
+      },
+      {
+          month:12,
+          days:30,
+          occupy:[[2,6],[9,30]]
+      },
+      {
+          month:1,
+          days:30,
+          occupy:[[2,7],[9,30]]
+      }
+      ];
+
+
     //预约时间
     export default {
         name: 'date',
@@ -121,8 +65,8 @@
         },
         data () {
             return {
-                isToday:true
-
+                isToday:true,
+                infoData:_data
             }
         },
 //组件
@@ -133,6 +77,25 @@
         },
 //一些自定义方法
         methods: {
+            isClass(day,days){
+                for(let i=0,len=days.length;i<len;i++){
+                    for(let k=0,len2=days[i].length;k<len2;k++){
+                        if(day==days[i][0]&&day==days[i][1]){
+                            return 'item-radius'
+                        };
+                        if(day==days[i][0]){
+                            return  'item-start'
+                        }
+                        if(day==days[i][1]){
+                            return 'item-end'
+                        };
+                        if(day>days[i][0]&&day<days[i][1]){
+                            return ''
+                        };
+                    };
+                };
+                return 'item-none'
+            }
 
         }
     }
@@ -197,7 +160,7 @@
       padding-top: 10px;
       padding-bottom: 16px;
       .item{
-        background: #f7f7f7;
+        background: #F7F7F7;
         margin-top: 6px;
         width:53.5px;
         height:24px;
@@ -208,6 +171,10 @@
         line-height:24px;
         text-align: center;
         letter-spacing:1px;
+        color: #C8C9CB;
+      }
+      .item-radius{
+         border-radius: 12px;
       }
       .item-start{
         border-radius: 12px 0 0 12px;
@@ -217,6 +184,7 @@
       }
       .item-none{
         background: none;
+        color: #030818;
       }
     }
   }
