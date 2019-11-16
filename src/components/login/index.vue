@@ -46,7 +46,7 @@
 
 <script>
     import {mapMutations} from 'vuex';
-    import {sendRegisterCode,getMyInfo,register,getAccessToken,getOpenId,login} from '@/common/utils/service';
+    import {sendRegisterCode,getUserInfo,register,getAccessToken,getOpenId,login} from '@/common/utils/service';
     import {SELECT_SERVICE_TYPE} from '@/common/utils/constants'
     import md5 from 'js-md5';
     let userToken='8b5d3b67-5f52-41d8-93d8-648e04545ef0';
@@ -71,7 +71,7 @@
         components: {},
 //初始化数据
         created() {
-            this.$getMyInfo();
+            this.$getUserInfo();
         },
         destroyed() {
             this.clearTimer();
@@ -79,8 +79,8 @@
 //一些自定义方法
         methods: {
             ...mapMutations(['UPDATE_TOKEN']),
-            async $getMyInfo(){
-              let [err,data]=await getMyInfo();
+            async $getUserInfo(){
+              let [err,data]=await getUserInfo();
               if(err!==null){this.$toast(err||'系统错误');return ;};
               let $data=data||{};
               this.headUrl=$data.headUrl;

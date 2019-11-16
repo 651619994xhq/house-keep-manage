@@ -45,6 +45,10 @@ export const getMyInfo =(param={})=>{
   return awaitWrap(axios.post(api.GET_MY_INFO,{}))
 };
 
+export const getUserInfo =(param={})=>{
+  return awaitWrap(axios.post(api.GET_USER_INFO,{}))
+};
+
 //获取我的收藏列表
 export const getMyCollectList=(param={})=>{
   let pageNum=param.pageNum?param.pageNum:1,pageSize=param.pageSize?param.pageSize:10;
@@ -132,10 +136,10 @@ export const getOpenId=(param={})=> {
   return awaitWrap(axios.postWeiXin(path,{}));
 };
 //获取用户信息
-export const getUserInfo=(param={})=> {
-  let path=`/test/cgi-bin/user/info?access_token=${param.access_token}&openid=${param.openId}&lang=zh_CN`;
-  return awaitWrap(axios.reqWeiXin(path));
-};
+// export const getUserInfo=(param={})=> {
+//   let path=`/test/cgi-bin/user/info?access_token=${param.access_token}&openid=${param.openId}&lang=zh_CN`;
+//   return awaitWrap(axios.reqWeiXin(path));
+// };
 //是否去补充信息
 export const isGoSupplementInfo=()=>{
   return awaitWrap(axios.post(api.IS_HAS_INFO,{}))
