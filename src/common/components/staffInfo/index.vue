@@ -88,6 +88,11 @@
       height: 60px;
       background: #666666;
       position: relative;
+      img{
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
 
       .exclusive {
         position: absolute;
