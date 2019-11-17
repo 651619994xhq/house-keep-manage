@@ -23,7 +23,7 @@ let getUrlCode = () => {
 
 let initVue=()=>{
   let clearLocal=window.location.href;
-  if(clearLocal.indexOf('clearLocal')){
+  if(clearLocal.indexOf('clearLocal')>-1){
     removeToken();
     Toast('已清除缓存');
     return;
