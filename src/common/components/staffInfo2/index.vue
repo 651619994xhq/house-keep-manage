@@ -2,7 +2,7 @@
     <div class="staff-info2 col flex-item flex-justify-between">
         <div class="top-module row flex-item flex-justify-start">
            <div class="user-img">
-             <img src="" alt="">
+             <img :src="itemInfo.headUrl" alt="">
              <div class="exclusive">
                独家
              </div>
@@ -75,7 +75,7 @@
             margin-right: 16px;
             width: 60px;
             height: 60px;
-            background: #666666;
+            /*background: #666666;*/
             position: relative;
             img{
               display: block;

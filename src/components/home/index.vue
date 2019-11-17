@@ -121,11 +121,13 @@
                 moreList:[
                     {
                         workName:'小时工',
-                        workInfo:'小时工，打扫卫生，做饭，接送孩子，简单保洁，定时或者不定时的为雇主按小时的提供家政服务'
+                        workInfo:'小时工，打扫卫生，做饭，接送孩子，简单保洁，定时或者不定时的为雇主按小时的提供家政服务',
+                        headUrl:require('../../image/hourlyWork.png')
                     },
                     {
                         workName: '催乳师',
-                        workInfo: '催乳师就是通过催乳技术即按摩手法，为产妇解决产后无乳、乳少等症状的专业护理人员'
+                        workInfo: '催乳师就是通过催乳技术即按摩手法，为产妇解决产后无乳、乳少等症状的专业护理人员',
+                        headUrl:require('../../image/ProlactinDivision.png')
                     }
                 ], //更多列表 暂时前端写死
                 page: {
