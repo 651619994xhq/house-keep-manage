@@ -231,8 +231,10 @@
                 let [err,data]=await cancelInterview({orderId});
                 if(err!==null){this.$clear();this.$toast(err||'系统错误');return ;}
                 this.$clear();
-                this.$toast.success('取消面试成功');
                 this.cancelApponitPopup.isShow=false;
+                await this.$getOrderDetail();
+                this.$toast.success('取消面试成功');
+
             }
 
         }
