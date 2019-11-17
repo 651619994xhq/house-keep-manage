@@ -189,7 +189,7 @@
                     height: 40px;
                     width: 40px;
                     .item-3-title{
-                        font-size:16px;
+                        font-size:14px;
                         font-family:PingFangSC-Regular,PingFangSC;
                         font-weight:400;
                         color:rgba(3,8,24,1);
