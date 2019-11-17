@@ -15,6 +15,10 @@
         methods:{
             async $isGoSupplementInfo(){
                let [err,data]=await isGoSupplementInfo();
+               if(err!==null){
+                   this.$toast(err||'系统错误');
+                 return ;
+               };
                if(data==1){
                    this.$router.replace({
                        path:'/index/home'
