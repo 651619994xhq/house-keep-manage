@@ -1,7 +1,7 @@
 <template>
   <div class="staff-info row flex-item flex-justify-start" @click="handleClickItem(itemInfo.id)">
     <div class="left-module">
-      <img src="" alt="">
+      <img :src="itemInfo.imageUrl?itemInfo.imageUrl:''" alt="">
       <div class="exclusive" v-if="itemInfo.isSole==1">
         独家
       </div>

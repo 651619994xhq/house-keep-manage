@@ -3,7 +3,7 @@
         <div class="bg"></div>
         <div class="card-info row flex-item flex-justify-start">
             <div class="header-img">
-                <img src="" alt="">
+                <img :src="itemInfo.imageUrl?itemInfo.imageUrl:''" alt="">
             </div>
             <div class="info col flex-item flex-justify">
                <div class="item1 row flex-item flex-justify-between">
