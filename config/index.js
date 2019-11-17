@@ -27,7 +27,7 @@ module.exports = {
         }
       },
       '/xhq': {
-        target: 'http://47.96.169.86:8090/aunt-web',  //目标接口域名
+        target: 'http://api.baiming100.com',  //目标接口域名
         // target: 'https://api.weixin.qq.com',  //目标接口域名
         // target:'http://fat03-common-task-manager-service.zykj.com/scopeTask/security/token',//中鸿小贷目标接口
         // target: 'http://10.10.10.22:8082',  //目标接口域名
