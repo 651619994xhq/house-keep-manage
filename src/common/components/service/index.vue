@@ -3,7 +3,7 @@
     <div class="service-box col flex-item flex-justify-between">
       <div class="content flex-grow col flex-item flex-justify">
         <div class="title">专属客服电话</div>
-        <div class="phone">010-5678909</div>
+        <div class="phone">010-87777985</div>
       </div>
       <div class="control-btn row flex-item flex-justify-between">
         <div class="item-btn cancel-btn flex-grow" @click="handleCancelEvent">取消</div>
