@@ -12,15 +12,15 @@
                        <div class="code">{{itemInfo.code}}</div>
                    </div>
                    <div class="money">
-                       ￥{{itemInfo.salary||'0'}}/月
+                       ￥{{itemInfo.salary||'0'}}
                    </div>
                </div>
-               <div class="item2 row flex-item flex-justify-start" v-show="itemInfo.oneSentenceEvaluation">
-                  <div class="item2-icon">
+               <div class="item2 row flex-item flex-justify-start">
+                  <div class="item2-icon" v-show="itemInfo.oneSentenceEvaluation">
                       <img src="~image/icon_red@2x.png" alt="">
                   </div>
                    <div class="title">
-                       {{itemInfo.oneSentenceEvaluation}}
+                       {{itemInfo.oneSentenceEvaluation||''}}
                    </div>
                </div>
                <div class="item3 row flex-item flex-justify-start">
