@@ -115,7 +115,7 @@
             margin-left: 16px;
             width: 114px;
             height: 114px;
-            background: #999999;
+            background: #f2f2f2;
             border-radius: 4px;
             overflow: hidden;
             img{

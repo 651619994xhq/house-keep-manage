@@ -86,7 +86,7 @@
       margin-left: 16px;
       width: 60px;
       height: 60px;
-      background: #666666;
+      background: #f2f2f2;
       position: relative;
       img{
         display: block;
