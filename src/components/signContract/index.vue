@@ -7,31 +7,31 @@
       </div>
       <div class="title2 row flex-item flex-justify-start">
         <div class="item"
-             @click="handleClickServicePeriod(1)">
-          <div class="item-normal" v-if="selectServicePeriod!=1">
+             @click="handleClickServicePeriod(5)">
+          <div class="item-normal" v-if="selectServicePeriod!=5">
             标准周期12个月
           </div>
-          <div class="item-active" v-if="selectServicePeriod==1">
+          <div class="item-active" v-if="selectServicePeriod==5">
             <div class="inner-item">
               <span class="purple-color">标准周期12个月</span>
             </div>
           </div>
         </div>
-        <div class="item" @click="handleClickServicePeriod(2)">
-          <div class="item-normal" v-if="selectServicePeriod!=2">
+        <div class="item" @click="handleClickServicePeriod(6)">
+          <div class="item-normal" v-if="selectServicePeriod!=6">
             灵活周期6个月
           </div>
-          <div class="item-active" v-if="selectServicePeriod==2">
+          <div class="item-active" v-if="selectServicePeriod==6">
             <div class="inner-item">
               <span class="purple-color">灵活周期6个月</span>
             </div>
           </div>
         </div>
-        <div class="item" @click="handleClickServicePeriod(3)">
-          <div class="item-normal" v-if="selectServicePeriod!=3">
+        <div class="item" @click="handleClickServicePeriod(7)">
+          <div class="item-normal" v-if="selectServicePeriod!=7">
             随心周期3个月
           </div>
-          <div class="item-active" v-if="selectServicePeriod==3">
+          <div class="item-active" v-if="selectServicePeriod==7">
             <div class="inner-item">
               <span class="purple-color">随心周期3个月</span>
             </div>
@@ -75,7 +75,7 @@
         name: "signContract",
         data() {
             return {
-                selectServicePeriod: 1,
+                selectServicePeriod: 5,
                 selectStartTime: '',
                 itemInfo: {},
                 servicePeriodData: {
@@ -112,11 +112,11 @@
                 fullYear = time.getFullYear();
                 month = time.getMonth() + 1;
                 day = time.getDate();
-                if (this.selectServicePeriod == 1) {
+                if (this.selectServicePeriod == 5) {
                     return `${fullYear}年${month}月${day}日 - ${fullYear + 1}年${month}月${day}日`;
                 }
                 ;
-                if (this.selectServicePeriod == 2) {
+                if (this.selectServicePeriod == 6) {
                     if (month + 6 > 12) {
                         return `${fullYear}年${month}月${day}日 - ${fullYear + 1}年${month + 6 - 12}月${day}日`;
                     }
@@ -124,7 +124,7 @@
                     return `${fullYear}年${month}月${day}日 - ${fullYear}年${month + 6}月${day}日`;
                 }
                 ;
-                if (this.selectServicePeriod == 3) {
+                if (this.selectServicePeriod == 7) {
                     if (month + 3 > 12) {
                         return `${fullYear}年${month}月${day}日 - ${fullYear + 1}年${month + 3 - 12}月${day}日`;
                     }
