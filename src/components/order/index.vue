@@ -57,12 +57,13 @@
             {{item.interviewTime||'未知'}}
           </div>
         </div>
-        <div class="item4 row flex-item flex-justify-start">
+        <div class="item4 row flex-item flex-justify-start" v-if="item.interviewType==1">
           <div class="item-title">
             面试地点：
           </div>
           <div class="content">
-            {{item.interviewAddress||'未知'}}
+<!--            {{item.interviewAddress||'未知'}}-->
+            北京市朝阳区首城国际C座727室
           </div>
         </div>
       </div>
@@ -176,6 +177,7 @@
     width: 100%;
     overflow: hidden;
     margin-bottom: 10px;
+    padding-bottom: 20px;
 
     .item1 {
       margin-top: 16px;
@@ -263,8 +265,6 @@
     .item4 {
       width: 100%;
       height: 24px;
-      margin-bottom: 20px;
-
       .item-title {
         margin-left: 16px;
         font-size: 13px;

@@ -2,7 +2,7 @@
     <div class="resume-header">
         <div class="bg"></div>
         <div class="card-info row flex-item flex-justify-start">
-            <div class="header-img">
+            <div class="header-img" @click="handleImagePreview(itemInfo.imageUrl)">
                 <img :src="itemInfo.imageUrl?itemInfo.imageUrl:''" alt="">
             </div>
             <div class="info col flex-item flex-justify">
@@ -84,7 +84,22 @@
 
     },
 //一些自定义方法
-    methods: {}
+    methods: {
+        handleImagePreview(imgUrl){
+            if(!imgUrl){
+                return;
+            }
+            this.$imagePreview({
+                images:[imgUrl],
+                // startPosition:1,
+                showIndex:false,
+                onClose(){
+
+                }
+            });
+
+        }
+    }
   }
 </script>
 

@@ -33,7 +33,7 @@
           现居住地：
         </div>
         <div class="content">
-          {{infoData.currentAddress}}
+          {{infoData.currentAddress||'未知'}}
         </div>
       </div>
       <div class="item5 row flex-item flex-justify-start">
@@ -41,8 +41,21 @@
           意向城市：
         </div>
         <div class="content">
-          {{infoData.intentionAddress}}
+          {{infoData.intentionAddress||'未知'}}
         </div>
+      </div>
+    </div>
+    <div class="base-info work-info" v-if="infoData.baseInfo">
+      <div class="item1 row flex-item flex-justify-start">
+        <div class="item1-icon">
+          <img src="~image/work@2x.png" alt="">
+        </div>
+        <div class="item1-title">
+          基本信息
+        </div>
+      </div>
+      <div class="info">
+        {{infoData.baseInfo}}
       </div>
     </div>
     <div class="work-info" v-if="infoData.personIntroduce">
