@@ -8,7 +8,7 @@
       <div class="control-btn row flex-item flex-justify-between">
         <div class="item-btn cancel-btn flex-grow" @click="handleCancelEvent">取消</div>
         <div class="fill-border"></div>
-        <div class="item-btn sure-btn flex-grow" @click="handleSureEvent">确定</div>
+        <div class="item-btn sure-btn flex-grow" @click="handleSureEvent">呼叫</div>
       </div>
     </div>
   </van-popup>
@@ -36,7 +36,9 @@
                 this.$emit('cancelEvent')
             },
             handleSureEvent(){
-                this.$emit('sureEvent')
+                window.location.href = 'tel://010-87777985';
+                // this.$emit('sureEvent');
+
             },
             handleInput(value){
                 this.$emit('closeEvent')
