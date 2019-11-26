@@ -349,15 +349,18 @@
                             // 刷新数据的过程中，回弹停留在距离顶部还有20px的位置
                             this.setData();
                         });
+                        //下拉刷新
+                        this.scroll.on('pullingDown', () => {
+                          this.refreshData();
+                        });
+
                         //实时监听
                         this.scroll.on('scroll',(e)=>{
-                        // this.$toast('x==>'+e.x+'  y==>'+e.y)
                         this.watchScroll(e.y);
-
-                    });
-                } else {//欢迎加入全栈开发交流圈一起学习交流：864305860
-                    this.scroll.refresh()//面向1-3年前端人员
-                }//帮助突破技术瓶颈，提升思维能力
+                        });
+                } else {
+                    this.scroll.refresh()
+                }
             },
             async setData() {
                 this.loading=true;
@@ -371,9 +374,24 @@
                 this.scroll.finishPullUp();
                 this.pullingDownUp()
             },
+            //刷新数据
+            async refreshData() {
+              this.$loading({duration: 0,forbidClick: true,message: "刷新中..."});
+              await this.updateBannerList();
+
+              setTimeout(()=>{
+                this.$clear();
+              },5000);
+
+              this.scroll.finishPullDown();
+              this.pullDownRefresh();
+            },
             pullingDownUp() {
                     this.scroll.refresh() //重新计算元素高度
             },
+            pullDownRefresh(){
+                    this.scroll.refresh(); //重新计算元素高度
+            }
         }
     }
 </script>
