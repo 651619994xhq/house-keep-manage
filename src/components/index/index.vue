@@ -1,8 +1,9 @@
 <template>
     <div>
-<!--      <keep-alive>-->
-        <router-view v-keep-scroll-position></router-view>
-<!--      </keep-alive>-->
+      <keep-alive>
+        <router-view  v-if="$route.meta.keepAlive"></router-view>
+      </keep-alive>
+        <router-view v-if="!$route.meta.keepAlive"></router-view>
         <tabBar :currentType="type"></tabBar>
     </div>
 </template>

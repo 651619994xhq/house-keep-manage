@@ -98,9 +98,9 @@ let router = new Router({
   },
   routes: [
     {
-      path: '/index', name: 'index', component: index, redirect: '/index/home', meta: {index: 1},
+      path: '/index', name: 'index', component: index, redirect: '/index/home', meta: {index: 1,keepAlive:true},
       children: [
-        {path: 'home', name: 'home', component: home, meta: {title: '首页', index: 1}},
+        {path: 'home', name: 'home', component: home, meta: {title: '首页', index: 1,keepAlive:true}},
         {path: 'mine', name: 'mine', component: mine, meta: {title: '我的', index: 1}},
         {path: 'order', name: 'order', component: order, meta: {title: '我的订单', index: 1}},
       ]
