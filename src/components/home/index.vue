@@ -271,6 +271,36 @@
                 }
 
             },
+            //刷新页面list
+            async refreshList(){
+              if(this.nowIndex==0){
+                let [err,data]=await getEmployeeList({type:1,pageNum:1});
+                if(err!==null){this.$toast(err||'系统错误');return ;};
+                let list=data.list||[];
+                this.list1=[...list];
+                this.page.currentMoonWomanPage=2;
+                return ;
+              };
+              if(this.nowIndex==1){
+                let [err2,data2]=await getEmployeeList({type:2,pageNum:1});
+                if(err2!==null){this.$toast(err2||'系统错误');return ;};
+                let list=data2.list||[];
+                this.list2=[...list];
+                this.page.currentChildRearingPage=2;
+                return ;
+              }
+              if(this.nowIndex==2){
+                let [err3,data3]=await getEmployeeList({type:3,pageNum:1});
+                if(err3!==null){this.$toast(err3||'系统错误');return ;};
+                let list=data3.list||[];
+                this.list3=[...list];
+                this.page.currentBabySitterPage=2;
+                return ;
+              }
+              if(this.nowIndex==3){
+                return ;
+              }
+            },
             tabClick(index) {
                 this.nowIndex = index;
                 this.updateList();
@@ -378,11 +408,8 @@
             async refreshData() {
               this.$loading({duration: 0,forbidClick: true,message: "刷新中..."});
               await this.updateBannerList();
-
-              setTimeout(()=>{
-                this.$clear();
-              },5000);
-
+              await this.refreshList();
+              this.$clear();
               this.scroll.finishPullDown();
               this.pullDownRefresh();
             },
