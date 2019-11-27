@@ -118,7 +118,7 @@
                 month = time.getMonth() + 1;
                 day = time.getDate();
                 if (this.selectServicePeriod == 1) {
-                    let endTime= new Date(this.selectStartTime+26*24*60*60*1000);
+                    let endTime= new Date(this.selectStartTime+25*24*60*60*1000);
                     endFullYear = endTime.getFullYear();
                     endMonth = endTime.getMonth() + 1;
                     endDay = endTime.getDate();
@@ -126,7 +126,7 @@
                 }
                 ;
                 if (this.selectServicePeriod == 2) {
-                    let endTime= new Date(this.selectStartTime+42*24*60*60*1000);
+                    let endTime= new Date(this.selectStartTime+41*24*60*60*1000);
                     endFullYear = endTime.getFullYear();
                     endMonth = endTime.getMonth() + 1;
                     endDay = endTime.getDate();
@@ -134,14 +134,14 @@
                 }
                 ;
                 if (this.selectServicePeriod == 3) {
-                    let endTime= new Date(this.selectStartTime+52*24*60*60*1000);
+                    let endTime= new Date(this.selectStartTime+51*24*60*60*1000);
                     endFullYear = endTime.getFullYear();
                     endMonth = endTime.getMonth() + 1;
                     endDay = endTime.getDate();
                     return `${fullYear}年${month}月${day}日 - ${endFullYear}年${endMonth}月${endDay}日`;
                 }
                 if (this.selectServicePeriod == 4) {
-                    let endTime= new Date(this.selectStartTime+78*24*60*60*1000);
+                    let endTime= new Date(this.selectStartTime+77*24*60*60*1000);
                     endFullYear = endTime.getFullYear();
                     endMonth = endTime.getMonth() + 1;
                     endDay = endTime.getDate();

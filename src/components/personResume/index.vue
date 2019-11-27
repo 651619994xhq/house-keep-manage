@@ -38,7 +38,7 @@
       </div>
       <div class="item5 row flex-item flex-justify-start">
         <div class="item-title">
-          意向城市：
+          接受外派：
         </div>
         <div class="content">
           {{infoData.intentionAddress||'未知'}}
