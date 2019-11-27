@@ -2,8 +2,8 @@
   <div id="app">
     <transition :name="transitionName">
       <keep-alive >
-        <router-view class="child-view" v-if="$route.meta.keepAlive"></router-view>
-        <router-view  class="child-view" v-if="!$route.meta.keepAlive" :key="'time'+new Date().getTime()"></router-view>
+        <router-view v-keep-scroll-position class="child-view" v-if="$route.meta.keepAlive"></router-view>
+        <router-view v-keep-scroll-position  class="child-view" v-if="!$route.meta.keepAlive" :key="'time'+new Date().getTime()"></router-view>
       </keep-alive>
 <!--    <router-view v-if="isRouterAlive" class="child-view"></router-view>-->
     </transition>
