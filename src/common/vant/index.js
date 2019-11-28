@@ -2,7 +2,9 @@ import Vue from 'vue'
 import 'vant/lib/index.css';
 import {Swipe,SwipeItem,Toast,Field,Cell,CellGroup,Popup,DatetimePicker,List,SwipeCell,Button,Rate,Dialog,Loading,Picker,ImagePreview} from 'vant';
 import VueKeepScrollPosition from 'vue-keep-scroll-position';
+import clipboard from 'clipboard';
 Vue.use(VueKeepScrollPosition);
+Vue.prototype.$clipboard=clipboard;
 Vue.use(Swipe).use(SwipeItem);
 Vue.use(Field);
 Vue.use(Cell).use(CellGroup);
