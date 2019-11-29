@@ -73,14 +73,14 @@ let initVue=()=>{
   $Login();
 };
 
-// initVue();
+initVue();
 
-store.commit('UPDATE_TOKEN','3b59e5e7-a895-4c2a-954b-341732b65dfb');
-new Vue({
-  el: '#app',
-  router,
-  store,
-  components: {App},
-  template: '<App/>'
-});
+// store.commit('UPDATE_TOKEN','3b59e5e7-a895-4c2a-954b-341732b65dfb');
+// new Vue({
+//   el: '#app',
+//   router,
+//   store,
+//   components: {App},
+//   template: '<App/>'
+// });
 
