@@ -42,10 +42,11 @@
         <div class="text2"><span v-if="selectInterviewType==1">北京市朝阳区首城国际C座727室</span><span v-if="selectInterviewType==2">请添加客服微信号Baiming-duoduo了解详情~</span><span v-if="selectInterviewType==3">请添加客服微信号Baiming-duoduo了解详情~</span></div>
       </div>
       <div class="copy-btn-container row flex-item flex-justify-end">
-         <div class="copy-btn" @click="handleCopyEvent">
-            <span v-if="selectInterviewType==1">复制地址</span>
-            <span v-if="selectInterviewType==2">复制微信号</span>
-            <span v-if="selectInterviewType==3">复制微信号</span>
+         <div class="copy-btn" v-clipboard:copy="copyAddress" v-clipboard:success="onCopy" v-clipboard:error="onError" v-if="selectInterviewType==1">
+            <span>复制地址</span>
+         </div>
+         <div class="copy-btn" v-clipboard:copy="copyWeixin" v-clipboard:success="onCopy" v-clipboard:error="onError" v-if="selectInterviewType==2||selectInterviewType==3">
+          <span>复制微信号</span>
          </div>
       </div>
 
@@ -114,7 +115,10 @@
                 realTime:'',
                 selectInterviewType:1, //面试方式1到点 2上门 3视频
                 message:'',
-                itemData:{}
+                itemData:{},
+                copyAddress:'北京市朝阳区首城国际C座727室',
+                copyWeixin:'Baiming-duoduo'
+
 
             }
         },
@@ -224,20 +228,14 @@
                 this.itemData=data||{};
                 console.log(this.itemData)
             },
-            //copy 文本
-            handleCopyEvent(){
-              console.log('handleCopyEvent is run');
-              // let _this = this;
-              // let clipboard = new this.$clipboard(".cobyOrderSn");
-              // clipboard.on('success', function () {
-              //   console.log('success is run');
-              //   _this.$toast("复制成功")
-              // });
-              // clipboard.on('error', function () {
-              //   console.log('error is run');
-              //   _this.$toast("复制失败")
-              // });
-            }
+            onCopy(e){
+                // console.log('copy is run',e);
+                this.$toast.success('复制成功');
+            },
+            onError(){
+                console.log('copy is error');
+                this.$toast.success('复制失败');
+            },
 
         }
     }
