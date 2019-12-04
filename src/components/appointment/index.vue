@@ -38,8 +38,15 @@
         </div>
       </div>
       <div class="title3 row flex-item flex-justify-start">
-        <div class="text1">到店面试地址：</div>
-        <div class="text2">北京市朝阳区金茂府2期东区6号楼</div>
+        <div class="text1"><span v-if="selectInterviewType==1">到店面试地址：</span><span v-if="selectInterviewType==2">上门面试：</span><span v-if="selectInterviewType==3">视频面试：</span></div>
+        <div class="text2"><span v-if="selectInterviewType==1">北京市朝阳区首城国际C座727室</span><span v-if="selectInterviewType==2">请添加客服微信号Baiming-duoduo了解详情~</span><span v-if="selectInterviewType==3">请添加客服微信号Baiming-duoduo了解详情~</span></div>
+      </div>
+      <div class="copy-btn-container row flex-item flex-justify-end">
+         <div class="copy-btn" @click="handleCopyEvent">
+            <span v-if="selectInterviewType==1">复制地址</span>
+            <span v-if="selectInterviewType==2">复制微信号</span>
+            <span v-if="selectInterviewType==3">复制微信号</span>
+         </div>
       </div>
 
     </div>
@@ -216,6 +223,20 @@
             initWithData(data){
                 this.itemData=data||{};
                 console.log(this.itemData)
+            },
+            //copy 文本
+            handleCopyEvent(){
+              console.log('handleCopyEvent is run');
+              // let _this = this;
+              // let clipboard = new this.$clipboard(".cobyOrderSn");
+              // clipboard.on('success', function () {
+              //   console.log('success is run');
+              //   _this.$toast("复制成功")
+              // });
+              // clipboard.on('error', function () {
+              //   console.log('error is run');
+              //   _this.$toast("复制失败")
+              // });
             }
 
         }
@@ -310,6 +331,29 @@
 
       .text2 {
         color: #3B445C;
+      }
+    }
+    .copy-btn-container{
+      margin-top: 10px;
+      margin-bottom: 16px;
+      height: 28px;
+      width: 100%;
+      padding-right: 16px;
+      box-sizing: border-box;
+      overflow: hidden;
+      .copy-btn{
+        width: 102px;
+        height: 28px;
+        line-height: 28px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-family: PingFangSC-Regular, PingFangSC;
+        font-weight: 400;
+        text-align: center;
+        margin-right: 16px;
+        box-sizing: border-box;
+        color:#FFFFFF;
+        background: linear-gradient(338deg, rgba(201, 141, 253, 1) 0%, rgba(250, 119, 119, 1) 100%);
       }
     }
   }
