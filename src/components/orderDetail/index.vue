@@ -104,7 +104,7 @@
         立即签约
       </div>
     </div>
-        <div class="submit-container col flex-item flex-justify" @click="handleSubmit2" v-if="infoData.status==10">
+        <div class="submit-container col flex-item flex-justify" @click="handleSubmit2" v-if="infoData.status==30">
           <div class="submit-btn2">
             <div class="box">
               <span class="purple-color">去评价</span>
